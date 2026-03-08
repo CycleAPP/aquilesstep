@@ -1,0 +1,5 @@
+[*] std: Performing General Enumeration against: salesos.ciklo.me...
+[-] DNSSEC is not configured for salesos.ciklo.me
+[*] 	 A salesos.ciklo.me 165.227.9.146
+[*] Enumerating SRV Records
+[-] No SRV Records Found for salesos.ciklo.me

@@ -1,0 +1,89 @@
+- name: kerbrute_enum
+  display_name: "Kerbrute User Enum"
+  binary: kerbrute
+  category: active_directory
+  subcategory: kerberos
+  intensity: medium
+  command_template: "kerbrute userenum -d {domain} --dc {target} {wordlist}"
+  output_format: text
+  parser: text
+  description: "Kerberos user enumeration"
+  requires_root: false
+  timeout: 300
+  assessment_types: [active_directory]
+  tags: [kerberos, users, enumeration]
+
+- name: getnpusers_scan
+  display_name: "GetNPUsers (AS-REP Roast)"
+  binary: impacket-GetNPUsers
+  category: active_directory
+  subcategory: kerberos
+  intensity: medium
+  command_template: "impacket-GetNPUsers {domain}/ -dc-ip {target} -no-pass -usersfile {wordlist}"
+  output_format: text
+  parser: text
+  description: "Find AS-REP roastable accounts"
+  requires_root: false
+  timeout: 300
+  assessment_types: [active_directory]
+  tags: [kerberos, asrep, roasting]
+
+- name: crackmapexec_shares
+  display_name: "CrackMapExec SMB Shares"
+  binary: crackmapexec
+  category: active_directory
+  subcategory: smb
+  intensity: medium
+  command_template: "crackmapexec smb {target} -u '' -p '' --shares"
+  output_format: text
+  parser: text
+  description: "Enumerate SMB shares via CrackMapExec"
+  requires_root: false
+  timeout: 120
+  assessment_types: [active_directory, infrastructure]
+  tags: [smb, shares, cme]
+
+- name: crackmapexec_kerberos
+  display_name: "CrackMapExec Kerberos"
+  binary: crackmapexec
+  category: active_directory
+  subcategory: kerberos
+  intensity: medium
+  command_template: "crackmapexec smb {target} -u '' -p '' --pass-pol"
+  output_format: text
+  parser: text
+  description: "Check password policy via CrackMapExec"
+  requires_root: false
+  timeout: 120
+  assessment_types: [active_directory]
+  tags: [kerberos, password_policy, cme]
+
+- name: bloodhound_collector
+  display_name: "BloodHound Collector"
+  binary: bloodhound-python
+  category: active_directory
+  subcategory: mapping
+  intensity: medium
+  command_template: "bloodhound-python -d {domain} -ns {target} -c all --zip"
+  output_format: json
+  parser: json
+  description: "Collect AD data for BloodHound analysis"
+  requires_root: false
+  timeout: 600
+  assessment_types: [active_directory]
+  tags: [bloodhound, mapping, paths, privilege]
+
+- name: getuserspns_scan
+  display_name: "GetUserSPNs (Kerberoast)"
+  binary: impacket-GetUserSPNs
+  category: active_directory
+  subcategory: kerberos
+  intensity: medium
+  command_template: "impacket-GetUserSPNs {domain}/ -dc-ip {target} -no-pass"
+  output_format: text
+  parser: text
+  description: "Find kerberoastable service accounts"
+  requires_root: false
+  timeout: 300
+  assessment_types: [active_directory]
+  tags: [kerberos, kerberoast, spn]

@@ -1,0 +1,390 @@
+{
+  "session_id": "20260308_001200",
+  "start_time": "2026-03-08T00:12:00.135378",
+  "last_saved": "2026-03-08T00:12:36.195523",
+  "execution_state": "executing",
+  "assessment_type": {
+    "key": "web",
+    "name": "Web Application Assessment",
+    "description": "Full-scope web app evaluation: recon, crawling, auth testing, API analysis.",
+    "default_intensity": "medium"
+  },
+  "scope": {
+    "domains": [
+      "salesos.ciklo.me"
+    ],
+    "ips": [],
+    "urls": [],
+    "ports": [
+      "1-65535"
+    ],
+    "exclusions": []
+  },
+  "intensity": "high",
+  "objective": "find vulns",
+  "authorization_accepted": true,
+  "current_phase": 0,
+  "phases": [
+    {
+      "number": 1,
+      "name": "Initial Reconnaissance",
+      "description": "Gather basic OSINT and DNS information about the target domain to understand the attack surface and identify potential subdomains.",
+      "tools": [
+        "dig_lookup",
+        "whois_query",
+        "dnsrecon_standard",
+        "subfinder_enum",
+        "theharvester_scan"
+      ],
+      "status": "running",
+      "results": [
+        {
+          "tool_name": "dig_lookup",
+          "command": "dig +noall +answer salesos.ciklo.me ANY",
+          "exit_code": 0,
+          "output_file": "",
+          "stdout": "",
+          "stderr": "",
+          "duration": 0.07130980491638184,
+          "phase": 0,
+          "timestamp": "2026-03-08T00:12:33.933917",
+          "parsed_data": {},
+          "error_info": {},
+          "retry_count": 0
+        },
+        {
+          "tool_name": "whois_query",
+          "command": "whois salesos.ciklo.me",
+          "exit_code": 1,
+          "output_file": "/home/kali/yeah/aquiles_session_20260308_001200/outputs/phase1_whois_query_1772950354.txt",
+          "stdout": "Malformed request.\n>>> Last update of WHOIS database: 2026-03-08T06:12:34Z <<<\n\nTerms of Use: Access to WHOIS information is provided to assist persons in determining the contents of a domain name registration record in the registry database. The data in this record is provided by Identity Digital or the Registry Operator for informational purposes only, and accuracy is not guaranteed. This service is intended only for query-based access. You agree that you will use this data only for lawful purposes and that, under no circumstances will you use this data to (a) allow, enable, or otherwise support the transmission by e-mail, telephone, or facsimile of mass unsolicited, commercial advertising or solicitations to entities other than the data recipient's own existing customers; or (b) enable high volume, automated, electronic processes that send queries or data to the systems of Registry Operator, a Registrar, or Identity Digital except as reasonably necessary to register domain names or modify existing registrations. When using the Whois service, please consider the following: The Whois service is not a replacement for standard EPP commands to the SRS service. Whois is not considered authoritative for registered domain objects. The Whois service may be scheduled for downtime during production or OT&E maintenance periods. Queries to the Whois services are throttled. If too many queries are received from a single IP address within a specified time, the service will begin to reject further queries for a period of time to prevent disruption of Whois service access. Abuse of the Whois system through data mining is mitigated by detecting and limiting bulk query access from single sources. Where applicable, the presence of a [Non-Public Data] tag indicates that such data is not made publicly available due to applicable data privacy laws or requirements. Should you wish to contact the registrant, please refer to the Whois records available through the registrar URL listed above. Access to non-public data may be provided, upon request, where it can be re\nasonably confirmed that the requester holds a specific legitimate interest and a proper legal basis for accessing the withheld data. Access to this data provided by Identity Digital can be requested by submitting a request via the form found at https://www.identity.digital/about/policies/whois-layered-access/. The Registrar of Record identified in this output may have an RDDS service that can be queried for additional information on how to contact the Registrant, Admin, or Tech contact of the queried domain name. Identity Digital Inc. and Registry Operator reserve the right to modify these terms at any time. By submitting this query, you agree to abide by this policy.\n",
+          "stderr": "",
+          "duration": 0.2455294132232666,
+          "phase": 0,
+          "timestamp": "2026-03-08T00:12:34.188017",
+          "parsed_data": {},
+          "error_info": {
+            "category": "tool_crashed",
+            "severity": "warning",
+            "tool_name": "whois_query",
+            "message": "Non-zero exit (1) \u2014 may still have valid output",
+            "exit_code": 1,
+            "timestamp": "2026-03-08T00:12:34.190544",
+            "retry_count": 0,
+            "suggested_action": "Check command syntax or retry"
+          },
+          "retry_count": 0
+        },
+        {
+          "tool_name": "dnsrecon_standard",
+          "command": "dnsrecon -d salesos.ciklo.me -t std",
+          "exit_code": 0,
+          "output_file": "/home/kali/yeah/aquiles_session_20260308_001200/outputs/phase1_dnsrecon_standard_1772950356.txt",
+          "stdout": "[*] std: Performing General Enumeration against: salesos.ciklo.me...\n[-] DNSSEC is not configured for salesos.ciklo.me\n[*] \t A salesos.ciklo.me 165.227.9.146\n[*] Enumerating SRV Records\n[-] No SRV Records Found for salesos.ciklo.me\n",
+          "stderr": "",
+          "duration": 1.9677653312683105,
+          "phase": 0,
+          "timestamp": "2026-03-08T00:12:36.192081",
+          "parsed_data": {},
+          "error_info": {},
+          "retry_count": 0
+        },
+        {
+          "tool_name": "subfinder_enum",
+          "command": "subfinder -d salesos.ciklo.me -silent",
+          "exit_code": -1,
+          "output_file": "",
+          "stdout": "",
+          "stderr": "Binary 'subfinder' not found on system",
+          "duration": 0,
+          "phase": 0,
+          "timestamp": "2026-03-08T00:12:36.194351",
+          "parsed_data": {},
+          "error_info": {
+            "category": "tool_not_found",
+            "severity": "fatal",
+            "tool_name": "subfinder_enum",
+            "message": "not found",
+            "exit_code": -1,
+            "timestamp": "2026-03-08T00:12:36.194328",
+            "retry_count": 0,
+            "suggested_action": "Install the tool or skip it"
+          },
+          "retry_count": 0
+        },
+        {
+          "tool_name": "theharvester_scan",
+          "command": "theHarvester -d salesos.ciklo.me -b all -l 200",
+          "exit_code": -1,
+          "output_file": "",
+          "stdout": "",
+          "stderr": "Binary 'theHarvester' not found on system",
+          "duration": 0,
+          "phase": 0,
+          "timestamp": "2026-03-08T00:12:36.195510",
+          "parsed_data": {},
+          "error_info": {
+            "category": "tool_not_found",
+            "severity": "fatal",
+            "tool_name": "theharvester_scan",
+            "message": "not found",
+            "exit_code": -1,
+            "timestamp": "2026-03-08T00:12:36.195492",
+            "retry_count": 0,
+            "suggested_action": "Install the tool or skip it"
+          },
+          "retry_count": 0
+        }
+      ],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [
+        "whois_query"
+      ],
+      "skipped_tools": [
+        "subfinder_enum",
+        "theharvester_scan"
+      ]
+    },
+    {
+      "number": 2,
+      "name": "Infrastructure Enumeration",
+      "description": "Scan the discovered hosts and subdomains to identify open ports, running services, and assess SSL/TLS security.",
+      "tools": [
+        "nmap_quick_scan",
+        "nmap_service_scan",
+        "sslscan_check",
+        "sslyze_scan",
+        "httpx_probe"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 3,
+      "name": "Web Application Discovery",
+      "description": "Identify web technologies, WAF presence, and discover hidden directories/files on the web applications.",
+      "tools": [
+        "whatweb_scan",
+        "wafw00f_detect",
+        "nikto_scan",
+        "gobuster_dir",
+        "ffuf_dir",
+        "curl_robots",
+        "curl_security_txt"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 4,
+      "name": "Advanced Web Enumeration",
+      "description": "Perform deeper enumeration including API discovery, parameter fuzzing, and historical URL discovery.",
+      "tools": [
+        "waybackurls_scan",
+        "gau_scan",
+        "ffuf_api_paths",
+        "wfuzz_params",
+        "nuclei_scan"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 5,
+      "name": "Vulnerability Assessment",
+      "description": "Execute targeted vulnerability scans using nuclei templates and comprehensive service version scanning.",
+      "tools": [
+        "nmap_version_scan",
+        "nmap_script_scan",
+        "nuclei_api",
+        "nuclei_scan"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 6,
+      "name": "Validation & Deep Dive",
+      "description": "Validate findings with manual techniques and perform targeted fuzzing on identified parameters and endpoints.",
+      "tools": [
+        "curl_headers",
+        "ffuf_api_fuzz",
+        "wfuzz_params"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    }
+  ],
+  "findings": [],
+  "auditor_hints": [],
+  "hints_data": [],
+  "scan_history": [
+    {
+      "event_type": "state_change",
+      "description": "setup \u2192 setup",
+      "timestamp": "2026-03-08T00:12:00.136506",
+      "metadata": {}
+    },
+    {
+      "event_type": "state_change",
+      "description": "setup \u2192 planning",
+      "timestamp": "2026-03-08T00:12:06.400548",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 1: Initial Reconnaissance",
+      "timestamp": "2026-03-08T00:12:23.845816",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 2: Infrastructure Enumeration",
+      "timestamp": "2026-03-08T00:12:23.845845",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 3: Web Application Discovery",
+      "timestamp": "2026-03-08T00:12:23.845852",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 4: Advanced Web Enumeration",
+      "timestamp": "2026-03-08T00:12:23.845858",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 5: Vulnerability Assessment",
+      "timestamp": "2026-03-08T00:12:23.845863",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 6: Validation & Deep Dive",
+      "timestamp": "2026-03-08T00:12:23.845868",
+      "metadata": {}
+    },
+    {
+      "event_type": "state_change",
+      "description": "planning \u2192 executing",
+      "timestamp": "2026-03-08T00:12:32.125178",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_start",
+      "description": "Phase 1: Initial Reconnaissance",
+      "timestamp": "2026-03-08T00:12:32.129328",
+      "metadata": {}
+    },
+    {
+      "event_type": "tool_start",
+      "description": "Starting DNS Lookup (dig)",
+      "timestamp": "2026-03-08T00:12:33.860754",
+      "metadata": {
+        "tool": "dig_lookup",
+        "target": "salesos.ciklo.me"
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "dig_lookup: success (exit=0, 0.1s)",
+      "timestamp": "2026-03-08T00:12:33.936663",
+      "metadata": {
+        "tool": "dig_lookup",
+        "exit_code": 0,
+        "duration": 0.07130980491638184
+      }
+    },
+    {
+      "event_type": "tool_start",
+      "description": "Starting WHOIS Lookup",
+      "timestamp": "2026-03-08T00:12:33.940659",
+      "metadata": {
+        "tool": "whois_query",
+        "target": "salesos.ciklo.me"
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "whois_query: failure (exit=1, 0.2s)",
+      "timestamp": "2026-03-08T00:12:34.192184",
+      "metadata": {
+        "tool": "whois_query",
+        "exit_code": 1,
+        "duration": 0.2455294132232666
+      }
+    },
+    {
+      "event_type": "tool_start",
+      "description": "Starting DNS Reconnaissance",
+      "timestamp": "2026-03-08T00:12:34.222382",
+      "metadata": {
+        "tool": "dnsrecon_standard",
+        "target": "salesos.ciklo.me"
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "dnsrecon_standard: success (exit=0, 2.0s)",
+      "timestamp": "2026-03-08T00:12:36.192872",
+      "metadata": {
+        "tool": "dnsrecon_standard",
+        "exit_code": 0,
+        "duration": 1.9677653312683105
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "subfinder_enum: failure (exit=-1, 0.0s)",
+      "timestamp": "2026-03-08T00:12:36.194362",
+      "metadata": {
+        "tool": "subfinder_enum",
+        "exit_code": -1,
+        "duration": 0
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "theharvester_scan: failure (exit=-1, 0.0s)",
+      "timestamp": "2026-03-08T00:12:36.195520",
+      "metadata": {
+        "tool": "theharvester_scan",
+        "exit_code": -1,
+        "duration": 0
+      }
+    }
+  ],
+  "artifacts": {
+    "whois_query": [
+      "/home/kali/yeah/aquiles_session_20260308_001200/outputs/phase1_whois_query_1772950354.txt"
+    ],
+    "dnsrecon_standard": [
+      "/home/kali/yeah/aquiles_session_20260308_001200/outputs/phase1_dnsrecon_standard_1772950356.txt"
+    ]
+  },
+  "errors": []
+}

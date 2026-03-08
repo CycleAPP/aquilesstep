@@ -1,0 +1,165 @@
+- name: dig_lookup
+  display_name: "DNS Lookup (dig)"
+  binary: dig
+  category: recon
+  subcategory: dns
+  intensity: low
+  command_template: "dig {target} A {target} AAAA {target} MX {target} NS {target} TXT +noall +answer"
+  output_format: text
+  parser: text
+  description: "DNS record lookup for all record types"
+  requires_root: false
+  timeout: 30
+  assessment_types: [web, infrastructure, bug_bounty, api, network_external]
+  tags: [dns, records, passive]
+
+- name: dig_srv_records
+  display_name: "DNS SRV Records (dig)"
+  binary: dig
+  category: recon
+  subcategory: dns
+  intensity: low
+  command_template: "dig +noall +answer _ldap._tcp.{target} SRV _kerberos._tcp.{target} SRV _gc._tcp.{target} SRV"
+  output_format: text
+  parser: text
+  description: "Discover AD-related SRV records"
+  requires_root: false
+  timeout: 30
+  assessment_types: [active_directory, infrastructure]
+  tags: [dns, srv, active_directory]
+
+- name: whois_query
+  display_name: "WHOIS Lookup"
+  binary: whois
+  category: recon
+  subcategory: domain_info
+  intensity: low
+  command_template: >-
+    whois $(echo {target} | awk -F. '{{print $(NF-1)"."$NF}}')
+  output_format: text
+  parser: text
+  description: "Domain registration and ownership information"
+  requires_root: false
+  timeout: 30
+  assessment_types: [web, infrastructure, bug_bounty, api, network_external]
+  tags: [whois, domain, passive, registrar]
+
+- name: dnsrecon_standard
+  display_name: "DNS Reconnaissance"
+  binary: dnsrecon
+  category: recon
+  subcategory: dns
+  intensity: low
+  command_template: "dnsrecon -d {target} -t std"
+  output_format: text
+  parser: text
+  description: "Standard DNS reconnaissance (SOA, NS, MX, A, AAAA, SRV)"
+  requires_root: false
+  timeout: 120
+  assessment_types: [web, infrastructure, bug_bounty, network_external]
+  tags: [dns, records, enumeration]
+
+- name: dnsrecon_zone_transfer
+  display_name: "DNS Zone Transfer"
+  binary: dnsrecon
+  category: recon
+  subcategory: dns
+  intensity: low
+  command_template: "dnsrecon -d {target} -t axfr"
+  output_format: text
+  parser: text
+  description: "Attempt DNS zone transfer"
+  requires_root: false
+  timeout: 60
+  assessment_types: [web, infrastructure, bug_bounty, network_external]
+  tags: [dns, zone_transfer, misconfiguration]
+
+- name: dnsenum_standard
+  display_name: "DNS Enumeration"
+  binary: dnsenum
+  category: recon
+  subcategory: dns
+  intensity: low
+  command_template: "dnsenum --noreverse {target}"
+  output_format: text
+  parser: text
+  description: "DNS enumeration including subdomain brute-forcing"
+  requires_root: false
+  timeout: 300
+  assessment_types: [web, infrastructure, bug_bounty, network_external]
+  tags: [dns, subdomain, enumeration]
+
+- name: subfinder_enum
+  display_name: "Subfinder Subdomain Discovery"
+  binary: subfinder
+  category: recon
+  subcategory: subdomain
+  intensity: low
+  command_template: "subfinder -d {target} -silent"
+  output_format: text
+  parser: text
+  description: "Passive subdomain discovery using multiple sources"
+  requires_root: false
+  timeout: 300
+  assessment_types: [web, bug_bounty, api, network_external]
+  tags: [subdomain, passive, discovery]
+
+- name: host_lookup
+  display_name: "Host Lookup"
+  binary: host
+  category: recon
+  subcategory: dns
+  intensity: low
+  command_template: "host -a {target}"
+  output_format: text
+  parser: text
+  description: "Quick DNS host lookup"
+  requires_root: false
+  timeout: 15
+  assessment_types: [web, infrastructure, bug_bounty, api, network_external]
+  tags: [dns, quick, passive]
+
+- name: nslookup_query
+  display_name: "NSLookup"
+  binary: nslookup
+  category: recon
+  subcategory: dns
+  intensity: low
+  command_template: "nslookup -type=any {target}"
+  output_format: text
+  parser: text
+  description: "DNS query via nslookup"
+  requires_root: false
+  timeout: 15
+  assessment_types: [web, infrastructure, bug_bounty, api, network_external]
+  tags: [dns, quick, passive]
+
+- name: fierce_scan
+  display_name: "Fierce DNS Scan"
+  binary: fierce
+  category: recon
+  subcategory: dns
+  intensity: medium
+  command_template: "fierce --domain {target}"
+  output_format: text
+  parser: text
+  description: "DNS bruteforce and zone transfer checks"
+  requires_root: false
+  timeout: 300
+  assessment_types: [web, infrastructure, network_external]
+  tags: [dns, bruteforce, zone_transfer]
+
+- name: traceroute_scan
+  display_name: "Traceroute"
+  binary: traceroute
+  category: recon
+  subcategory: network
+  intensity: low
+  command_template: "traceroute -m 20 {target}"
+  output_format: text
+  parser: text
+  description: "Trace network path to target"
+  requires_root: false
+  timeout: 60
+  assessment_types: [infrastructure, network_external]
+  tags: [network, routing, passive]

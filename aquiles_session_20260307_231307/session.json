@@ -1,0 +1,100 @@
+{
+  "session_id": "20260307_231307",
+  "start_time": "2026-03-07T23:13:07.638768",
+  "last_saved": "2026-03-07T23:13:07.640398",
+  "execution_state": "executing",
+  "assessment_type": {
+    "key": "web",
+    "name": "Web Application"
+  },
+  "scope": {
+    "domains": [
+      "example.com"
+    ],
+    "ips": [
+      "10.0.0.1"
+    ],
+    "urls": [],
+    "ports": [
+      "80",
+      "443"
+    ],
+    "exclusions": [
+      "admin.example.com"
+    ]
+  },
+  "intensity": "medium",
+  "objective": "Test pentest of example.com",
+  "authorization_accepted": false,
+  "current_phase": 0,
+  "phases": [
+    {
+      "number": 1,
+      "name": "Recon",
+      "description": "DNS and domain recon",
+      "tools": [
+        "dig_lookup",
+        "whois_query"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [
+        {
+          "severity": "high",
+          "category": "Sensitive File",
+          "description": ".env file exposed",
+          "target": "example.com",
+          "tool": "gobuster_dir",
+          "evidence": "",
+          "phase": 0,
+          "timestamp": "2026-03-07T23:13:07.640354",
+          "finding_id": "Sensitive File:.env file exposed:example.com"
+        }
+      ],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    }
+  ],
+  "findings": [
+    {
+      "severity": "high",
+      "category": "Sensitive File",
+      "description": ".env file exposed",
+      "target": "example.com",
+      "tool": "gobuster_dir",
+      "evidence": "",
+      "phase": 0,
+      "timestamp": "2026-03-07T23:13:07.640354",
+      "finding_id": "Sensitive File:.env file exposed:example.com"
+    }
+  ],
+  "auditor_hints": [],
+  "hints_data": [],
+  "scan_history": [
+    {
+      "event_type": "state_change",
+      "description": "setup \u2192 executing",
+      "timestamp": "2026-03-07T23:13:07.639462",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 1: Recon",
+      "timestamp": "2026-03-07T23:13:07.640324",
+      "metadata": {}
+    },
+    {
+      "event_type": "tool_start",
+      "description": "Starting dig_lookup",
+      "timestamp": "2026-03-07T23:13:07.640383",
+      "metadata": {}
+    }
+  ],
+  "artifacts": {
+    "dig_lookup": [
+      "/tmp/test_output.txt"
+    ]
+  },
+  "errors": []
+}

@@ -1,0 +1,1577 @@
+{
+  "session_id": "20260308_000420",
+  "start_time": "2026-03-08T00:04:20.471703",
+  "last_saved": "2026-03-08T00:07:40.390872",
+  "execution_state": "executing",
+  "assessment_type": {
+    "key": "web",
+    "name": "Web Application Assessment",
+    "description": "Full-scope web app evaluation: recon, crawling, auth testing, API analysis.",
+    "default_intensity": "medium"
+  },
+  "scope": {
+    "domains": [
+      "salesos.ciklo.me"
+    ],
+    "ips": [],
+    "urls": [],
+    "ports": [
+      "1-65535"
+    ],
+    "exclusions": []
+  },
+  "intensity": "high",
+  "objective": "look for vulns",
+  "authorization_accepted": true,
+  "current_phase": 2,
+  "phases": [
+    {
+      "number": 1,
+      "name": "Initial Reconnaissance",
+      "description": "Gather basic OSINT and DNS information about the target domain to understand the attack surface and identify subdomains.",
+      "tools": [
+        "dig_lookup",
+        "whois_query",
+        "dnsrecon_standard",
+        "subfinder_enum",
+        "theharvester_scan"
+      ],
+      "status": "done",
+      "results": [
+        {
+          "tool_name": "dig_lookup",
+          "command": "dig +noall +answer salesos.ciklo.me ANY",
+          "exit_code": 0,
+          "output_file": "",
+          "stdout": "",
+          "stderr": "",
+          "duration": 0.06087303161621094,
+          "phase": 0,
+          "timestamp": "2026-03-08T00:05:13.876238",
+          "parsed_data": {},
+          "error_info": {},
+          "retry_count": 0
+        },
+        {
+          "tool_name": "dig_lookup",
+          "command": "dig +noall +answer salesos.ciklo.me ANY",
+          "exit_code": 0,
+          "output_file": "",
+          "stdout": "",
+          "stderr": "",
+          "duration": 0.06087303161621094,
+          "phase": 0,
+          "timestamp": "2026-03-08T00:05:13.876238",
+          "parsed_data": {},
+          "error_info": {},
+          "retry_count": 0
+        },
+        {
+          "tool_name": "whois_query",
+          "command": "whois salesos.ciklo.me",
+          "exit_code": 1,
+          "output_file": "/home/kali/yeah/aquiles_session_20260308_000420/outputs/phase1_whois_query_1772949914.txt",
+          "stdout": "Malformed request.\n>>> Last update of WHOIS database: 2026-03-08T06:05:14Z <<<\n\nTerms of Use: Access to WHOIS information is provided to assist persons in determining the contents of a domain name registration record in the registry database. The data in this record is provided by Identity Digital or the Registry Operator for informational purposes only, and accuracy is not guaranteed. This service is intended only for query-based access. You agree that you will use this data only for lawful purposes and that, under no circumstances will you use this data to (a) allow, enable, or otherwise support the transmission by e-mail, telephone, or facsimile of mass unsolicited, commercial advertising or solicitations to entities other than the data recipient's own existing customers; or (b) enable high volume, automated, electronic processes that send queries or data to the systems of Registry Operator, a Registrar, or Identity Digital except as reasonably necessary to register domain names or modify existing registrations. When using the Whois service, please consider the following: The Whois service is not a replacement for standard EPP commands to the SRS service. Whois is not considered authoritative for registered domain objects. The Whois service may be scheduled for downtime during production or OT&E maintenance periods. Queries to the Whois services are throttled. If too many queries are received from a single IP address within a specified time, the service will begin to reject further queries for a period of time to prevent disruption of Whois service access. Abuse of the Whois system through data mining is mitigated by detecting and limiting bulk query access from single sources. Where applicable, the presence of a [Non-Public Data] tag indicates that such data is not made publicly available due to applicable data privacy laws or requirements. Should you wish to contact the registrant, please refer to the Whois records available through the registrar URL listed above. Access to non-public data may be provided, upon request, where it can be re\nasonably confirmed that the requester holds a specific legitimate interest and a proper legal basis for accessing the withheld data. Access to this data provided by Identity Digital can be requested by submitting a request via the form found at https://www.identity.digital/about/policies/whois-layered-access/. The Registrar of Record identified in this output may have an RDDS service that can be queried for additional information on how to contact the Registrant, Admin, or Tech contact of the queried domain name. Identity Digital Inc. and Registry Operator reserve the right to modify these terms at any time. By submitting this query, you agree to abide by this policy.\n",
+          "stderr": "",
+          "duration": 0.40894269943237305,
+          "phase": 0,
+          "timestamp": "2026-03-08T00:05:14.288563",
+          "parsed_data": {},
+          "error_info": {
+            "category": "tool_crashed",
+            "severity": "warning",
+            "tool_name": "whois_query",
+            "message": "Non-zero exit (1) \u2014 may still have valid output",
+            "exit_code": 1,
+            "timestamp": "2026-03-08T00:05:14.290975",
+            "retry_count": 0,
+            "suggested_action": "Check command syntax or retry"
+          },
+          "retry_count": 0
+        },
+        {
+          "tool_name": "whois_query",
+          "command": "whois salesos.ciklo.me",
+          "exit_code": 1,
+          "output_file": "/home/kali/yeah/aquiles_session_20260308_000420/outputs/phase1_whois_query_1772949914.txt",
+          "stdout": "Malformed request.\n>>> Last update of WHOIS database: 2026-03-08T06:05:14Z <<<\n\nTerms of Use: Access to WHOIS information is provided to assist persons in determining the contents of a domain name registration record in the registry database. The data in this record is provided by Identity Digital or the Registry Operator for informational purposes only, and accuracy is not guaranteed. This service is intended only for query-based access. You agree that you will use this data only for lawful purposes and that, under no circumstances will you use this data to (a) allow, enable, or otherwise support the transmission by e-mail, telephone, or facsimile of mass unsolicited, commercial advertising or solicitations to entities other than the data recipient's own existing customers; or (b) enable high volume, automated, electronic processes that send queries or data to the systems of Registry Operator, a Registrar, or Identity Digital except as reasonably necessary to register domain names or modify existing registrations. When using the Whois service, please consider the following: The Whois service is not a replacement for standard EPP commands to the SRS service. Whois is not considered authoritative for registered domain objects. The Whois service may be scheduled for downtime during production or OT&E maintenance periods. Queries to the Whois services are throttled. If too many queries are received from a single IP address within a specified time, the service will begin to reject further queries for a period of time to prevent disruption of Whois service access. Abuse of the Whois system through data mining is mitigated by detecting and limiting bulk query access from single sources. Where applicable, the presence of a [Non-Public Data] tag indicates that such data is not made publicly available due to applicable data privacy laws or requirements. Should you wish to contact the registrant, please refer to the Whois records available through the registrar URL listed above. Access to non-public data may be provided, upon request, where it can be re\nasonably confirmed that the requester holds a specific legitimate interest and a proper legal basis for accessing the withheld data. Access to this data provided by Identity Digital can be requested by submitting a request via the form found at https://www.identity.digital/about/policies/whois-layered-access/. The Registrar of Record identified in this output may have an RDDS service that can be queried for additional information on how to contact the Registrant, Admin, or Tech contact of the queried domain name. Identity Digital Inc. and Registry Operator reserve the right to modify these terms at any time. By submitting this query, you agree to abide by this policy.\n",
+          "stderr": "",
+          "duration": 0.40894269943237305,
+          "phase": 0,
+          "timestamp": "2026-03-08T00:05:14.288563",
+          "parsed_data": {},
+          "error_info": {
+            "category": "tool_crashed",
+            "severity": "warning",
+            "tool_name": "whois_query",
+            "message": "Non-zero exit (1) \u2014 may still have valid output",
+            "exit_code": 1,
+            "timestamp": "2026-03-08T00:05:14.290975",
+            "retry_count": 0,
+            "suggested_action": "Check command syntax or retry"
+          },
+          "retry_count": 0
+        },
+        {
+          "tool_name": "dnsrecon_standard",
+          "command": "dnsrecon -d salesos.ciklo.me -t std",
+          "exit_code": 0,
+          "output_file": "/home/kali/yeah/aquiles_session_20260308_000420/outputs/phase1_dnsrecon_standard_1772949916.txt",
+          "stdout": "[*] std: Performing General Enumeration against: salesos.ciklo.me...\n[-] DNSSEC is not configured for salesos.ciklo.me\n[*] \t A salesos.ciklo.me 165.227.9.146\n[*] Enumerating SRV Records\n[-] No SRV Records Found for salesos.ciklo.me\n",
+          "stderr": "",
+          "duration": 2.5713493824005127,
+          "phase": 0,
+          "timestamp": "2026-03-08T00:05:16.886755",
+          "parsed_data": {},
+          "error_info": {},
+          "retry_count": 0
+        },
+        {
+          "tool_name": "dnsrecon_standard",
+          "command": "dnsrecon -d salesos.ciklo.me -t std",
+          "exit_code": 0,
+          "output_file": "/home/kali/yeah/aquiles_session_20260308_000420/outputs/phase1_dnsrecon_standard_1772949916.txt",
+          "stdout": "[*] std: Performing General Enumeration against: salesos.ciklo.me...\n[-] DNSSEC is not configured for salesos.ciklo.me\n[*] \t A salesos.ciklo.me 165.227.9.146\n[*] Enumerating SRV Records\n[-] No SRV Records Found for salesos.ciklo.me\n",
+          "stderr": "",
+          "duration": 2.5713493824005127,
+          "phase": 0,
+          "timestamp": "2026-03-08T00:05:16.886755",
+          "parsed_data": {},
+          "error_info": {},
+          "retry_count": 0
+        },
+        {
+          "tool_name": "subfinder_enum",
+          "command": "subfinder -d salesos.ciklo.me -silent",
+          "exit_code": -1,
+          "output_file": "",
+          "stdout": "",
+          "stderr": "Binary 'subfinder' not found on system",
+          "duration": 0,
+          "phase": 0,
+          "timestamp": "2026-03-08T00:05:16.892282",
+          "parsed_data": {},
+          "error_info": {
+            "category": "tool_not_found",
+            "severity": "fatal",
+            "tool_name": "subfinder_enum",
+            "message": "not found",
+            "exit_code": -1,
+            "timestamp": "2026-03-08T00:05:16.892258",
+            "retry_count": 0,
+            "suggested_action": "Install the tool or skip it"
+          },
+          "retry_count": 0
+        },
+        {
+          "tool_name": "subfinder_enum",
+          "command": "subfinder -d salesos.ciklo.me -silent",
+          "exit_code": -1,
+          "output_file": "",
+          "stdout": "",
+          "stderr": "Binary 'subfinder' not found on system",
+          "duration": 0,
+          "phase": 0,
+          "timestamp": "2026-03-08T00:05:16.892282",
+          "parsed_data": {},
+          "error_info": {
+            "category": "tool_not_found",
+            "severity": "fatal",
+            "tool_name": "subfinder_enum",
+            "message": "not found",
+            "exit_code": -1,
+            "timestamp": "2026-03-08T00:05:16.892258",
+            "retry_count": 0,
+            "suggested_action": "Install the tool or skip it"
+          },
+          "retry_count": 0
+        },
+        {
+          "tool_name": "theharvester_scan",
+          "command": "theHarvester -d salesos.ciklo.me -b all -l 200",
+          "exit_code": -1,
+          "output_file": "",
+          "stdout": "",
+          "stderr": "Binary 'theHarvester' not found on system",
+          "duration": 0,
+          "phase": 0,
+          "timestamp": "2026-03-08T00:05:16.894335",
+          "parsed_data": {},
+          "error_info": {
+            "category": "tool_not_found",
+            "severity": "fatal",
+            "tool_name": "theharvester_scan",
+            "message": "not found",
+            "exit_code": -1,
+            "timestamp": "2026-03-08T00:05:16.894316",
+            "retry_count": 0,
+            "suggested_action": "Install the tool or skip it"
+          },
+          "retry_count": 0
+        },
+        {
+          "tool_name": "theharvester_scan",
+          "command": "theHarvester -d salesos.ciklo.me -b all -l 200",
+          "exit_code": -1,
+          "output_file": "",
+          "stdout": "",
+          "stderr": "Binary 'theHarvester' not found on system",
+          "duration": 0,
+          "phase": 0,
+          "timestamp": "2026-03-08T00:05:16.894335",
+          "parsed_data": {},
+          "error_info": {
+            "category": "tool_not_found",
+            "severity": "fatal",
+            "tool_name": "theharvester_scan",
+            "message": "not found",
+            "exit_code": -1,
+            "timestamp": "2026-03-08T00:05:16.894316",
+            "retry_count": 0,
+            "suggested_action": "Install the tool or skip it"
+          },
+          "retry_count": 0
+        }
+      ],
+      "findings": [],
+      "summary": "1. DNS reconnaissance succeeded but returned no notable records, while subdomain enumeration and OSINT harvesting tools failed to execute, indicating potential configuration or permission issues.\n\n2. The most interesting finding is the consistent failure of subfinder and theHarvester (exit code -1), suggesting these critical enumeration tools are either misconfigured, blocked, or unavailable\u2014limiting attack surface discovery.\n\n3. Next, the auditor should first troubleshoot and re-run the failed enumeration tools, then proceed to port scanning and service enumeration on any discovered hosts or the primary target.\n\n4. Patterns show DNS tools functioned normally while OSINT/subdomain tools universally failed, pointing to a systemic issue with external data gathering tools rather than target defenses.",
+      "failed_tools": [
+        "whois_query",
+        "subfinder_enum",
+        "theharvester_scan"
+      ],
+      "skipped_tools": [
+        "subfinder_enum",
+        "theharvester_scan"
+      ]
+    },
+    {
+      "number": 2,
+      "name": "Infrastructure Discovery",
+      "description": "Perform network scanning to identify live hosts, open ports, services, and SSL/TLS configuration for the target domain and discovered subdomains.",
+      "tools": [
+        "nmap_quick_scan",
+        "nmap_service_scan",
+        "sslscan_check",
+        "sslyze_scan",
+        "httpx_probe"
+      ],
+      "status": "done",
+      "results": [
+        {
+          "tool_name": "nmap_quick_scan",
+          "command": "nmap -T4 -F -oX /home/kali/yeah/aquiles_session_20260308_000420/outputs/phase2_nmap_quick_scan_1772949949.xml salesos.ciklo.me",
+          "exit_code": 0,
+          "output_file": "/home/kali/yeah/aquiles_session_20260308_000420/outputs/phase2_nmap_quick_scan_1772949949.xml",
+          "stdout": "Starting Nmap 7.95 ( https://nmap.org ) at 2026-03-08 00:05 CST\nNmap scan report for salesos.ciklo.me (165.227.9.146)\nHost is up (0.053s latency).\nNot shown: 94 closed tcp ports (conn-refused)\nPORT     STATE    SERVICE\n22/tcp   open     ssh\n25/tcp   filtered smtp\n80/tcp   open     http\n443/tcp  open     https\n3000/tcp open     ppp\n5060/tcp open     sip\n\nNmap done: 1 IP address (1 host up) scanned in 0.34 seconds\n",
+          "stderr": "",
+          "duration": 0.3851931095123291,
+          "phase": 1,
+          "timestamp": "2026-03-08T00:05:50.309785",
+          "parsed_data": {},
+          "error_info": {},
+          "retry_count": 0
+        },
+        {
+          "tool_name": "nmap_quick_scan",
+          "command": "nmap -T4 -F -oX /home/kali/yeah/aquiles_session_20260308_000420/outputs/phase2_nmap_quick_scan_1772949949.xml salesos.ciklo.me",
+          "exit_code": 0,
+          "output_file": "/home/kali/yeah/aquiles_session_20260308_000420/outputs/phase2_nmap_quick_scan_1772949949.xml",
+          "stdout": "Starting Nmap 7.95 ( https://nmap.org ) at 2026-03-08 00:05 CST\nNmap scan report for salesos.ciklo.me (165.227.9.146)\nHost is up (0.053s latency).\nNot shown: 94 closed tcp ports (conn-refused)\nPORT     STATE    SERVICE\n22/tcp   open     ssh\n25/tcp   filtered smtp\n80/tcp   open     http\n443/tcp  open     https\n3000/tcp open     ppp\n5060/tcp open     sip\n\nNmap done: 1 IP address (1 host up) scanned in 0.34 seconds\n",
+          "stderr": "",
+          "duration": 0.3851931095123291,
+          "phase": 1,
+          "timestamp": "2026-03-08T00:05:50.309785",
+          "parsed_data": {},
+          "error_info": {},
+          "retry_count": 0
+        },
+        {
+          "tool_name": "nmap_service_scan",
+          "command": "nmap -sV -sC -oX /home/kali/yeah/aquiles_session_20260308_000420/outputs/phase2_nmap_service_scan_1772949950.xml salesos.ciklo.me",
+          "exit_code": 0,
+          "output_file": "/home/kali/yeah/aquiles_session_20260308_000420/outputs/phase2_nmap_service_scan_1772949950.xml",
+          "stdout": "Starting Nmap 7.95 ( https://nmap.org ) at 2026-03-08 00:05 CST\nNmap scan report for salesos.ciklo.me (165.227.9.146)\nHost is up (0.052s latency).\nNot shown: 992 closed tcp ports (conn-refused)\nPORT     STATE    SERVICE  VERSION\n22/tcp   open     ssh      OpenSSH 9.6p1 Ubuntu 3ubuntu13.13 (Ubuntu Linux; protocol 2.0)\n| ssh-hostkey: \n|   256 52:12:3c:9a:8a:6c:dc:76:8f:2b:b9:63:7a:97:b0:76 (ECDSA)\n|_  256 c8:35:a1:1e:e7:e9:3a:30:0f:6e:27:6d:98:c0:47:a3 (ED25519)\n25/tcp   filtered smtp\n80/tcp   open     http     nginx 1.24.0 (Ubuntu)\n|_http-title: Did not follow redirect to https://salesos.ciklo.me/\n|_http-server-header: nginx/1.24.0 (Ubuntu)\n443/tcp  open     ssl/http nginx 1.24.0 (Ubuntu)\n|_http-server-header: nginx/1.24.0 (Ubuntu)\n|_http-title: Ciklo OS\n|_ssl-date: TLS randomness does not represent time\n| ssl-cert: Subject: commonName=salesos.ciklo.me\n| Subject Alternative Name: DNS:salesos.ciklo.me\n| Not valid before: 2026-02-14T19:47:22\n|_Not valid after:  2026-05-15T19:47:21\n3000/tcp open     ppp?\n| fingerprint-strings: \n|   DNSVersionBindReqTCP, Help, NCP, RPCCheck: \n|     HTTP/1.1 400 Bad Request\n|     Connection: close\n|   GetRequest: \n|     HTTP/1.1 200 OK\n|     Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding\n|     x-nextjs-cache: HIT\n|     x-nextjs-prerender: 1\n|     x-nextjs-prerender: 1\n|     x-nextjs-stale-time: 300\n|     X-Powered-By: Next.js\n|     Cache-Control: s-maxage=31536000\n|     ETag: \"188gkxp3a8r2tvv\"\n|     Content-Type: text/html; charset=utf-8\n|     Content-Length: 132061\n|     Date: Sun, 08 Mar 2026 06:06:02 GMT\n|     Connection: close\n|     <!DOCTYPE html><!--tkg6m1ugFDIKxoFLgTgpB--><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"preload\" href=\"/_next/static/media/797e433ab948586e-s.p.dbea232f.woff2\" as=\"font\" crossorigin=\"\" type=\"font/woff2\"/><link rel=\"preload\" href=\"/_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2\" as=\"font\" crossorigin=\"\" type=\"font/woff2\"/><link rel=\"stylesheet\" href=\"/_next/static/chunks/2473c16c0c2f6b5f.css\"\n|   HTTPOptions, RTSPRequest: \n|     HTTP/1.1 405 Method Not Allowed\n|     vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch\n|     Allow: GET\n|     Allow: HEAD\n|     Date: Sun, 08 Mar 2026 06:06:03 GMT\n|     Connection: close\n|_    Method Not Allowed\n3001/tcp open     http     Node.js Express framework\n|_http-title: Site doesn't have a title (text/html; charset=utf-8).\n4006/tcp open     http     Node.js Express framework\n|_http-title: PWNY \\xE2\\x80\\x94 AI Cybersecurity Lab Assistant\n5060/tcp open     http     Node.js (Express middleware)\n|_http-title: Space Chess \\xE2\\x80\\x94 Galactic Strategy Arena\n1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :\nSF-Port3000-TCP:V=7.95%I=7%D=3/8%Time=69AD11CA%P=x86_64-pc-linux-gnu%r(Get\nSF:Request,3840,\"HTTP/1\\.1\\x20200\\x20OK\\r\\nVary:\\x20rsc,\\x20next-router-st\nSF:ate-tree,\\x20next-router-prefetch,\\x20next-router-segment-prefetch,\\x20\nSF:Accept-Encoding\\r\\nx-nextjs-cache:\\x20HIT\\r\\nx-nextjs-prerender:\\x201\\r\nSF:\\nx-nextjs-prerender:\\x201\\r\\nx-nextjs-stale-time:\\x20300\\r\\nX-Powered-\nSF:By:\\x20Next\\.js\\r\\nCache-Control:\\x20s-maxage=31536000\\r\\nETag:\\x20\\\"18\nSF:8gkxp3a8r2tvv\\\"\\r\\nContent-Type:\\x20text/html;\\x20charset=utf-8\\r\\nCont\nSF:ent-Length:\\x20132061\\r\\nDate:\\x20Sun,\\x2008\\x20Mar\\x202026\\x2006:06:02\nSF:\\x20GMT\\r\\nConnection:\\x20close\\r\\n\\r\\n<!DOCTYPE\\x20html><!--tkg6m1ugFD\nSF:IKxoFLgTgpB--><html\\x20lang=\\\"en\\\"><head><meta\\x20charSet=\\\"utf-8\\\"/><m\nSF:eta\\x20name=\\\"viewport\\\"\\x20content=\\\"width=device-width,\\x20initial-sc\nSF:ale=1\\\"/><link\\x20rel=\\\"preload\\\"\\x20href=\\\"/_next/static/media/797e433\nSF:ab948586e-s\\.p\\.dbea232f\\.woff2\\\"\\x20as=\\\"font\\\"\\x20crossorigin=\\\"\\\"\\x2\nSF:0type=\\\"font/woff2\\\"/><link\\x20rel=\\\"preload\\\"\\x20href=\\\"/_next/static/\nSF:media/caa3a2e1cccd8315-s\\.p\\.853070df\\.woff2\\\"\\x20as=\\\"font\\\"\\x20crosso\nSF:rigin=\\\"\\\"\\x20type=\\\"font/woff2\\\"/><link\\x20rel=\\\"stylesheet\\\"\\x20href=\nSF:\\\"/_next/static/chunks/2473c16c0c2f6b5f\\.css\\\"\")%r(Help,2F,\"HTTP/1\\.1\\x\nSF:20400\\x20Bad\\x20Request\\r\\nConnection:\\x20close\\r\\n\\r\\n\")%r(NCP,2F,\"HTT\nSF:P/1\\.1\\x20400\\x20Bad\\x20Request\\r\\nConnection:\\x20close\\r\\n\\r\\n\")%r(HTT\nSF:POptions,DD,\"HTTP/1\\.1\\x20405\\x20Method\\x20Not\\x20Allowed\\r\\nvary:\\x20r\nSF:sc,\\x20next-router-state-tree,\\x20next-router-prefetch,\\x20next-router-\nSF:segment-prefetch\\r\\nAllow:\\x20GET\\r\\nAllow:\\x20HEAD\\r\\nDate:\\x20Sun,\\x2\nSF:008\\x20Mar\\x202026\\x2006:06:03\\x20GMT\\r\\nConnection:\\x20close\\r\\n\\r\\nMe\nSF:thod\\x20Not\\x20Allowed\")%r(RTSPRequest,DD,\"HTTP/1\\.1\\x20405\\x20Method\\x\nSF:20Not\\x20Allowed\\r\\nvary:\\x20rsc,\\x20next-router-state-tree,\\x20next-ro\nSF:uter-prefetch,\\x20next-router-segment-prefetch\\r\\nAllow:\\x20GET\\r\\nAllo\nSF:w:\\x20HEAD\\r\\nDate:\\x20Sun,\\x2008\\x20Mar\\x202026\\x2006:06:03\\x20GMT\\r\\n\nSF:Connection:\\x20close\\r\\n\\r",
+          "stderr": "",
+          "duration": 32.15118718147278,
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:22.502956",
+          "parsed_data": {},
+          "error_info": {},
+          "retry_count": 0
+        },
+        {
+          "tool_name": "nmap_service_scan",
+          "command": "nmap -sV -sC -oX /home/kali/yeah/aquiles_session_20260308_000420/outputs/phase2_nmap_service_scan_1772949950.xml salesos.ciklo.me",
+          "exit_code": 0,
+          "output_file": "/home/kali/yeah/aquiles_session_20260308_000420/outputs/phase2_nmap_service_scan_1772949950.xml",
+          "stdout": "Starting Nmap 7.95 ( https://nmap.org ) at 2026-03-08 00:05 CST\nNmap scan report for salesos.ciklo.me (165.227.9.146)\nHost is up (0.052s latency).\nNot shown: 992 closed tcp ports (conn-refused)\nPORT     STATE    SERVICE  VERSION\n22/tcp   open     ssh      OpenSSH 9.6p1 Ubuntu 3ubuntu13.13 (Ubuntu Linux; protocol 2.0)\n| ssh-hostkey: \n|   256 52:12:3c:9a:8a:6c:dc:76:8f:2b:b9:63:7a:97:b0:76 (ECDSA)\n|_  256 c8:35:a1:1e:e7:e9:3a:30:0f:6e:27:6d:98:c0:47:a3 (ED25519)\n25/tcp   filtered smtp\n80/tcp   open     http     nginx 1.24.0 (Ubuntu)\n|_http-title: Did not follow redirect to https://salesos.ciklo.me/\n|_http-server-header: nginx/1.24.0 (Ubuntu)\n443/tcp  open     ssl/http nginx 1.24.0 (Ubuntu)\n|_http-server-header: nginx/1.24.0 (Ubuntu)\n|_http-title: Ciklo OS\n|_ssl-date: TLS randomness does not represent time\n| ssl-cert: Subject: commonName=salesos.ciklo.me\n| Subject Alternative Name: DNS:salesos.ciklo.me\n| Not valid before: 2026-02-14T19:47:22\n|_Not valid after:  2026-05-15T19:47:21\n3000/tcp open     ppp?\n| fingerprint-strings: \n|   DNSVersionBindReqTCP, Help, NCP, RPCCheck: \n|     HTTP/1.1 400 Bad Request\n|     Connection: close\n|   GetRequest: \n|     HTTP/1.1 200 OK\n|     Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding\n|     x-nextjs-cache: HIT\n|     x-nextjs-prerender: 1\n|     x-nextjs-prerender: 1\n|     x-nextjs-stale-time: 300\n|     X-Powered-By: Next.js\n|     Cache-Control: s-maxage=31536000\n|     ETag: \"188gkxp3a8r2tvv\"\n|     Content-Type: text/html; charset=utf-8\n|     Content-Length: 132061\n|     Date: Sun, 08 Mar 2026 06:06:02 GMT\n|     Connection: close\n|     <!DOCTYPE html><!--tkg6m1ugFDIKxoFLgTgpB--><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"preload\" href=\"/_next/static/media/797e433ab948586e-s.p.dbea232f.woff2\" as=\"font\" crossorigin=\"\" type=\"font/woff2\"/><link rel=\"preload\" href=\"/_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2\" as=\"font\" crossorigin=\"\" type=\"font/woff2\"/><link rel=\"stylesheet\" href=\"/_next/static/chunks/2473c16c0c2f6b5f.css\"\n|   HTTPOptions, RTSPRequest: \n|     HTTP/1.1 405 Method Not Allowed\n|     vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch\n|     Allow: GET\n|     Allow: HEAD\n|     Date: Sun, 08 Mar 2026 06:06:03 GMT\n|     Connection: close\n|_    Method Not Allowed\n3001/tcp open     http     Node.js Express framework\n|_http-title: Site doesn't have a title (text/html; charset=utf-8).\n4006/tcp open     http     Node.js Express framework\n|_http-title: PWNY \\xE2\\x80\\x94 AI Cybersecurity Lab Assistant\n5060/tcp open     http     Node.js (Express middleware)\n|_http-title: Space Chess \\xE2\\x80\\x94 Galactic Strategy Arena\n1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :\nSF-Port3000-TCP:V=7.95%I=7%D=3/8%Time=69AD11CA%P=x86_64-pc-linux-gnu%r(Get\nSF:Request,3840,\"HTTP/1\\.1\\x20200\\x20OK\\r\\nVary:\\x20rsc,\\x20next-router-st\nSF:ate-tree,\\x20next-router-prefetch,\\x20next-router-segment-prefetch,\\x20\nSF:Accept-Encoding\\r\\nx-nextjs-cache:\\x20HIT\\r\\nx-nextjs-prerender:\\x201\\r\nSF:\\nx-nextjs-prerender:\\x201\\r\\nx-nextjs-stale-time:\\x20300\\r\\nX-Powered-\nSF:By:\\x20Next\\.js\\r\\nCache-Control:\\x20s-maxage=31536000\\r\\nETag:\\x20\\\"18\nSF:8gkxp3a8r2tvv\\\"\\r\\nContent-Type:\\x20text/html;\\x20charset=utf-8\\r\\nCont\nSF:ent-Length:\\x20132061\\r\\nDate:\\x20Sun,\\x2008\\x20Mar\\x202026\\x2006:06:02\nSF:\\x20GMT\\r\\nConnection:\\x20close\\r\\n\\r\\n<!DOCTYPE\\x20html><!--tkg6m1ugFD\nSF:IKxoFLgTgpB--><html\\x20lang=\\\"en\\\"><head><meta\\x20charSet=\\\"utf-8\\\"/><m\nSF:eta\\x20name=\\\"viewport\\\"\\x20content=\\\"width=device-width,\\x20initial-sc\nSF:ale=1\\\"/><link\\x20rel=\\\"preload\\\"\\x20href=\\\"/_next/static/media/797e433\nSF:ab948586e-s\\.p\\.dbea232f\\.woff2\\\"\\x20as=\\\"font\\\"\\x20crossorigin=\\\"\\\"\\x2\nSF:0type=\\\"font/woff2\\\"/><link\\x20rel=\\\"preload\\\"\\x20href=\\\"/_next/static/\nSF:media/caa3a2e1cccd8315-s\\.p\\.853070df\\.woff2\\\"\\x20as=\\\"font\\\"\\x20crosso\nSF:rigin=\\\"\\\"\\x20type=\\\"font/woff2\\\"/><link\\x20rel=\\\"stylesheet\\\"\\x20href=\nSF:\\\"/_next/static/chunks/2473c16c0c2f6b5f\\.css\\\"\")%r(Help,2F,\"HTTP/1\\.1\\x\nSF:20400\\x20Bad\\x20Request\\r\\nConnection:\\x20close\\r\\n\\r\\n\")%r(NCP,2F,\"HTT\nSF:P/1\\.1\\x20400\\x20Bad\\x20Request\\r\\nConnection:\\x20close\\r\\n\\r\\n\")%r(HTT\nSF:POptions,DD,\"HTTP/1\\.1\\x20405\\x20Method\\x20Not\\x20Allowed\\r\\nvary:\\x20r\nSF:sc,\\x20next-router-state-tree,\\x20next-router-prefetch,\\x20next-router-\nSF:segment-prefetch\\r\\nAllow:\\x20GET\\r\\nAllow:\\x20HEAD\\r\\nDate:\\x20Sun,\\x2\nSF:008\\x20Mar\\x202026\\x2006:06:03\\x20GMT\\r\\nConnection:\\x20close\\r\\n\\r\\nMe\nSF:thod\\x20Not\\x20Allowed\")%r(RTSPRequest,DD,\"HTTP/1\\.1\\x20405\\x20Method\\x\nSF:20Not\\x20Allowed\\r\\nvary:\\x20rsc,\\x20next-router-state-tree,\\x20next-ro\nSF:uter-prefetch,\\x20next-router-segment-prefetch\\r\\nAllow:\\x20GET\\r\\nAllo\nSF:w:\\x20HEAD\\r\\nDate:\\x20Sun,\\x2008\\x20Mar\\x202026\\x2006:06:03\\x20GMT\\r\\n\nSF:Connection:\\x20close\\r\\n\\r",
+          "stderr": "",
+          "duration": 32.15118718147278,
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:22.502956",
+          "parsed_data": {},
+          "error_info": {},
+          "retry_count": 0
+        },
+        {
+          "tool_name": "sslscan_check",
+          "command": "sslscan salesos.ciklo.me",
+          "exit_code": 0,
+          "output_file": "/home/kali/yeah/aquiles_session_20260308_000420/outputs/phase2_sslscan_check_1772949992.txt",
+          "stdout": "Version: \u001b[32m2.1.5\u001b[0m\nOpenSSL 3.5.4 30 Sep 2025\n\u001b[0m\n\u001b[32mConnected to 165.227.9.146\u001b[0m\n\nTesting SSL server \u001b[32msalesos.ciklo.me\u001b[0m on port \u001b[32m443\u001b[0m using SNI name \u001b[32msalesos.ciklo.me\u001b[0m\n\n  \u001b[1;34mSSL/TLS Protocols:\u001b[0m\nSSLv2     \u001b[32mdisabled\u001b[0m\nSSLv3     \u001b[32mdisabled\u001b[0m\nTLSv1.0   \u001b[32mdisabled\u001b[0m\nTLSv1.1   \u001b[32mdisabled\u001b[0m\nTLSv1.2   enabled\nTLSv1.3   \u001b[32menabled\u001b[0m\n\n  \u001b[1;34mTLS Fallback SCSV:\u001b[0m\nServer \u001b[32msupports\u001b[0m TLS Fallback SCSV\n\n  \u001b[1;34mTLS renegotiation:\u001b[0m\nSession renegotiation \u001b[32mnot supported\u001b[0m\n\n  \u001b[1;34mTLS Compression:\u001b[0m\nCompression \u001b[32mdisabled\u001b[0m\n\n  \u001b[1;34mHeartbleed:\u001b[0m\nTLSv1.3 \u001b[32mnot vulnerable\u001b[0m to heartbleed\nTLSv1.2 \u001b[32mnot vulnerable\u001b[0m to heartbleed\n\n  \u001b[1;34mSupported Server Cipher(s):\u001b[0m\n\u001b[32mPreferred\u001b[0m \u001b[32mTLSv1.3\u001b[0m  \u001b[32m128\u001b[0m bits  \u001b[32mTLS_AES_128_GCM_SHA256       \u001b[0m Curve \u001b[32m25519\u001b[0m DHE 253\nAccepted  \u001b[32mTLSv1.3\u001b[0m  \u001b[32m256\u001b[0m bits  \u001b[32mTLS_AES_256_GCM_SHA384       \u001b[0m Curve \u001b[32m25519\u001b[0m DHE 253\nAccepted  \u001b[32mTLSv1.3\u001b[0m  \u001b[32m256\u001b[0m bits  \u001b[32mTLS_CHACHA20_POLY1305_SHA256 \u001b[0m Curve \u001b[32m25519\u001b[0m DHE 253\n\u001b[32mPreferred\u001b[0m TLSv1.2  \u001b[32m256\u001b[0m bits  \u001b[32mECDHE-ECDSA-AES256-GCM-SHA384\u001b[0m Curve \u001b[32m25519\u001b[0m DHE 253\nAccepted  TLSv1.2  \u001b[32m256\u001b[0m bits  \u001b[32mECDHE-ECDSA-CHACHA20-POLY1305\u001b[0m Curve \u001b[32m25519\u001b[0m DHE 253\nAccepted  TLSv1.2  \u001b[32m128\u001b[0m bits  \u001b[32mECDHE-ECDSA-AES128-GCM-SHA256\u001b[0m Curve \u001b[32m25519\u001b[0m DHE 253\n\n  \u001b[1;34mServer Key Exchange Group(s):\u001b[0m\nTLSv1.3  \u001b[32m128\u001b[0m bits  secp256r1 (NIST P-256)\u001b[0m\nTLSv1.3  \u001b[32m192\u001b[0m bits  secp384r1 (NIST P-384)\u001b[0m\nTLSv1.3  \u001b[32m260\u001b[0m bits  secp521r1 (NIST P-521)\u001b[0m\nTLSv1.3  \u001b[32m128\u001b[0m bits  \u001b[32mx25519\u001b[0m\nTLSv1.3  \u001b[32m224\u001b[0m bits  \u001b[32mx448\u001b[0m\nTLSv1.3  \u001b[32m112\u001b[0m bits  ffdhe2048\u001b[0m\nTLSv1.3  \u001b[32m128\u001b[0m bits  ffdhe3072\u001b[0m\nTLSv1.3  \u001b[32m150\u001b[0m bits  ffdhe4096\u001b[0m\nTLSv1.3  \u001b[32m175\u001b[0m bits  ffdhe6144\u001b[0m\nTLSv1.3  \u001b[32m192\u001b[0m bits  ffdhe8192\u001b[0m\nTLSv1.2  \u001b[32m128\u001b[0m bits  secp256r1 (NIST P-256)\u001b[0m\n\n  \u001b[1;34mSSL Certificate:\u001b[0m\nSignature Algorithm: ecdsa-with-SHA384\nECC Curve Name:      prime256v1\nECC Key Strength:    128\u001b[0m\n\nSubject:  salesos.ciklo.me\nAltnames: DNS:salesos.ciklo.me\nIssuer:   E8\n\nNot valid before: \u001b[32mFeb 14 19:47:22 2026 GMT\u001b[0m\nNot valid after:  \u001b[32mMay 15 19:47:21 2026 GMT\u001b[0m\n",
+          "stderr": "",
+          "duration": 10.427727699279785,
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:32.956177",
+          "parsed_data": {},
+          "error_info": {},
+          "retry_count": 0
+        },
+        {
+          "tool_name": "sslscan_check",
+          "command": "sslscan salesos.ciklo.me",
+          "exit_code": 0,
+          "output_file": "/home/kali/yeah/aquiles_session_20260308_000420/outputs/phase2_sslscan_check_1772949992.txt",
+          "stdout": "Version: \u001b[32m2.1.5\u001b[0m\nOpenSSL 3.5.4 30 Sep 2025\n\u001b[0m\n\u001b[32mConnected to 165.227.9.146\u001b[0m\n\nTesting SSL server \u001b[32msalesos.ciklo.me\u001b[0m on port \u001b[32m443\u001b[0m using SNI name \u001b[32msalesos.ciklo.me\u001b[0m\n\n  \u001b[1;34mSSL/TLS Protocols:\u001b[0m\nSSLv2     \u001b[32mdisabled\u001b[0m\nSSLv3     \u001b[32mdisabled\u001b[0m\nTLSv1.0   \u001b[32mdisabled\u001b[0m\nTLSv1.1   \u001b[32mdisabled\u001b[0m\nTLSv1.2   enabled\nTLSv1.3   \u001b[32menabled\u001b[0m\n\n  \u001b[1;34mTLS Fallback SCSV:\u001b[0m\nServer \u001b[32msupports\u001b[0m TLS Fallback SCSV\n\n  \u001b[1;34mTLS renegotiation:\u001b[0m\nSession renegotiation \u001b[32mnot supported\u001b[0m\n\n  \u001b[1;34mTLS Compression:\u001b[0m\nCompression \u001b[32mdisabled\u001b[0m\n\n  \u001b[1;34mHeartbleed:\u001b[0m\nTLSv1.3 \u001b[32mnot vulnerable\u001b[0m to heartbleed\nTLSv1.2 \u001b[32mnot vulnerable\u001b[0m to heartbleed\n\n  \u001b[1;34mSupported Server Cipher(s):\u001b[0m\n\u001b[32mPreferred\u001b[0m \u001b[32mTLSv1.3\u001b[0m  \u001b[32m128\u001b[0m bits  \u001b[32mTLS_AES_128_GCM_SHA256       \u001b[0m Curve \u001b[32m25519\u001b[0m DHE 253\nAccepted  \u001b[32mTLSv1.3\u001b[0m  \u001b[32m256\u001b[0m bits  \u001b[32mTLS_AES_256_GCM_SHA384       \u001b[0m Curve \u001b[32m25519\u001b[0m DHE 253\nAccepted  \u001b[32mTLSv1.3\u001b[0m  \u001b[32m256\u001b[0m bits  \u001b[32mTLS_CHACHA20_POLY1305_SHA256 \u001b[0m Curve \u001b[32m25519\u001b[0m DHE 253\n\u001b[32mPreferred\u001b[0m TLSv1.2  \u001b[32m256\u001b[0m bits  \u001b[32mECDHE-ECDSA-AES256-GCM-SHA384\u001b[0m Curve \u001b[32m25519\u001b[0m DHE 253\nAccepted  TLSv1.2  \u001b[32m256\u001b[0m bits  \u001b[32mECDHE-ECDSA-CHACHA20-POLY1305\u001b[0m Curve \u001b[32m25519\u001b[0m DHE 253\nAccepted  TLSv1.2  \u001b[32m128\u001b[0m bits  \u001b[32mECDHE-ECDSA-AES128-GCM-SHA256\u001b[0m Curve \u001b[32m25519\u001b[0m DHE 253\n\n  \u001b[1;34mServer Key Exchange Group(s):\u001b[0m\nTLSv1.3  \u001b[32m128\u001b[0m bits  secp256r1 (NIST P-256)\u001b[0m\nTLSv1.3  \u001b[32m192\u001b[0m bits  secp384r1 (NIST P-384)\u001b[0m\nTLSv1.3  \u001b[32m260\u001b[0m bits  secp521r1 (NIST P-521)\u001b[0m\nTLSv1.3  \u001b[32m128\u001b[0m bits  \u001b[32mx25519\u001b[0m\nTLSv1.3  \u001b[32m224\u001b[0m bits  \u001b[32mx448\u001b[0m\nTLSv1.3  \u001b[32m112\u001b[0m bits  ffdhe2048\u001b[0m\nTLSv1.3  \u001b[32m128\u001b[0m bits  ffdhe3072\u001b[0m\nTLSv1.3  \u001b[32m150\u001b[0m bits  ffdhe4096\u001b[0m\nTLSv1.3  \u001b[32m175\u001b[0m bits  ffdhe6144\u001b[0m\nTLSv1.3  \u001b[32m192\u001b[0m bits  ffdhe8192\u001b[0m\nTLSv1.2  \u001b[32m128\u001b[0m bits  secp256r1 (NIST P-256)\u001b[0m\n\n  \u001b[1;34mSSL Certificate:\u001b[0m\nSignature Algorithm: ecdsa-with-SHA384\nECC Curve Name:      prime256v1\nECC Key Strength:    128\u001b[0m\n\nSubject:  salesos.ciklo.me\nAltnames: DNS:salesos.ciklo.me\nIssuer:   E8\n\nNot valid before: \u001b[32mFeb 14 19:47:22 2026 GMT\u001b[0m\nNot valid after:  \u001b[32mMay 15 19:47:21 2026 GMT\u001b[0m\n",
+          "stderr": "",
+          "duration": 10.427727699279785,
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:32.956177",
+          "parsed_data": {},
+          "error_info": {},
+          "retry_count": 0
+        },
+        {
+          "tool_name": "sslyze_scan",
+          "command": "sslyze salesos.ciklo.me",
+          "exit_code": -1,
+          "output_file": "",
+          "stdout": "",
+          "stderr": "Binary 'sslyze' not found on system",
+          "duration": 0,
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:32.965760",
+          "parsed_data": {},
+          "error_info": {
+            "category": "tool_not_found",
+            "severity": "fatal",
+            "tool_name": "sslyze_scan",
+            "message": "not found",
+            "exit_code": -1,
+            "timestamp": "2026-03-08T00:06:32.965725",
+            "retry_count": 0,
+            "suggested_action": "Install the tool or skip it"
+          },
+          "retry_count": 0
+        },
+        {
+          "tool_name": "sslyze_scan",
+          "command": "sslyze salesos.ciklo.me",
+          "exit_code": -1,
+          "output_file": "",
+          "stdout": "",
+          "stderr": "Binary 'sslyze' not found on system",
+          "duration": 0,
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:32.965760",
+          "parsed_data": {},
+          "error_info": {
+            "category": "tool_not_found",
+            "severity": "fatal",
+            "tool_name": "sslyze_scan",
+            "message": "not found",
+            "exit_code": -1,
+            "timestamp": "2026-03-08T00:06:32.965725",
+            "retry_count": 0,
+            "suggested_action": "Install the tool or skip it"
+          },
+          "retry_count": 0
+        },
+        {
+          "tool_name": "httpx_probe",
+          "command": "echo salesos.ciklo.me | httpx -silent -status-code -title -tech-detect -follow-redirects",
+          "exit_code": 2,
+          "output_file": "",
+          "stdout": "",
+          "stderr": "Usage: httpx [OPTIONS] URL\n\nError: No such option: -s\n",
+          "duration": 0.5235898494720459,
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:40.509005",
+          "parsed_data": {},
+          "error_info": {
+            "category": "tool_crashed",
+            "severity": "recoverable",
+            "tool_name": "httpx_probe",
+            "message": "Usage: httpx [OPTIONS] URL\n\nError: No such option: -s\n",
+            "exit_code": 2,
+            "timestamp": "2026-03-08T00:06:40.509457",
+            "retry_count": 0,
+            "suggested_action": "Check command syntax or retry"
+          },
+          "retry_count": 2
+        },
+        {
+          "tool_name": "httpx_probe",
+          "command": "echo salesos.ciklo.me | httpx -silent -status-code -title -tech-detect -follow-redirects",
+          "exit_code": 2,
+          "output_file": "",
+          "stdout": "",
+          "stderr": "Usage: httpx [OPTIONS] URL\n\nError: No such option: -s\n",
+          "duration": 0.5235898494720459,
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:40.509005",
+          "parsed_data": {},
+          "error_info": {
+            "category": "tool_crashed",
+            "severity": "recoverable",
+            "tool_name": "httpx_probe",
+            "message": "Usage: httpx [OPTIONS] URL\n\nError: No such option: -s\n",
+            "exit_code": 2,
+            "timestamp": "2026-03-08T00:06:40.509457",
+            "retry_count": 0,
+            "suggested_action": "Check command syntax or retry"
+          },
+          "retry_count": 2
+        }
+      ],
+      "findings": [
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 22/tcp: ssh",
+          "target": "165.227.9.146",
+          "tool": "nmap_quick_scan",
+          "evidence": "165.227.9.146:22 - ssh",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:05:50.343706",
+          "finding_id": "Open Port:Port 22/tcp: ssh:165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 22/tcp: ssh",
+          "target": "165.227.9.146",
+          "tool": "nmap_quick_scan",
+          "evidence": "165.227.9.146:22 - ssh",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:05:50.343706",
+          "finding_id": "Open Port:Port 22/tcp: ssh:165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 80/tcp: http",
+          "target": "165.227.9.146",
+          "tool": "nmap_quick_scan",
+          "evidence": "165.227.9.146:80 - http",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:05:50.343808",
+          "finding_id": "Open Port:Port 80/tcp: http:165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 80/tcp: http",
+          "target": "165.227.9.146",
+          "tool": "nmap_quick_scan",
+          "evidence": "165.227.9.146:80 - http",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:05:50.343808",
+          "finding_id": "Open Port:Port 80/tcp: http:165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 443/tcp: https",
+          "target": "165.227.9.146",
+          "tool": "nmap_quick_scan",
+          "evidence": "165.227.9.146:443 - https",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:05:50.343854",
+          "finding_id": "Open Port:Port 443/tcp: https:165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 443/tcp: https",
+          "target": "165.227.9.146",
+          "tool": "nmap_quick_scan",
+          "evidence": "165.227.9.146:443 - https",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:05:50.343854",
+          "finding_id": "Open Port:Port 443/tcp: https:165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 3000/tcp: ppp",
+          "target": "165.227.9.146",
+          "tool": "nmap_quick_scan",
+          "evidence": "165.227.9.146:3000 - ppp",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:05:50.343886",
+          "finding_id": "Open Port:Port 3000/tcp: ppp:165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 3000/tcp: ppp",
+          "target": "165.227.9.146",
+          "tool": "nmap_quick_scan",
+          "evidence": "165.227.9.146:3000 - ppp",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:05:50.343886",
+          "finding_id": "Open Port:Port 3000/tcp: ppp:165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 5060/tcp: sip",
+          "target": "165.227.9.146",
+          "tool": "nmap_quick_scan",
+          "evidence": "165.227.9.146:5060 - sip",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:05:50.343912",
+          "finding_id": "Open Port:Port 5060/tcp: sip:165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 5060/tcp: sip",
+          "target": "165.227.9.146",
+          "tool": "nmap_quick_scan",
+          "evidence": "165.227.9.146:5060 - sip",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:05:50.343912",
+          "finding_id": "Open Port:Port 5060/tcp: sip:165.227.9.146"
+        },
+        {
+          "severity": "low",
+          "category": "Version Disclosure",
+          "description": "Found: nginx/1",
+          "target": "salesos.ciklo.me",
+          "tool": "nmap_service_scan",
+          "evidence": "</script><script id=\"http-server-header\" output=\"nginx/1.24.0 (Ubuntu)\"><elem>nginx/1.24.0 (Ubuntu)</elem>",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:22.515322",
+          "finding_id": "Version Disclosure:Found: nginx/1:salesos.ciklo.me"
+        },
+        {
+          "severity": "low",
+          "category": "Version Disclosure",
+          "description": "Found: nginx/1",
+          "target": "salesos.ciklo.me",
+          "tool": "nmap_service_scan",
+          "evidence": "</script><script id=\"http-server-header\" output=\"nginx/1.24.0 (Ubuntu)\"><elem>nginx/1.24.0 (Ubuntu)</elem>",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:22.515322",
+          "finding_id": "Version Disclosure:Found: nginx/1:salesos.ciklo.me"
+        },
+        {
+          "severity": "low",
+          "category": "Version Disclosure",
+          "description": "Found: X-Powered-By:",
+          "target": "salesos.ciklo.me",
+          "tool": "nmap_service_scan",
+          "evidence": "<port protocol=\"tcp\" portid=\"3000\"><state state=\"open\" reason=\"syn-ack\" reason_ttl=\"0\"/><service name=\"ppp\" servicefp=\"SF-Port3000-TCP:V=7.95%I=7%D=3/8%Time=69AD11CA%P=x86_64-pc-linux-gnu%r(GetRequest,3840,&quot;HTTP/1\\.1\\x20200\\x20OK\\r\\nVary:\\x20rsc,\\x20next-router-state-tree,\\x20next-router-prefetch,\\x20next-router-segment-prefetch,\\x20Accept-Encoding\\r\\nx-nextjs-cache:\\x20HIT\\r\\nx-nextjs-prerender:\\x201\\r\\nx-nextjs-prerender:\\x201\\r\\nx-nextjs-stale-time:\\x20300\\r\\nX-Powered-By:\\x20Next\\.js\\r\\",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:22.517499",
+          "finding_id": "Version Disclosure:Found: X-Powered-By::salesos.ciklo.me"
+        },
+        {
+          "severity": "low",
+          "category": "Version Disclosure",
+          "description": "Found: X-Powered-By:",
+          "target": "salesos.ciklo.me",
+          "tool": "nmap_service_scan",
+          "evidence": "<port protocol=\"tcp\" portid=\"3000\"><state state=\"open\" reason=\"syn-ack\" reason_ttl=\"0\"/><service name=\"ppp\" servicefp=\"SF-Port3000-TCP:V=7.95%I=7%D=3/8%Time=69AD11CA%P=x86_64-pc-linux-gnu%r(GetRequest,3840,&quot;HTTP/1\\.1\\x20200\\x20OK\\r\\nVary:\\x20rsc,\\x20next-router-state-tree,\\x20next-router-prefetch,\\x20next-router-segment-prefetch,\\x20Accept-Encoding\\r\\nx-nextjs-cache:\\x20HIT\\r\\nx-nextjs-prerender:\\x201\\r\\nx-nextjs-prerender:\\x201\\r\\nx-nextjs-stale-time:\\x20300\\r\\nX-Powered-By:\\x20Next\\.js\\r\\",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:22.517499",
+          "finding_id": "Version Disclosure:Found: X-Powered-By::salesos.ciklo.me"
+        },
+        {
+          "severity": "medium",
+          "category": "Cryptographic Issue",
+          "description": "Found: md5",
+          "target": "salesos.ciklo.me",
+          "tool": "nmap_service_scan",
+          "evidence": "<elem key=\"md5\">7bab01ebb1ed2af948ff65b28a8ef984</elem>",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:22.521801",
+          "finding_id": "Cryptographic Issue:Found: md5:salesos.ciklo.me"
+        },
+        {
+          "severity": "medium",
+          "category": "Cryptographic Issue",
+          "description": "Found: md5",
+          "target": "salesos.ciklo.me",
+          "tool": "nmap_service_scan",
+          "evidence": "<elem key=\"md5\">7bab01ebb1ed2af948ff65b28a8ef984</elem>",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:22.521801",
+          "finding_id": "Cryptographic Issue:Found: md5:salesos.ciklo.me"
+        },
+        {
+          "severity": "medium",
+          "category": "Cryptographic Issue",
+          "description": "Found: sha1",
+          "target": "salesos.ciklo.me",
+          "tool": "nmap_service_scan",
+          "evidence": "<elem key=\"sha1\">0fb4caa7192f325e0564cbba89af9eb7a64c45b0</elem>",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:22.522157",
+          "finding_id": "Cryptographic Issue:Found: sha1:salesos.ciklo.me"
+        },
+        {
+          "severity": "medium",
+          "category": "Cryptographic Issue",
+          "description": "Found: sha1",
+          "target": "salesos.ciklo.me",
+          "tool": "nmap_service_scan",
+          "evidence": "<elem key=\"sha1\">0fb4caa7192f325e0564cbba89af9eb7a64c45b0</elem>",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:22.522157",
+          "finding_id": "Cryptographic Issue:Found: sha1:salesos.ciklo.me"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 22/tcp: ssh (OpenSSH 9.6p1 Ubuntu 3ubuntu13.13)",
+          "target": "165.227.9.146",
+          "tool": "nmap_service_scan",
+          "evidence": "165.227.9.146:22 - ssh (OpenSSH 9.6p1 Ubuntu 3ubuntu13.13)",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:22.526091",
+          "finding_id": "Open Port:Port 22/tcp: ssh (OpenSSH 9.6p1 Ubuntu 3ubuntu13.13):165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 22/tcp: ssh (OpenSSH 9.6p1 Ubuntu 3ubuntu13.13)",
+          "target": "165.227.9.146",
+          "tool": "nmap_service_scan",
+          "evidence": "165.227.9.146:22 - ssh (OpenSSH 9.6p1 Ubuntu 3ubuntu13.13)",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:22.526091",
+          "finding_id": "Open Port:Port 22/tcp: ssh (OpenSSH 9.6p1 Ubuntu 3ubuntu13.13):165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 80/tcp: http (nginx 1.24.0)",
+          "target": "165.227.9.146",
+          "tool": "nmap_service_scan",
+          "evidence": "165.227.9.146:80 - http (nginx 1.24.0)",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:22.526112",
+          "finding_id": "Open Port:Port 80/tcp: http (nginx 1.24.0):165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 80/tcp: http (nginx 1.24.0)",
+          "target": "165.227.9.146",
+          "tool": "nmap_service_scan",
+          "evidence": "165.227.9.146:80 - http (nginx 1.24.0)",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:22.526112",
+          "finding_id": "Open Port:Port 80/tcp: http (nginx 1.24.0):165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 443/tcp: http (nginx 1.24.0)",
+          "target": "165.227.9.146",
+          "tool": "nmap_service_scan",
+          "evidence": "165.227.9.146:443 - http (nginx 1.24.0)",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:22.526120",
+          "finding_id": "Open Port:Port 443/tcp: http (nginx 1.24.0):165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 443/tcp: http (nginx 1.24.0)",
+          "target": "165.227.9.146",
+          "tool": "nmap_service_scan",
+          "evidence": "165.227.9.146:443 - http (nginx 1.24.0)",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:22.526120",
+          "finding_id": "Open Port:Port 443/tcp: http (nginx 1.24.0):165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 3001/tcp: http (Node.js Express framework)",
+          "target": "165.227.9.146",
+          "tool": "nmap_service_scan",
+          "evidence": "165.227.9.146:3001 - http (Node.js Express framework)",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:22.526143",
+          "finding_id": "Open Port:Port 3001/tcp: http (Node.js Express framework):165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 3001/tcp: http (Node.js Express framework)",
+          "target": "165.227.9.146",
+          "tool": "nmap_service_scan",
+          "evidence": "165.227.9.146:3001 - http (Node.js Express framework)",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:22.526143",
+          "finding_id": "Open Port:Port 3001/tcp: http (Node.js Express framework):165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 4006/tcp: http (Node.js Express framework)",
+          "target": "165.227.9.146",
+          "tool": "nmap_service_scan",
+          "evidence": "165.227.9.146:4006 - http (Node.js Express framework)",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:22.526157",
+          "finding_id": "Open Port:Port 4006/tcp: http (Node.js Express framework):165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 4006/tcp: http (Node.js Express framework)",
+          "target": "165.227.9.146",
+          "tool": "nmap_service_scan",
+          "evidence": "165.227.9.146:4006 - http (Node.js Express framework)",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:22.526157",
+          "finding_id": "Open Port:Port 4006/tcp: http (Node.js Express framework):165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 5060/tcp: http (Node.js)",
+          "target": "165.227.9.146",
+          "tool": "nmap_service_scan",
+          "evidence": "165.227.9.146:5060 - http (Node.js)",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:22.526169",
+          "finding_id": "Open Port:Port 5060/tcp: http (Node.js):165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 5060/tcp: http (Node.js)",
+          "target": "165.227.9.146",
+          "tool": "nmap_service_scan",
+          "evidence": "165.227.9.146:5060 - http (Node.js)",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:22.526169",
+          "finding_id": "Open Port:Port 5060/tcp: http (Node.js):165.227.9.146"
+        },
+        {
+          "severity": "medium",
+          "category": "Cryptographic Issue",
+          "description": "Found: SSLv2",
+          "target": "salesos.ciklo.me",
+          "tool": "sslscan_check",
+          "evidence": "SSLv2     \u001b[32mdisabled\u001b[0m",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:32.963584",
+          "finding_id": "Cryptographic Issue:Found: SSLv2:salesos.ciklo.me"
+        },
+        {
+          "severity": "medium",
+          "category": "Cryptographic Issue",
+          "description": "Found: SSLv2",
+          "target": "salesos.ciklo.me",
+          "tool": "sslscan_check",
+          "evidence": "SSLv2     \u001b[32mdisabled\u001b[0m",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:32.963584",
+          "finding_id": "Cryptographic Issue:Found: SSLv2:salesos.ciklo.me"
+        },
+        {
+          "severity": "medium",
+          "category": "Cryptographic Issue",
+          "description": "Found: SSLv3",
+          "target": "salesos.ciklo.me",
+          "tool": "sslscan_check",
+          "evidence": "SSLv3     \u001b[32mdisabled\u001b[0m",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:32.963642",
+          "finding_id": "Cryptographic Issue:Found: SSLv3:salesos.ciklo.me"
+        },
+        {
+          "severity": "medium",
+          "category": "Cryptographic Issue",
+          "description": "Found: SSLv3",
+          "target": "salesos.ciklo.me",
+          "tool": "sslscan_check",
+          "evidence": "SSLv3     \u001b[32mdisabled\u001b[0m",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:32.963642",
+          "finding_id": "Cryptographic Issue:Found: SSLv3:salesos.ciklo.me"
+        },
+        {
+          "severity": "medium",
+          "category": "Cryptographic Issue",
+          "description": "Found: TLSv1.0",
+          "target": "salesos.ciklo.me",
+          "tool": "sslscan_check",
+          "evidence": "TLSv1.0   \u001b[32mdisabled\u001b[0m",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:32.963672",
+          "finding_id": "Cryptographic Issue:Found: TLSv1.0:salesos.ciklo.me"
+        },
+        {
+          "severity": "medium",
+          "category": "Cryptographic Issue",
+          "description": "Found: TLSv1.0",
+          "target": "salesos.ciklo.me",
+          "tool": "sslscan_check",
+          "evidence": "TLSv1.0   \u001b[32mdisabled\u001b[0m",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:32.963672",
+          "finding_id": "Cryptographic Issue:Found: TLSv1.0:salesos.ciklo.me"
+        },
+        {
+          "severity": "medium",
+          "category": "Cryptographic Issue",
+          "description": "Found: TLSv1.1",
+          "target": "salesos.ciklo.me",
+          "tool": "sslscan_check",
+          "evidence": "TLSv1.1   \u001b[32mdisabled\u001b[0m",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:32.963693",
+          "finding_id": "Cryptographic Issue:Found: TLSv1.1:salesos.ciklo.me"
+        },
+        {
+          "severity": "medium",
+          "category": "Cryptographic Issue",
+          "description": "Found: TLSv1.1",
+          "target": "salesos.ciklo.me",
+          "tool": "sslscan_check",
+          "evidence": "TLSv1.1   \u001b[32mdisabled\u001b[0m",
+          "phase": 1,
+          "timestamp": "2026-03-08T00:06:32.963693",
+          "finding_id": "Cryptographic Issue:Found: TLSv1.1:salesos.ciklo.me"
+        }
+      ],
+      "summary": "1. The target exposes SSH (22), HTTP (80), HTTPS (443), and two uncommon services (PPP on 3000, SIP on 5060), with nginx version disclosure and weak cryptographic signatures (MD5, SHA1) on the web server.\n\n2. **Most interesting:** Port 3000 (PPP) and 5060 (SIP) are unexpected and often misconfigured; they represent high-priority investigation points for potential protocol vulnerabilities or unauthorized services.\n\n3. **Next focus:** Enumerate and test the web applications on ports 80, 443, and 3000 for vulnerabilities, and probe SIP (5060) for configuration flaws or exposed management interfaces.\n\n4. **Patterns:** Findings are duplicated due to redundant tool runs; the host likely runs Ubuntu (from SSH banner) with nginx, and weak crypto on the web service suggests outdated or insecure configuration.",
+      "failed_tools": [
+        "sslyze_scan",
+        "httpx_probe",
+        "httpx_probe"
+      ],
+      "skipped_tools": [
+        "sslyze_scan"
+      ]
+    },
+    {
+      "number": 3,
+      "name": "Web Enumeration & Fingerprinting",
+      "description": "Enumerate web directories, identify technologies, check for WAF presence, and gather historical URLs to expand the web attack surface.",
+      "tools": [
+        "whatweb_scan",
+        "wafw00f_detect",
+        "nikto_scan",
+        "gobuster_dir",
+        "waybackurls_scan",
+        "gau_scan",
+        "sslscan",
+        "testssl.sh"
+      ],
+      "status": "running",
+      "results": [
+        {
+          "tool_name": "whatweb_scan",
+          "command": "whatweb -a 3 https://salesos.ciklo.me",
+          "exit_code": 0,
+          "output_file": "/home/kali/yeah/aquiles_session_20260308_000420/outputs/phase3_whatweb_scan_1772950057.txt",
+          "stdout": "\u001b[1m\u001b[34mhttps://salesos.ciklo.me\u001b[0m [200 OK] \u001b[1mCountry\u001b[0m[\u001b[0m\u001b[22mUNITED STATES\u001b[0m][\u001b[1m\u001b[31mUS\u001b[0m], \u001b[1mHTML5\u001b[0m, \u001b[1mHTTPServer\u001b[0m[\u001b[1m\u001b[31mUbuntu Linux\u001b[0m][\u001b[1m\u001b[36mnginx/1.24.0 (Ubuntu)\u001b[0m], \u001b[1mIP\u001b[0m[\u001b[0m\u001b[22m165.227.9.146\u001b[0m], \u001b[1mScript\u001b[0m, \u001b[1mTitle\u001b[0m[\u001b[1m\u001b[33mCiklo OS\u001b[0m], \u001b[1mUncommonHeaders\u001b[0m[\u001b[0m\u001b[22mx-nextjs-cache,x-nextjs-prerender,x-nextjs-stale-time\u001b[0m], \u001b[1mX-Powered-By\u001b[0m[\u001b[0m\u001b[22mNext.js\u001b[0m], \u001b[1mnginx\u001b[0m[\u001b[1m\u001b[32m1.24.0\u001b[0m]\n",
+          "stderr": "",
+          "duration": 7.375779628753662,
+          "phase": 2,
+          "timestamp": "2026-03-08T00:07:37.754110",
+          "parsed_data": {},
+          "error_info": {},
+          "retry_count": 0
+        },
+        {
+          "tool_name": "whatweb_scan",
+          "command": "whatweb -a 3 https://salesos.ciklo.me",
+          "exit_code": 0,
+          "output_file": "/home/kali/yeah/aquiles_session_20260308_000420/outputs/phase3_whatweb_scan_1772950057.txt",
+          "stdout": "\u001b[1m\u001b[34mhttps://salesos.ciklo.me\u001b[0m [200 OK] \u001b[1mCountry\u001b[0m[\u001b[0m\u001b[22mUNITED STATES\u001b[0m][\u001b[1m\u001b[31mUS\u001b[0m], \u001b[1mHTML5\u001b[0m, \u001b[1mHTTPServer\u001b[0m[\u001b[1m\u001b[31mUbuntu Linux\u001b[0m][\u001b[1m\u001b[36mnginx/1.24.0 (Ubuntu)\u001b[0m], \u001b[1mIP\u001b[0m[\u001b[0m\u001b[22m165.227.9.146\u001b[0m], \u001b[1mScript\u001b[0m, \u001b[1mTitle\u001b[0m[\u001b[1m\u001b[33mCiklo OS\u001b[0m], \u001b[1mUncommonHeaders\u001b[0m[\u001b[0m\u001b[22mx-nextjs-cache,x-nextjs-prerender,x-nextjs-stale-time\u001b[0m], \u001b[1mX-Powered-By\u001b[0m[\u001b[0m\u001b[22mNext.js\u001b[0m], \u001b[1mnginx\u001b[0m[\u001b[1m\u001b[32m1.24.0\u001b[0m]\n",
+          "stderr": "",
+          "duration": 7.375779628753662,
+          "phase": 2,
+          "timestamp": "2026-03-08T00:07:37.754110",
+          "parsed_data": {},
+          "error_info": {},
+          "retry_count": 0
+        },
+        {
+          "tool_name": "wafw00f_detect",
+          "command": "wafw00f https://salesos.ciklo.me",
+          "exit_code": 0,
+          "output_file": "/home/kali/yeah/aquiles_session_20260308_000420/outputs/phase3_wafw00f_detect_1772950060.txt",
+          "stdout": "\n                   \u001b[1;97m______\n                  \u001b[1;97m/      \\\n                 \u001b[1;97m(  Woof! )\n                  \u001b[1;97m\\  ____/                      \u001b[1;91m)\n                  \u001b[1;97m,,                           \u001b[1;91m) (\u001b[1;93m_\n             \u001b[1;93m.-. \u001b[1;97m-    \u001b[1;92m_______                 \u001b[1;91m( \u001b[1;93m|__|\n            \u001b[1;93m()``; \u001b[1;92m|==|_______)                \u001b[1;91m.)\u001b[1;93m|__|\n            \u001b[1;93m/ ('        \u001b[1;92m/|\\                  \u001b[1;91m(  \u001b[1;93m|__|\n        \u001b[1;93m(  /  )       \u001b[1;92m / | \\                  \u001b[1;91m. \u001b[1;93m|__|\n         \u001b[1;93m\\(_)_))      \u001b[1;92m/  |  \\                   \u001b[1;93m|__|\u001b[0m\n\n                    \u001b[1;96m~ WAFW00F : \u001b[1;94mv2.3.1 ~\u001b[1;97m\n    The Web Application Firewall Fingerprinting Toolkit\n    \u001b[0m\n[*] Checking https://salesos.ciklo.me\n[+] Generic Detection results:\n[-] No WAF detected by the generic detection\n[~] Number of requests: 7\n",
+          "stderr": "",
+          "duration": 2.632378101348877,
+          "phase": 2,
+          "timestamp": "2026-03-08T00:07:40.390275",
+          "parsed_data": {},
+          "error_info": {},
+          "retry_count": 0
+        }
+      ],
+      "findings": [
+        {
+          "severity": "low",
+          "category": "Version Disclosure",
+          "description": "Found: nginx/1",
+          "target": "https://salesos.ciklo.me",
+          "tool": "whatweb_scan",
+          "evidence": "\u001b[1m\u001b[34mhttps://salesos.ciklo.me\u001b[0m [200 OK] \u001b[1mCountry\u001b[0m[\u001b[0m\u001b[22mUNITED STATES\u001b[0m][\u001b[1m\u001b[31mUS\u001b[0m], \u001b[1mHTML5\u001b[0m, \u001b[1mHTTPServer\u001b[0m[\u001b[1m\u001b[31mUbuntu Linux\u001b[0m][\u001b[1m\u001b[36mnginx/1.24.0 (Ubuntu)\u001b[0m], \u001b[1mIP\u001b[0m[\u001b[0m\u001b[22m165.227.9.146\u001b[0m], \u001b[1mScript\u001b[0m, \u001b[1mTitle\u001b[0m[\u001b[1m\u001b[33mCiklo OS\u001b[0m], \u001b[1mUncommonHeaders\u001b[0m[\u001b[0m\u001b[22mx-nextjs-cache,x-nextjs-prerender,x-nextjs-stale-time\u001b[0m], \u001b[1mX-Powered-By\u001b[0m[\u001b[0m\u001b[22mNext.js\u001b[0m], \u001b[1mnginx\u001b[0m[\u001b[1m\u001b[32m1.24.0\u001b[0m]",
+          "phase": 2,
+          "timestamp": "2026-03-08T00:07:37.756961",
+          "finding_id": "Version Disclosure:Found: nginx/1:https://salesos.ciklo.me"
+        },
+        {
+          "severity": "low",
+          "category": "Version Disclosure",
+          "description": "Found: nginx/1",
+          "target": "https://salesos.ciklo.me",
+          "tool": "whatweb_scan",
+          "evidence": "\u001b[1m\u001b[34mhttps://salesos.ciklo.me\u001b[0m [200 OK] \u001b[1mCountry\u001b[0m[\u001b[0m\u001b[22mUNITED STATES\u001b[0m][\u001b[1m\u001b[31mUS\u001b[0m], \u001b[1mHTML5\u001b[0m, \u001b[1mHTTPServer\u001b[0m[\u001b[1m\u001b[31mUbuntu Linux\u001b[0m][\u001b[1m\u001b[36mnginx/1.24.0 (Ubuntu)\u001b[0m], \u001b[1mIP\u001b[0m[\u001b[0m\u001b[22m165.227.9.146\u001b[0m], \u001b[1mScript\u001b[0m, \u001b[1mTitle\u001b[0m[\u001b[1m\u001b[33mCiklo OS\u001b[0m], \u001b[1mUncommonHeaders\u001b[0m[\u001b[0m\u001b[22mx-nextjs-cache,x-nextjs-prerender,x-nextjs-stale-time\u001b[0m], \u001b[1mX-Powered-By\u001b[0m[\u001b[0m\u001b[22mNext.js\u001b[0m], \u001b[1mnginx\u001b[0m[\u001b[1m\u001b[32m1.24.0\u001b[0m]",
+          "phase": 2,
+          "timestamp": "2026-03-08T00:07:37.756961",
+          "finding_id": "Version Disclosure:Found: nginx/1:https://salesos.ciklo.me"
+        }
+      ],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 4,
+      "name": "Deep Web Assessment",
+      "description": "Perform intensive directory/file brute-forcing, API endpoint discovery, and parameter fuzzing to identify hidden functionality and potential injection points.",
+      "tools": [
+        "ffuf_dir",
+        "ffuf_api_paths",
+        "dirb_scan",
+        "nuclei_scan",
+        "curl_robots",
+        "curl_security_txt",
+        "hash-identifier"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 5,
+      "name": "Vulnerability Discovery",
+      "description": "Execute targeted vulnerability scanning using nuclei templates and parameter fuzzing to identify specific security weaknesses.",
+      "tools": [
+        "nuclei_api",
+        "wfuzz_params",
+        "ffuf_api_fuzz",
+        "nmap_script_scan",
+        "sslyze",
+        "nuclei_ssl_templates"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 6,
+      "name": "Validation & Documentation",
+      "description": "Validate findings through manual testing with curl, perform additional header analysis, and ensure all discovered endpoints have been properly documented.",
+      "tools": [
+        "curl_headers",
+        "curl_sitemap",
+        "fierce_scan",
+        "dnsrecon_zone_transfer",
+        "openssl_client_test",
+        "manual_ssl_verification"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    }
+  ],
+  "findings": [
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 22/tcp: ssh",
+      "target": "165.227.9.146",
+      "tool": "nmap_quick_scan",
+      "evidence": "165.227.9.146:22 - ssh",
+      "phase": 1,
+      "timestamp": "2026-03-08T00:05:50.343706",
+      "finding_id": "Open Port:Port 22/tcp: ssh:165.227.9.146"
+    },
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 80/tcp: http",
+      "target": "165.227.9.146",
+      "tool": "nmap_quick_scan",
+      "evidence": "165.227.9.146:80 - http",
+      "phase": 1,
+      "timestamp": "2026-03-08T00:05:50.343808",
+      "finding_id": "Open Port:Port 80/tcp: http:165.227.9.146"
+    },
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 443/tcp: https",
+      "target": "165.227.9.146",
+      "tool": "nmap_quick_scan",
+      "evidence": "165.227.9.146:443 - https",
+      "phase": 1,
+      "timestamp": "2026-03-08T00:05:50.343854",
+      "finding_id": "Open Port:Port 443/tcp: https:165.227.9.146"
+    },
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 3000/tcp: ppp",
+      "target": "165.227.9.146",
+      "tool": "nmap_quick_scan",
+      "evidence": "165.227.9.146:3000 - ppp",
+      "phase": 1,
+      "timestamp": "2026-03-08T00:05:50.343886",
+      "finding_id": "Open Port:Port 3000/tcp: ppp:165.227.9.146"
+    },
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 5060/tcp: sip",
+      "target": "165.227.9.146",
+      "tool": "nmap_quick_scan",
+      "evidence": "165.227.9.146:5060 - sip",
+      "phase": 1,
+      "timestamp": "2026-03-08T00:05:50.343912",
+      "finding_id": "Open Port:Port 5060/tcp: sip:165.227.9.146"
+    },
+    {
+      "severity": "low",
+      "category": "Version Disclosure",
+      "description": "Found: nginx/1",
+      "target": "salesos.ciklo.me",
+      "tool": "nmap_service_scan",
+      "evidence": "</script><script id=\"http-server-header\" output=\"nginx/1.24.0 (Ubuntu)\"><elem>nginx/1.24.0 (Ubuntu)</elem>",
+      "phase": 1,
+      "timestamp": "2026-03-08T00:06:22.515322",
+      "finding_id": "Version Disclosure:Found: nginx/1:salesos.ciklo.me"
+    },
+    {
+      "severity": "low",
+      "category": "Version Disclosure",
+      "description": "Found: X-Powered-By:",
+      "target": "salesos.ciklo.me",
+      "tool": "nmap_service_scan",
+      "evidence": "<port protocol=\"tcp\" portid=\"3000\"><state state=\"open\" reason=\"syn-ack\" reason_ttl=\"0\"/><service name=\"ppp\" servicefp=\"SF-Port3000-TCP:V=7.95%I=7%D=3/8%Time=69AD11CA%P=x86_64-pc-linux-gnu%r(GetRequest,3840,&quot;HTTP/1\\.1\\x20200\\x20OK\\r\\nVary:\\x20rsc,\\x20next-router-state-tree,\\x20next-router-prefetch,\\x20next-router-segment-prefetch,\\x20Accept-Encoding\\r\\nx-nextjs-cache:\\x20HIT\\r\\nx-nextjs-prerender:\\x201\\r\\nx-nextjs-prerender:\\x201\\r\\nx-nextjs-stale-time:\\x20300\\r\\nX-Powered-By:\\x20Next\\.js\\r\\",
+      "phase": 1,
+      "timestamp": "2026-03-08T00:06:22.517499",
+      "finding_id": "Version Disclosure:Found: X-Powered-By::salesos.ciklo.me"
+    },
+    {
+      "severity": "medium",
+      "category": "Cryptographic Issue",
+      "description": "Found: md5",
+      "target": "salesos.ciklo.me",
+      "tool": "nmap_service_scan",
+      "evidence": "<elem key=\"md5\">7bab01ebb1ed2af948ff65b28a8ef984</elem>",
+      "phase": 1,
+      "timestamp": "2026-03-08T00:06:22.521801",
+      "finding_id": "Cryptographic Issue:Found: md5:salesos.ciklo.me"
+    },
+    {
+      "severity": "medium",
+      "category": "Cryptographic Issue",
+      "description": "Found: sha1",
+      "target": "salesos.ciklo.me",
+      "tool": "nmap_service_scan",
+      "evidence": "<elem key=\"sha1\">0fb4caa7192f325e0564cbba89af9eb7a64c45b0</elem>",
+      "phase": 1,
+      "timestamp": "2026-03-08T00:06:22.522157",
+      "finding_id": "Cryptographic Issue:Found: sha1:salesos.ciklo.me"
+    },
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 22/tcp: ssh (OpenSSH 9.6p1 Ubuntu 3ubuntu13.13)",
+      "target": "165.227.9.146",
+      "tool": "nmap_service_scan",
+      "evidence": "165.227.9.146:22 - ssh (OpenSSH 9.6p1 Ubuntu 3ubuntu13.13)",
+      "phase": 1,
+      "timestamp": "2026-03-08T00:06:22.526091",
+      "finding_id": "Open Port:Port 22/tcp: ssh (OpenSSH 9.6p1 Ubuntu 3ubuntu13.13):165.227.9.146"
+    },
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 80/tcp: http (nginx 1.24.0)",
+      "target": "165.227.9.146",
+      "tool": "nmap_service_scan",
+      "evidence": "165.227.9.146:80 - http (nginx 1.24.0)",
+      "phase": 1,
+      "timestamp": "2026-03-08T00:06:22.526112",
+      "finding_id": "Open Port:Port 80/tcp: http (nginx 1.24.0):165.227.9.146"
+    },
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 443/tcp: http (nginx 1.24.0)",
+      "target": "165.227.9.146",
+      "tool": "nmap_service_scan",
+      "evidence": "165.227.9.146:443 - http (nginx 1.24.0)",
+      "phase": 1,
+      "timestamp": "2026-03-08T00:06:22.526120",
+      "finding_id": "Open Port:Port 443/tcp: http (nginx 1.24.0):165.227.9.146"
+    },
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 3001/tcp: http (Node.js Express framework)",
+      "target": "165.227.9.146",
+      "tool": "nmap_service_scan",
+      "evidence": "165.227.9.146:3001 - http (Node.js Express framework)",
+      "phase": 1,
+      "timestamp": "2026-03-08T00:06:22.526143",
+      "finding_id": "Open Port:Port 3001/tcp: http (Node.js Express framework):165.227.9.146"
+    },
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 4006/tcp: http (Node.js Express framework)",
+      "target": "165.227.9.146",
+      "tool": "nmap_service_scan",
+      "evidence": "165.227.9.146:4006 - http (Node.js Express framework)",
+      "phase": 1,
+      "timestamp": "2026-03-08T00:06:22.526157",
+      "finding_id": "Open Port:Port 4006/tcp: http (Node.js Express framework):165.227.9.146"
+    },
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 5060/tcp: http (Node.js)",
+      "target": "165.227.9.146",
+      "tool": "nmap_service_scan",
+      "evidence": "165.227.9.146:5060 - http (Node.js)",
+      "phase": 1,
+      "timestamp": "2026-03-08T00:06:22.526169",
+      "finding_id": "Open Port:Port 5060/tcp: http (Node.js):165.227.9.146"
+    },
+    {
+      "severity": "medium",
+      "category": "Cryptographic Issue",
+      "description": "Found: SSLv2",
+      "target": "salesos.ciklo.me",
+      "tool": "sslscan_check",
+      "evidence": "SSLv2     \u001b[32mdisabled\u001b[0m",
+      "phase": 1,
+      "timestamp": "2026-03-08T00:06:32.963584",
+      "finding_id": "Cryptographic Issue:Found: SSLv2:salesos.ciklo.me"
+    },
+    {
+      "severity": "medium",
+      "category": "Cryptographic Issue",
+      "description": "Found: SSLv3",
+      "target": "salesos.ciklo.me",
+      "tool": "sslscan_check",
+      "evidence": "SSLv3     \u001b[32mdisabled\u001b[0m",
+      "phase": 1,
+      "timestamp": "2026-03-08T00:06:32.963642",
+      "finding_id": "Cryptographic Issue:Found: SSLv3:salesos.ciklo.me"
+    },
+    {
+      "severity": "medium",
+      "category": "Cryptographic Issue",
+      "description": "Found: TLSv1.0",
+      "target": "salesos.ciklo.me",
+      "tool": "sslscan_check",
+      "evidence": "TLSv1.0   \u001b[32mdisabled\u001b[0m",
+      "phase": 1,
+      "timestamp": "2026-03-08T00:06:32.963672",
+      "finding_id": "Cryptographic Issue:Found: TLSv1.0:salesos.ciklo.me"
+    },
+    {
+      "severity": "medium",
+      "category": "Cryptographic Issue",
+      "description": "Found: TLSv1.1",
+      "target": "salesos.ciklo.me",
+      "tool": "sslscan_check",
+      "evidence": "TLSv1.1   \u001b[32mdisabled\u001b[0m",
+      "phase": 1,
+      "timestamp": "2026-03-08T00:06:32.963693",
+      "finding_id": "Cryptographic Issue:Found: TLSv1.1:salesos.ciklo.me"
+    },
+    {
+      "severity": "low",
+      "category": "Version Disclosure",
+      "description": "Found: nginx/1",
+      "target": "https://salesos.ciklo.me",
+      "tool": "whatweb_scan",
+      "evidence": "\u001b[1m\u001b[34mhttps://salesos.ciklo.me\u001b[0m [200 OK] \u001b[1mCountry\u001b[0m[\u001b[0m\u001b[22mUNITED STATES\u001b[0m][\u001b[1m\u001b[31mUS\u001b[0m], \u001b[1mHTML5\u001b[0m, \u001b[1mHTTPServer\u001b[0m[\u001b[1m\u001b[31mUbuntu Linux\u001b[0m][\u001b[1m\u001b[36mnginx/1.24.0 (Ubuntu)\u001b[0m], \u001b[1mIP\u001b[0m[\u001b[0m\u001b[22m165.227.9.146\u001b[0m], \u001b[1mScript\u001b[0m, \u001b[1mTitle\u001b[0m[\u001b[1m\u001b[33mCiklo OS\u001b[0m], \u001b[1mUncommonHeaders\u001b[0m[\u001b[0m\u001b[22mx-nextjs-cache,x-nextjs-prerender,x-nextjs-stale-time\u001b[0m], \u001b[1mX-Powered-By\u001b[0m[\u001b[0m\u001b[22mNext.js\u001b[0m], \u001b[1mnginx\u001b[0m[\u001b[1m\u001b[32m1.24.0\u001b[0m]",
+      "phase": 2,
+      "timestamp": "2026-03-08T00:07:37.756961",
+      "finding_id": "Version Disclosure:Found: nginx/1:https://salesos.ciklo.me"
+    }
+  ],
+  "auditor_hints": [
+    "continue"
+  ],
+  "hints_data": [],
+  "scan_history": [
+    {
+      "event_type": "state_change",
+      "description": "setup \u2192 setup",
+      "timestamp": "2026-03-08T00:04:20.472814",
+      "metadata": {}
+    },
+    {
+      "event_type": "state_change",
+      "description": "setup \u2192 planning",
+      "timestamp": "2026-03-08T00:04:26.967519",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 1: Initial Reconnaissance",
+      "timestamp": "2026-03-08T00:04:46.167255",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 2: Infrastructure Discovery",
+      "timestamp": "2026-03-08T00:04:46.167337",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 3: Web Enumeration & Fingerprinting",
+      "timestamp": "2026-03-08T00:04:46.167388",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 4: Deep Web Assessment",
+      "timestamp": "2026-03-08T00:04:46.167421",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 5: Vulnerability Discovery",
+      "timestamp": "2026-03-08T00:04:46.167437",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 6: Validation & Documentation",
+      "timestamp": "2026-03-08T00:04:46.167451",
+      "metadata": {}
+    },
+    {
+      "event_type": "state_change",
+      "description": "planning \u2192 executing",
+      "timestamp": "2026-03-08T00:05:10.909965",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_start",
+      "description": "Phase 1: Initial Reconnaissance",
+      "timestamp": "2026-03-08T00:05:10.916101",
+      "metadata": {}
+    },
+    {
+      "event_type": "tool_start",
+      "description": "Starting DNS Lookup (dig)",
+      "timestamp": "2026-03-08T00:05:13.812473",
+      "metadata": {
+        "tool": "dig_lookup",
+        "target": "salesos.ciklo.me"
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "dig_lookup: success (exit=0, 0.1s)",
+      "timestamp": "2026-03-08T00:05:13.877401",
+      "metadata": {
+        "tool": "dig_lookup",
+        "exit_code": 0,
+        "duration": 0.06087303161621094
+      }
+    },
+    {
+      "event_type": "tool_start",
+      "description": "Starting WHOIS Lookup",
+      "timestamp": "2026-03-08T00:05:13.878811",
+      "metadata": {
+        "tool": "whois_query",
+        "target": "salesos.ciklo.me"
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "whois_query: failure (exit=1, 0.4s)",
+      "timestamp": "2026-03-08T00:05:14.293007",
+      "metadata": {
+        "tool": "whois_query",
+        "exit_code": 1,
+        "duration": 0.40894269943237305
+      }
+    },
+    {
+      "event_type": "tool_start",
+      "description": "Starting DNS Reconnaissance",
+      "timestamp": "2026-03-08T00:05:14.313755",
+      "metadata": {
+        "tool": "dnsrecon_standard",
+        "target": "salesos.ciklo.me"
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "dnsrecon_standard: success (exit=0, 2.6s)",
+      "timestamp": "2026-03-08T00:05:16.888079",
+      "metadata": {
+        "tool": "dnsrecon_standard",
+        "exit_code": 0,
+        "duration": 2.5713493824005127
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "subfinder_enum: failure (exit=-1, 0.0s)",
+      "timestamp": "2026-03-08T00:05:16.892293",
+      "metadata": {
+        "tool": "subfinder_enum",
+        "exit_code": -1,
+        "duration": 0
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "theharvester_scan: failure (exit=-1, 0.0s)",
+      "timestamp": "2026-03-08T00:05:16.894345",
+      "metadata": {
+        "tool": "theharvester_scan",
+        "exit_code": -1,
+        "duration": 0
+      }
+    },
+    {
+      "event_type": "phase_end",
+      "description": "Phase 1: Initial Reconnaissance completed",
+      "timestamp": "2026-03-08T00:05:16.895739",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_start",
+      "description": "Phase 2: Infrastructure Discovery",
+      "timestamp": "2026-03-08T00:05:47.329056",
+      "metadata": {}
+    },
+    {
+      "event_type": "tool_start",
+      "description": "Starting Nmap Quick Scan",
+      "timestamp": "2026-03-08T00:05:49.921711",
+      "metadata": {
+        "tool": "nmap_quick_scan",
+        "target": "salesos.ciklo.me"
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "nmap_quick_scan: success (exit=0, 0.4s)",
+      "timestamp": "2026-03-08T00:05:50.312715",
+      "metadata": {
+        "tool": "nmap_quick_scan",
+        "exit_code": 0,
+        "duration": 0.3851931095123291
+      }
+    },
+    {
+      "event_type": "tool_start",
+      "description": "Starting Nmap Service Detection",
+      "timestamp": "2026-03-08T00:05:50.348660",
+      "metadata": {
+        "tool": "nmap_service_scan",
+        "target": "salesos.ciklo.me"
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "nmap_service_scan: success (exit=0, 32.2s)",
+      "timestamp": "2026-03-08T00:06:22.504226",
+      "metadata": {
+        "tool": "nmap_service_scan",
+        "exit_code": 0,
+        "duration": 32.15118718147278
+      }
+    },
+    {
+      "event_type": "tool_start",
+      "description": "Starting SSLScan",
+      "timestamp": "2026-03-08T00:06:22.527666",
+      "metadata": {
+        "tool": "sslscan_check",
+        "target": "salesos.ciklo.me"
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "sslscan_check: success (exit=0, 10.4s)",
+      "timestamp": "2026-03-08T00:06:32.957165",
+      "metadata": {
+        "tool": "sslscan_check",
+        "exit_code": 0,
+        "duration": 10.427727699279785
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "sslyze_scan: failure (exit=-1, 0.0s)",
+      "timestamp": "2026-03-08T00:06:32.965778",
+      "metadata": {
+        "tool": "sslyze_scan",
+        "exit_code": -1,
+        "duration": 0
+      }
+    },
+    {
+      "event_type": "tool_start",
+      "description": "Starting HTTPX Web Prober",
+      "timestamp": "2026-03-08T00:06:32.969564",
+      "metadata": {
+        "tool": "httpx_probe",
+        "target": "salesos.ciklo.me"
+      }
+    },
+    {
+      "event_type": "error",
+      "description": "Usage: httpx [OPTIONS] URL\n\nError: No such option: -s\n",
+      "timestamp": "2026-03-08T00:06:40.509954",
+      "metadata": {
+        "category": "tool_crashed",
+        "severity": "recoverable",
+        "tool_name": "httpx_probe",
+        "message": "Usage: httpx [OPTIONS] URL\n\nError: No such option: -s\n",
+        "exit_code": 2,
+        "timestamp": "2026-03-08T00:06:40.509457",
+        "retry_count": 0,
+        "suggested_action": "Check command syntax or retry"
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "httpx_probe: failure (exit=2, 0.5s)",
+      "timestamp": "2026-03-08T00:06:40.509964",
+      "metadata": {
+        "tool": "httpx_probe",
+        "exit_code": 2,
+        "duration": 0.5235898494720459
+      }
+    },
+    {
+      "event_type": "phase_end",
+      "description": "Phase 2: Infrastructure Discovery completed",
+      "timestamp": "2026-03-08T00:06:40.512079",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_start",
+      "description": "Phase 3: Web Enumeration & Fingerprinting",
+      "timestamp": "2026-03-08T00:07:30.372783",
+      "metadata": {}
+    },
+    {
+      "event_type": "tool_start",
+      "description": "Starting WhatWeb Fingerprint",
+      "timestamp": "2026-03-08T00:07:30.377914",
+      "metadata": {
+        "tool": "whatweb_scan",
+        "target": "salesos.ciklo.me"
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "whatweb_scan: success (exit=0, 7.4s)",
+      "timestamp": "2026-03-08T00:07:37.754738",
+      "metadata": {
+        "tool": "whatweb_scan",
+        "exit_code": 0,
+        "duration": 7.375779628753662
+      }
+    },
+    {
+      "event_type": "tool_start",
+      "description": "Starting WAF Detection",
+      "timestamp": "2026-03-08T00:07:37.757571",
+      "metadata": {
+        "tool": "wafw00f_detect",
+        "target": "salesos.ciklo.me"
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "wafw00f_detect: success (exit=0, 2.6s)",
+      "timestamp": "2026-03-08T00:07:40.390865",
+      "metadata": {
+        "tool": "wafw00f_detect",
+        "exit_code": 0,
+        "duration": 2.632378101348877
+      }
+    }
+  ],
+  "artifacts": {
+    "whois_query": [
+      "/home/kali/yeah/aquiles_session_20260308_000420/outputs/phase1_whois_query_1772949914.txt"
+    ],
+    "dnsrecon_standard": [
+      "/home/kali/yeah/aquiles_session_20260308_000420/outputs/phase1_dnsrecon_standard_1772949916.txt"
+    ],
+    "nmap_quick_scan": [
+      "/home/kali/yeah/aquiles_session_20260308_000420/outputs/phase2_nmap_quick_scan_1772949949.xml"
+    ],
+    "nmap_service_scan": [
+      "/home/kali/yeah/aquiles_session_20260308_000420/outputs/phase2_nmap_service_scan_1772949950.xml"
+    ],
+    "sslscan_check": [
+      "/home/kali/yeah/aquiles_session_20260308_000420/outputs/phase2_sslscan_check_1772949992.txt"
+    ],
+    "whatweb_scan": [
+      "/home/kali/yeah/aquiles_session_20260308_000420/outputs/phase3_whatweb_scan_1772950057.txt"
+    ],
+    "wafw00f_detect": [
+      "/home/kali/yeah/aquiles_session_20260308_000420/outputs/phase3_wafw00f_detect_1772950060.txt"
+    ]
+  },
+  "errors": [
+    {
+      "category": "tool_crashed",
+      "severity": "recoverable",
+      "tool_name": "httpx_probe",
+      "message": "Usage: httpx [OPTIONS] URL\n\nError: No such option: -s\n",
+      "exit_code": 2,
+      "timestamp": "2026-03-08T00:06:40.509457",
+      "retry_count": 0,
+      "suggested_action": "Check command syntax or retry"
+    }
+  ]
+}

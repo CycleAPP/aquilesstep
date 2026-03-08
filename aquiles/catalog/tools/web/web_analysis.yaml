@@ -1,0 +1,284 @@
+- name: nikto_scan
+  display_name: "Nikto Web Scanner"
+  binary: nikto
+  category: web
+  subcategory: vulnerability
+  intensity: medium
+  command_template: "nikto -h {target} -o {output_file} -Format txt -Tuning 1234567890"
+  output_format: text
+  parser: text
+  description: "Web server vulnerability scanner"
+  requires_root: false
+  timeout: 600
+  assessment_types: [web, bug_bounty, api]
+  tags: [web, vuln, scanner, misconfig]
+
+- name: whatweb_scan
+  display_name: "WhatWeb Fingerprint"
+  binary: whatweb
+  category: web
+  subcategory: fingerprint
+  intensity: low
+  command_template: "whatweb -a 3 {target}"
+  output_format: text
+  parser: text
+  description: "Web technology fingerprinting"
+  requires_root: false
+  timeout: 120
+  assessment_types: [web, bug_bounty, api, network_external]
+  tags: [web, fingerprint, technology, framework]
+
+- name: wafw00f_detect
+  display_name: "WAF Detection"
+  binary: wafw00f
+  category: web
+  subcategory: fingerprint
+  intensity: low
+  command_template: "wafw00f {target}"
+  output_format: text
+  parser: text
+  description: "Web Application Firewall detection"
+  requires_root: false
+  timeout: 60
+  assessment_types: [web, bug_bounty, api]
+  tags: [web, waf, firewall, detection]
+
+- name: httpx_probe
+  display_name: "HTTPX Web Prober"
+  binary: httpx
+  category: web
+  subcategory: probe
+  intensity: low
+  command_template: "echo {target} | httpx -silent -status-code -title -tech-detect -follow-redirects"
+  output_format: text
+  parser: text
+  description: "HTTP probing with status codes, titles, and tech detection"
+  requires_root: false
+  timeout: 120
+  assessment_types: [web, bug_bounty, api, network_external]
+  tags: [web, probe, status, technology]
+
+- name: gobuster_dir
+  display_name: "Gobuster Dir Scan"
+  binary: gobuster
+  category: web
+  subcategory: directory
+  intensity: medium
+  command_template: "gobuster dir -u {target} -w {wordlist} -t 20 -o {output_file} --no-error"
+  output_format: text
+  parser: text
+  description: "Directory and file brute-forcing"
+  requires_root: false
+  timeout: 600
+  assessment_types: [web, bug_bounty, api]
+  tags: [web, directory, bruteforce, paths]
+
+- name: gobuster_dns
+  display_name: "Gobuster DNS"
+  binary: gobuster
+  category: web
+  subcategory: dns
+  intensity: medium
+  command_template: "gobuster dns -d {target} -w {wordlist_dns} -t 20 -o {output_file}"
+  output_format: text
+  parser: text
+  description: "DNS subdomain brute-forcing"
+  requires_root: false
+  timeout: 600
+  assessment_types: [web, bug_bounty, network_external]
+  tags: [dns, subdomain, bruteforce]
+
+- name: ffuf_dir
+  display_name: "FFUF Directory Fuzz"
+  binary: ffuf
+  category: web
+  subcategory: directory
+  intensity: medium
+  command_template: "ffuf -u {target}/FUZZ -w {wordlist} -t 20 -mc 200,204,301,302,307,401,403,405 -o {output_file} -of json"
+  output_format: json
+  parser: json
+  description: "Fast web fuzzing for directories"
+  requires_root: false
+  timeout: 600
+  assessment_types: [web, bug_bounty, api]
+  tags: [web, fuzzing, directory, fast]
+
+- name: ffuf_api_paths
+  display_name: "FFUF API Path Discovery"
+  binary: ffuf
+  category: web
+  subcategory: api
+  intensity: medium
+  command_template: "ffuf -u {target}/FUZZ -w {wordlist} -t 15 -mc 200,201,204,301,302,401,403,405 -o {output_file} -of json"
+  output_format: json
+  parser: json
+  description: "API endpoint discovery via fuzzing"
+  requires_root: false
+  timeout: 600
+  assessment_types: [api, web, bug_bounty]
+  tags: [api, fuzzing, endpoints]
+
+- name: ffuf_api_fuzz
+  display_name: "FFUF API Parameter Fuzz"
+  binary: ffuf
+  category: web
+  subcategory: api
+  intensity: medium
+  command_template: "ffuf -u {target}?FUZZ=test -w {wordlist} -t 15 -mc 200,204,301,302,500 -o {output_file} -of json"
+  output_format: json
+  parser: json
+  description: "API parameter fuzzing"
+  requires_root: false
+  timeout: 600
+  assessment_types: [api, web]
+  tags: [api, fuzzing, parameters]
+
+- name: dirb_scan
+  display_name: "DIRB Web Scanner"
+  binary: dirb
+  category: web
+  subcategory: directory
+  intensity: medium
+  command_template: "dirb {target} {wordlist} -o {output_file} -S"
+  output_format: text
+  parser: text
+  description: "Web content scanner / directory bruter"
+  requires_root: false
+  timeout: 600
+  assessment_types: [web, bug_bounty]
+  tags: [web, directory, bruteforce]
+
+- name: wfuzz_params
+  display_name: "Wfuzz Parameter Fuzz"
+  binary: wfuzz
+  category: web
+  subcategory: fuzzing
+  intensity: high
+  command_template: "wfuzz -c -z file,{wordlist} --hc 404 {target}/FUZZ"
+  output_format: text
+  parser: text
+  description: "Flexible web application fuzzer"
+  requires_root: false
+  timeout: 600
+  assessment_types: [web, api]
+  tags: [web, fuzzing, flexible]
+
+- name: curl_headers
+  display_name: "HTTP Headers Check"
+  binary: curl
+  category: web
+  subcategory: headers
+  intensity: low
+  command_template: "curl -sI -L {target}"
+  output_format: text
+  parser: text
+  description: "Check HTTP response headers"
+  requires_root: false
+  timeout: 30
+  assessment_types: [web, bug_bounty, api, network_external]
+  tags: [web, headers, security, quick]
+
+- name: curl_robots
+  display_name: "Robots.txt Check"
+  binary: curl
+  category: web
+  subcategory: recon
+  intensity: low
+  command_template: "curl -sL {target}/robots.txt"
+  output_format: text
+  parser: text
+  description: "Fetch robots.txt for path discovery"
+  requires_root: false
+  timeout: 15
+  assessment_types: [web, bug_bounty, api]
+  tags: [web, robots, paths, passive]
+
+- name: curl_sitemap
+  display_name: "Sitemap.xml Check"
+  binary: curl
+  category: web
+  subcategory: recon
+  intensity: low
+  command_template: "curl -sL {target}/sitemap.xml"
+  output_format: text
+  parser: text
+  description: "Fetch sitemap.xml for URL discovery"
+  requires_root: false
+  timeout: 15
+  assessment_types: [web, bug_bounty]
+  tags: [web, sitemap, urls, passive]
+
+- name: curl_security_txt
+  display_name: "Security.txt Check"
+  binary: curl
+  category: web
+  subcategory: recon
+  intensity: low
+  command_template: "curl -sL {target}/.well-known/security.txt"
+  output_format: text
+  parser: text
+  description: "Check for security.txt disclosure"
+  requires_root: false
+  timeout: 15
+  assessment_types: [web, bug_bounty, api]
+  tags: [web, security, disclosure, passive]
+
+- name: nuclei_scan
+  display_name: "Nuclei Vulnerability Scan"
+  binary: nuclei
+  category: web
+  subcategory: vulnerability
+  intensity: medium
+  command_template: "nuclei -u {target} -tags nginx,node,express,misconfig,exposure,default-login,auth,api,cve -severity low,medium,high,critical -o {output_file} -silent"
+  output_format: text
+  parser: text
+  description: "Template-based vulnerability scanning"
+  requires_root: false
+  timeout: 900
+  assessment_types: [web, bug_bounty, api, network_external]
+  tags: [web, vuln, nuclei, templates]
+
+- name: nuclei_api
+  display_name: "Nuclei API Templates"
+  binary: nuclei
+  category: web
+  subcategory: api
+  intensity: medium
+  command_template: "nuclei -u {target} -tags api -o {output_file} -silent"
+  output_format: text
+  parser: text
+  description: "Nuclei with API-specific templates"
+  requires_root: false
+  timeout: 600
+  assessment_types: [api, web]
+  tags: [api, vuln, nuclei]
+
+- name: nuclei_network
+  display_name: "Nuclei Network Templates"
+  binary: nuclei
+  category: web
+  subcategory: network
+  intensity: medium
+  command_template: "nuclei -u {target} -tags network -o {output_file} -silent"
+  output_format: text
+  parser: text
+  description: "Nuclei with network-focused templates"
+  requires_root: false
+  timeout: 600
+  assessment_types: [infrastructure, network_external]
+  tags: [network, vuln, nuclei]
+
+- name: searchsploit_scan
+  display_name: "SearchSploit Exploit Scanner"
+  binary: searchsploit
+  category: web
+  subcategory: vulnerability
+  intensity: high
+  command_template: "searchsploit --nmap {output_dir}/nmap_service_scan_*.xml > {output_file}"
+  output_format: text
+  parser: text
+  description: "Aggressively searches ExploitDB for CVEs based on discovered Nmap services"
+  requires_root: false
+  timeout: 300
+  assessment_types: [web, infrastructure, active_directory, api, bug_bounty, network_external]
+  tags: [vuln, exploit, searchsploit, aggressive]

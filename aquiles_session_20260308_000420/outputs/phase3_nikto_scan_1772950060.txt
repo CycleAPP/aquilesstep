@@ -1,0 +1,13 @@
+- Nikto v2.5.0/
++ Target Host: salesos.ciklo.me
++ Target Port: 443
++ GET /: Retrieved x-powered-by header: Next.js.
++ GET /: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options: 
++ GET /: Uncommon header 'x-nextjs-prerender' found, with multiple values: (1,1,).
++ GET /: Uncommon header 'x-nextjs-stale-time' found, with contents: 300.
++ GET /: Uncommon header 'x-nextjs-cache' found, with contents: HIT.
++ GET /: The site uses TLS and the Strict-Transport-Security HTTP header is not defined. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security: 
++ GET /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/: 
++ GET /4lY9Lnu2/: Uncommon header 'refresh' found, with contents: 0;url=/4lY9Lnu2.
++ GET /: The Content-Encoding header is set to "deflate" which may mean that the server is vulnerable to the BREACH attack. See: http://breachattack.com/: 
++ OPTIONS OPTIONS: Allowed HTTP Methods: ARRAY(0x565341c65660) .

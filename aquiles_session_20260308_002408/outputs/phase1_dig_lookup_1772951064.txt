@@ -1,0 +1,68 @@
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 17300
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;salesos.ciklo.me.		IN	A
+
+;; ANSWER SECTION:
+salesos.ciklo.me.	83	IN	A	165.227.9.146
+
+;; Query time: 3 msec
+;; SERVER: 192.168.1.254#53(192.168.1.254) (UDP)
+;; WHEN: Sun Mar 08 00:24:24 CST 2026
+;; MSG SIZE  rcvd: 61
+
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 57584
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;salesos.ciklo.me.		IN	AAAA
+
+;; AUTHORITY SECTION:
+ciklo.me.		83	IN	SOA	ns21.domaincontrol.com. dns.jomax.net. 2026022800 28800 7200 604800 600
+
+;; Query time: 3 msec
+;; SERVER: 192.168.1.254#53(192.168.1.254) (UDP)
+;; WHEN: Sun Mar 08 00:24:24 CST 2026
+;; MSG SIZE  rcvd: 116
+
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 31312
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;salesos.ciklo.me.		IN	MX
+
+;; AUTHORITY SECTION:
+ciklo.me.		88	IN	SOA	ns21.domaincontrol.com. dns.jomax.net. 2026022800 28800 7200 604800 600
+
+;; Query time: 3 msec
+;; SERVER: 192.168.1.254#53(192.168.1.254) (UDP)
+;; WHEN: Sun Mar 08 00:24:24 CST 2026
+;; MSG SIZE  rcvd: 116
+
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 62222
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;salesos.ciklo.me.		IN	NS
+
+;; AUTHORITY SECTION:
+ciklo.me.		88	IN	SOA	ns21.domaincontrol.com. dns.jomax.net. 2026022800 28800 7200 604800 600
+
+;; Query time: 7 msec
+;; SERVER: 192.168.1.254#53(192.168.1.254) (UDP)
+;; WHEN: Sun Mar 08 00:24:24 CST 2026
+;; MSG SIZE  rcvd: 116
+

@@ -1,0 +1,149 @@
+- name: enum4linux_scan
+  display_name: "Enum4linux Scan"
+  binary: enum4linux
+  category: infrastructure
+  subcategory: smb
+  intensity: medium
+  command_template: "enum4linux -a {target}"
+  output_format: text
+  parser: text
+  description: "Enumerate SMB shares, users, groups, policies"
+  requires_root: false
+  timeout: 300
+  assessment_types: [infrastructure, active_directory]
+  tags: [smb, users, shares, windows]
+
+- name: smbclient_list
+  display_name: "SMB Share Listing"
+  binary: smbclient
+  category: infrastructure
+  subcategory: smb
+  intensity: medium
+  command_template: "smbclient -L //{target} -N"
+  output_format: text
+  parser: text
+  description: "List available SMB shares (null session)"
+  requires_root: false
+  timeout: 60
+  assessment_types: [infrastructure, active_directory]
+  tags: [smb, shares, null_session]
+
+- name: snmpwalk_scan
+  display_name: "SNMP Walk"
+  binary: snmpwalk
+  category: infrastructure
+  subcategory: snmp
+  intensity: medium
+  command_template: "snmpwalk -v2c -c public {target}"
+  output_format: text
+  parser: text
+  description: "SNMP enumeration with community string 'public'"
+  requires_root: false
+  timeout: 300
+  assessment_types: [infrastructure, network_external]
+  tags: [snmp, enumeration, community]
+
+- name: onesixtyone_scan
+  display_name: "OneSixtyOne SNMP"
+  binary: onesixtyone
+  category: infrastructure
+  subcategory: snmp
+  intensity: medium
+  command_template: "onesixtyone {target}"
+  output_format: text
+  parser: text
+  description: "Fast SNMP community string scanner"
+  requires_root: false
+  timeout: 120
+  assessment_types: [infrastructure, network_external]
+  tags: [snmp, community, bruteforce]
+
+- name: ldapsearch_scan
+  display_name: "LDAP Search"
+  binary: ldapsearch
+  category: infrastructure
+  subcategory: ldap
+  intensity: medium
+  command_template: "ldapsearch -x -H ldap://{target} -b '' -s base namingContexts"
+  output_format: text
+  parser: text
+  description: "Anonymous LDAP base query"
+  requires_root: false
+  timeout: 60
+  assessment_types: [active_directory, infrastructure]
+  tags: [ldap, anonymous, enumeration]
+
+- name: nbtscan_scan
+  display_name: "NBTScan NetBIOS"
+  binary: nbtscan
+  category: infrastructure
+  subcategory: netbios
+  intensity: low
+  command_template: "nbtscan {target}"
+  output_format: text
+  parser: text
+  description: "NetBIOS name scanner"
+  requires_root: false
+  timeout: 60
+  assessment_types: [infrastructure, active_directory]
+  tags: [netbios, names, windows]
+
+- name: rpcclient_enumdomusers
+  display_name: "RPC User Enumeration"
+  binary: rpcclient
+  category: infrastructure
+  subcategory: rpc
+  intensity: medium
+  command_template: "rpcclient -U '' -N {target} -c 'enumdomusers'"
+  output_format: text
+  parser: text
+  description: "Enumerate domain users via null RPC session"
+  requires_root: false
+  timeout: 60
+  assessment_types: [infrastructure, active_directory]
+  tags: [rpc, users, null_session, windows]
+
+- name: showmount_scan
+  display_name: "NFS Shares (showmount)"
+  binary: showmount
+  category: infrastructure
+  subcategory: nfs
+  intensity: low
+  command_template: "showmount -e {target}"
+  output_format: text
+  parser: text
+  description: "List NFS exported shares"
+  requires_root: false
+  timeout: 30
+  assessment_types: [infrastructure]
+  tags: [nfs, shares, exports]
+
+- name: sslscan_check
+  display_name: "SSLScan"
+  binary: sslscan
+  category: infrastructure
+  subcategory: ssl
+  intensity: low
+  command_template: "sslscan {target}"
+  output_format: text
+  parser: text
+  description: "SSL/TLS configuration analysis"
+  requires_root: false
+  timeout: 120
+  assessment_types: [web, infrastructure, bug_bounty, api, network_external]
+  tags: [ssl, tls, crypto, certificates]
+
+- name: sslyze_scan
+  display_name: "SSLyze Analysis"
+  binary: sslyze
+  category: infrastructure
+  subcategory: ssl
+  intensity: low
+  command_template: "sslyze {target}"
+  output_format: text
+  parser: text
+  description: "Deep SSL/TLS analysis"
+  requires_root: false
+  timeout: 120
+  assessment_types: [web, infrastructure, api, network_external]
+  tags: [ssl, tls, crypto, deep]

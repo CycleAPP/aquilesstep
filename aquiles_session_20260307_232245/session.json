@@ -1,0 +1,325 @@
+{
+  "session_id": "20260307_232245",
+  "start_time": "2026-03-07T23:22:45.721579",
+  "last_saved": "2026-03-07T23:23:53.561666",
+  "execution_state": "executing",
+  "assessment_type": {
+    "key": "web",
+    "name": "Web Application Assessment",
+    "description": "Full-scope web app evaluation: recon, crawling, auth testing, API analysis.",
+    "default_intensity": "medium"
+  },
+  "scope": {
+    "domains": [
+      "salesos.ciklo.me"
+    ],
+    "ips": [],
+    "urls": [],
+    "ports": [
+      "1-65535"
+    ],
+    "exclusions": []
+  },
+  "intensity": "high",
+  "objective": "i want to know possible vulnerabilities in my website",
+  "authorization_accepted": true,
+  "current_phase": 0,
+  "phases": [
+    {
+      "number": 1,
+      "name": "DNS & Domain Validation",
+      "description": "Resolve and validate target domains",
+      "tools": [
+        "dig_lookup",
+        "whois_query",
+        "dnsrecon_standard"
+      ],
+      "status": "done",
+      "results": [
+        {
+          "tool_name": "dig_lookup",
+          "command": "dig +noall +answer salesos.ciklo.me ANY",
+          "exit_code": 0,
+          "output_file": "/home/kali/yeah/aquiles_session_20260307_232245/outputs/phase1_dig_lookup_1772947426.txt",
+          "stdout": ";; communications error to 192.168.1.254#53: timed out\n",
+          "stderr": "",
+          "duration": 10.101438283920288,
+          "phase": 0,
+          "timestamp": "2026-03-07T23:23:46.791103",
+          "parsed_data": {},
+          "error_info": {},
+          "retry_count": 0
+        },
+        {
+          "tool_name": "whois_query",
+          "command": "whois salesos.ciklo.me",
+          "exit_code": 1,
+          "output_file": "/home/kali/yeah/aquiles_session_20260307_232245/outputs/phase1_whois_query_1772947433.txt",
+          "stdout": "Malformed request.\n>>> Last update of WHOIS database: 2026-03-08T05:23:53Z <<<\n\nTerms of Use: Access to WHOIS information is provided to assist persons in determining the contents of a domain name registration record in the registry database. The data in this record is provided by Identity Digital or the Registry Operator for informational purposes only, and accuracy is not guaranteed. This service is intended only for query-based access. You agree that you will use this data only for lawful purposes and that, under no circumstances will you use this data to (a) allow, enable, or otherwise support the transmission by e-mail, telephone, or facsimile of mass unsolicited, commercial advertising or solicitations to entities other than the data recipient's own existing customers; or (b) enable high volume, automated, electronic processes that send queries or data to the systems of Registry Operator, a Registrar, or Identity Digital except as reasonably necessary to register domain names or modify existing registrations. When using the Whois service, please consider the following: The Whois service is not a replacement for standard EPP commands to the SRS service. Whois is not considered authoritative for registered domain objects. The Whois service may be scheduled for downtime during production or OT&E maintenance periods. Queries to the Whois services are throttled. If too many queries are received from a single IP address within a specified time, the service will begin to reject further queries for a period of time to prevent disruption of Whois service access. Abuse of the Whois system through data mining is mitigated by detecting and limiting bulk query access from single sources. Where applicable, the presence of a [Non-Public Data] tag indicates that such data is not made publicly available due to applicable data privacy laws or requirements. Should you wish to contact the registrant, please refer to the Whois records available through the registrar URL listed above. Access to non-public data may be provided, upon request, where it can be re\nasonably confirmed that the requester holds a specific legitimate interest and a proper legal basis for accessing the withheld data. Access to this data provided by Identity Digital can be requested by submitting a request via the form found at https://www.identity.digital/about/policies/whois-layered-access/. The Registrar of Record identified in this output may have an RDDS service that can be queried for additional information on how to contact the Registrant, Admin, or Tech contact of the queried domain name. Identity Digital Inc. and Registry Operator reserve the right to modify these terms at any time. By submitting this query, you agree to abide by this policy.\n",
+          "stderr": "",
+          "duration": 0.14966940879821777,
+          "phase": 0,
+          "timestamp": "2026-03-07T23:23:53.526221",
+          "parsed_data": {},
+          "error_info": {
+            "category": "tool_crashed",
+            "severity": "recoverable",
+            "tool_name": "whois_query",
+            "message": "Tool exited with code 1",
+            "exit_code": 1,
+            "timestamp": "2026-03-07T23:23:53.529081",
+            "retry_count": 0,
+            "suggested_action": "Check command syntax or retry"
+          },
+          "retry_count": 2
+        }
+      ],
+      "findings": [],
+      "summary": "Found 0 findings",
+      "failed_tools": [
+        "whois_query"
+      ],
+      "skipped_tools": []
+    },
+    {
+      "number": 2,
+      "name": "Subdomain Discovery",
+      "description": "Find subdomains of target domains",
+      "tools": [
+        "subfinder_enum",
+        "dnsenum_standard",
+        "gobuster_dns"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 3,
+      "name": "Port & Service Scanning",
+      "description": "Identify open ports and running services",
+      "tools": [
+        "nmap_quick_scan",
+        "nmap_service_scan"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 4,
+      "name": "Web Fingerprinting",
+      "description": "Identify web technologies and frameworks",
+      "tools": [
+        "whatweb_scan",
+        "wafw00f_detect",
+        "httpx_probe"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 5,
+      "name": "Directory & Path Discovery",
+      "description": "Find hidden paths and files",
+      "tools": [
+        "gobuster_dir",
+        "ffuf_dir",
+        "dirb_scan"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 6,
+      "name": "Vulnerability Scanning",
+      "description": "Scan for known vulnerabilities",
+      "tools": [
+        "nikto_scan",
+        "nuclei_scan"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 7,
+      "name": "Deep Analysis",
+      "description": "Analyze findings and identify attack vectors",
+      "tools": [],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    }
+  ],
+  "findings": [],
+  "auditor_hints": [],
+  "hints_data": [],
+  "scan_history": [
+    {
+      "event_type": "state_change",
+      "description": "setup \u2192 setup",
+      "timestamp": "2026-03-07T23:22:45.722431",
+      "metadata": {}
+    },
+    {
+      "event_type": "state_change",
+      "description": "setup \u2192 planning",
+      "timestamp": "2026-03-07T23:23:17.187646",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 1: DNS & Domain Validation",
+      "timestamp": "2026-03-07T23:23:17.194249",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 2: Subdomain Discovery",
+      "timestamp": "2026-03-07T23:23:17.194309",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 3: Port & Service Scanning",
+      "timestamp": "2026-03-07T23:23:17.194331",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 4: Web Fingerprinting",
+      "timestamp": "2026-03-07T23:23:17.194346",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 5: Directory & Path Discovery",
+      "timestamp": "2026-03-07T23:23:17.194361",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 6: Vulnerability Scanning",
+      "timestamp": "2026-03-07T23:23:17.194374",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 7: Deep Analysis",
+      "timestamp": "2026-03-07T23:23:17.194387",
+      "metadata": {}
+    },
+    {
+      "event_type": "state_change",
+      "description": "planning \u2192 executing",
+      "timestamp": "2026-03-07T23:23:29.474772",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_start",
+      "description": "Phase 1: DNS & Domain Validation",
+      "timestamp": "2026-03-07T23:23:29.479320",
+      "metadata": {}
+    },
+    {
+      "event_type": "tool_start",
+      "description": "Starting DNS Lookup (dig)",
+      "timestamp": "2026-03-07T23:23:36.687179",
+      "metadata": {
+        "tool": "dig_lookup",
+        "target": "salesos.ciklo.me"
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "dig_lookup: success (exit=0, 10.1s)",
+      "timestamp": "2026-03-07T23:23:46.793637",
+      "metadata": {
+        "tool": "dig_lookup",
+        "exit_code": 0,
+        "duration": 10.101438283920288
+      }
+    },
+    {
+      "event_type": "tool_start",
+      "description": "Starting WHOIS Lookup",
+      "timestamp": "2026-03-07T23:23:46.810335",
+      "metadata": {
+        "tool": "whois_query",
+        "target": "salesos.ciklo.me"
+      }
+    },
+    {
+      "event_type": "error",
+      "description": "Tool exited with code 1",
+      "timestamp": "2026-03-07T23:23:53.531029",
+      "metadata": {
+        "category": "tool_crashed",
+        "severity": "recoverable",
+        "tool_name": "whois_query",
+        "message": "Tool exited with code 1",
+        "exit_code": 1,
+        "timestamp": "2026-03-07T23:23:53.529081",
+        "retry_count": 0,
+        "suggested_action": "Check command syntax or retry"
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "whois_query: failure (exit=1, 0.1s)",
+      "timestamp": "2026-03-07T23:23:53.531154",
+      "metadata": {
+        "tool": "whois_query",
+        "exit_code": 1,
+        "duration": 0.14966940879821777
+      }
+    },
+    {
+      "event_type": "phase_end",
+      "description": "Phase 1: DNS & Domain Validation completed",
+      "timestamp": "2026-03-07T23:23:53.544586",
+      "metadata": {}
+    }
+  ],
+  "artifacts": {
+    "dig_lookup": [
+      "/home/kali/yeah/aquiles_session_20260307_232245/outputs/phase1_dig_lookup_1772947426.txt"
+    ],
+    "whois_query": [
+      "/home/kali/yeah/aquiles_session_20260307_232245/outputs/phase1_whois_query_1772947433.txt"
+    ]
+  },
+  "errors": [
+    {
+      "category": "tool_crashed",
+      "severity": "recoverable",
+      "tool_name": "whois_query",
+      "message": "Tool exited with code 1",
+      "exit_code": 1,
+      "timestamp": "2026-03-07T23:23:53.529081",
+      "retry_count": 0,
+      "suggested_action": "Check command syntax or retry"
+    }
+  ]
+}

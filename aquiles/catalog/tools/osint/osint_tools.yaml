@@ -1,0 +1,59 @@
+- name: theharvester_scan
+  display_name: "TheHarvester OSINT"
+  binary: theHarvester
+  category: osint
+  subcategory: email
+  intensity: low
+  command_template: "theHarvester -d {target} -b all -l 200"
+  output_format: text
+  parser: text
+  description: "Gather emails, subdomains, hosts from public sources"
+  requires_root: false
+  timeout: 300
+  assessment_types: [web, bug_bounty, network_external]
+  tags: [email, subdomain, osint, passive]
+
+- name: sherlock_scan
+  display_name: "Sherlock Username Search"
+  binary: sherlock
+  category: osint
+  subcategory: social
+  intensity: low
+  command_template: "sherlock {target} --print-found --timeout 10"
+  output_format: text
+  parser: text
+  description: "Search for usernames across social networks"
+  requires_root: false
+  timeout: 300
+  assessment_types: [web, bug_bounty]
+  tags: [social, username, osint]
+
+- name: waybackurls_scan
+  display_name: "Wayback URLs"
+  binary: waybackurls
+  category: osint
+  subcategory: web_archive
+  intensity: low
+  command_template: "echo {target} | waybackurls"
+  output_format: text
+  parser: text
+  description: "Fetch URLs from Wayback Machine"
+  requires_root: false
+  timeout: 120
+  assessment_types: [web, bug_bounty, api]
+  tags: [archive, urls, passive, historical]
+
+- name: gau_scan
+  display_name: "GetAllUrls (gau)"
+  binary: gau
+  category: osint
+  subcategory: web_archive
+  intensity: low
+  command_template: "echo {target} | gau --threads 3"
+  output_format: text
+  parser: text
+  description: "Fetch known URLs from AlienVault, Wayback, CommonCrawl"
+  requires_root: false
+  timeout: 120
+  assessment_types: [web, bug_bounty, api]
+  tags: [urls, passive, historical, comprehensive]

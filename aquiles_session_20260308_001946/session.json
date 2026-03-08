@@ -1,0 +1,314 @@
+{
+  "session_id": "20260308_001946",
+  "start_time": "2026-03-08T00:19:46.772120",
+  "last_saved": "2026-03-08T00:23:18.637783",
+  "execution_state": "completed",
+  "assessment_type": {
+    "key": "web",
+    "name": "Web Application Assessment",
+    "description": "Full-scope web app evaluation: recon, crawling, auth testing, API analysis.",
+    "default_intensity": "medium"
+  },
+  "scope": {
+    "domains": [
+      "salesos.ciklo.me"
+    ],
+    "ips": [],
+    "urls": [
+      "1-65535"
+    ],
+    "ports": [
+      "1-65535"
+    ],
+    "exclusions": [
+      "y"
+    ]
+  },
+  "intensity": "medium",
+  "objective": "",
+  "authorization_accepted": true,
+  "current_phase": 1,
+  "phases": [
+    {
+      "number": 1,
+      "name": "DNS & Domain Validation",
+      "description": "Resolve and validate target domains",
+      "tools": [
+        "dig_lookup",
+        "whois_query",
+        "dnsrecon_standard"
+      ],
+      "status": "done",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 2,
+      "name": "Subdomain Discovery",
+      "description": "Find subdomains of target domains",
+      "tools": [
+        "subfinder_enum",
+        "dnsenum_standard",
+        "gobuster_dns"
+      ],
+      "status": "done",
+      "results": [
+        {
+          "tool_name": "gobuster_dns",
+          "command": "gobuster dns -d salesos.ciklo.me -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-5000.txt -t 20 -o /home/kali/yeah/aquiles_session_20260308_001946/outputs/phase2_gobuster_dns_1772950814.txt",
+          "exit_code": 0,
+          "output_file": "/home/kali/yeah/aquiles_session_20260308_001946/outputs/phase2_gobuster_dns_1772950814.txt",
+          "stdout": "===============================================================\nGobuster v3.6\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:     salesos.ciklo.me\n[+] Threads:    20\n[+] Timeout:    1s\n[+] Wordlist:   /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-5000.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n\n===============================================================\nFinished\n===============================================================\n",
+          "stderr": "\n\u001b[2KProgress: 57 / 4990 (1.14%)\n\u001b[2KProgress: 92 / 4990 (1.84%)\n\u001b[2KProgress: 137 / 4990 (2.75%)\n\u001b[2KProgress: 175 / 4990 (3.51%)\n\u001b[2KProgress: 217 / 4990 (4.35%)\n\u001b[2KProgress: 261 / 4990 (5.23%)\n\u001b[2KProgress: 302 / 4990 (6.05%)\n\u001b[2KProgress: 346 / 4990 (6.93%)\n\u001b[2KProgress: 391 / 4990 (7.84%)\n\u001b[2KProgress: 435 / 4990 (8.72%)\n\u001b[2KProgress: 473 / 4990 (9.48%)\n\u001b[2KProgress: 518 / 4990 (10.38%)\n\u001b[2KProgress: 559 / 4990 (11.20%)\n\u001b[2KProgress: 601 / 4990 (12.04%)\n\u001b[2KProgress: 644 / 4990 (12.91%)\n\u001b[2KProgress: 687 / 4990 (13.77%)\n\u001b[2KProgress: 733 / 4990 (14.69%)\n\u001b[2KProgress: 778 / 4990 (15.59%)\n\u001b[2KProgress: 821 / 4990 (16.45%)\n\u001b[2KProgress: 862 / 4990 (17.27%)\n\u001b[2KProgress: 907 / 4990 (18.18%)\n\u001b[2KProgress: 944 / 4990 (18.92%)\n\u001b[2KProgress: 980 / 4990 (19.64%)\n\u001b[2KProgress: 1025 / 4990 (20.54%)\n\u001b[2KProgress: 1069 / 4990 (21.42%)\n\u001b[2KProgress: 1111 / 4990 (22.26%)\n\u001b[2KProgress: 1155 / 4990 (23.15%)\n\u001b[2KProgress: 1198 / 4990 (24.01%)\n\u001b[2KProgress: 1243 / 4990 (24.91%)\n\u001b[2KProgress: 1285 / 4990 (25.75%)\n\u001b[2KProgress: 1329 / 4990 (26.63%)\n\u001b[2KProgress: 1373 / 4990 (27.52%)\n\u001b[2KProgress: 1413 / 4990 (28.32%)\n\u001b[2KProgress: 1456 / 4990 (29.18%)\n\u001b[2KProgress: 1502 / 4990 (30.10%)\n\u001b[2KProgress: 1546 / 4990 (30.98%)\n\u001b[2KProgress: 1588 / 4990 (31.82%)\n\u001b[2KProgress: 1633 / 4990 (32.73%)\n\u001b[2KProgress: 1674 / 4990 (33.55%)\n\u001b[2KProgress: 1719 / 4990 (34.45%)\n\u001b[2KProgress: 1761 / 4990 (35.29%)\n\u001b[2KProgress: 1805 / 4990 (36.17%)\n\u001b[2KProgress: 1842 / 4990 (36.91%)\n\u001b[2KProgress: 1882 / 4990 (37.72%)\n\u001b[2KProgress: 1923 / 4990 (38.54%)\n\u001b[2KProgress: 1966 / 4990 (39.40%)\n\u001b[2KProgress: 2012 / 4990 (40.32%)\n\u001b[2KProgress: 2053 / 4990 (41.14%)\n\u001b[2KProgress: 2095 / 4990 (41.98%)\n\u001b[2KProgress: 2139 / 4990 (42.87%)\n\u001b[2KProgress: 2182 / 4990 (43.73%)\n\u001b[2KProgress: 2225 / 4990 (44.59%)\n\u001b[2KProgress: 2265 / 4990 (45.39%)\n\u001b[2KProgress: 2308 / 4990 (46.25%)\n\u001b[2KProgress: 2350 / 4990 (47.09%)\n\u001b[2KProgress: 2393 / 4990 (47.96%)\n\u001b[2KProgress: 2438 / 4990 (48.86%)\n\u001b[2KProgress: 2479 / 4990 (49.68%)\n\u001b[2KP",
+          "duration": 59.64441275596619,
+          "phase": 1,
+          "timestamp": "2026-03-08T00:21:14.186538",
+          "parsed_data": {},
+          "error_info": {},
+          "retry_count": 0
+        },
+        {
+          "tool_name": "gobuster_dns",
+          "command": "gobuster dns -d 1-65535 -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-5000.txt -t 20 -o /home/kali/yeah/aquiles_session_20260308_001946/outputs/phase2_gobuster_dns_1772950874.txt",
+          "exit_code": 0,
+          "output_file": "/home/kali/yeah/aquiles_session_20260308_001946/outputs/phase2_gobuster_dns_1772950874.txt",
+          "stdout": "===============================================================\nGobuster v3.6\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:     1-65535\n[+] Threads:    20\n[+] Timeout:    1s\n[+] Wordlist:   /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-5000.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n\n===============================================================\nFinished\n===============================================================\n",
+          "stderr": "[INFO] [-] Unable to validate base domain: 1-65535 (lookup 1-65535 on 192.168.1.254:53: no such host)\n\n\u001b[2KProgress: 60 / 4990 (1.20%)\n\u001b[2KProgress: 101 / 4990 (2.02%)\n\u001b[2KProgress: 146 / 4990 (2.93%)\n\u001b[2KProgress: 190 / 4990 (3.81%)\n\u001b[2KProgress: 233 / 4990 (4.67%)\n\u001b[2KProgress: 277 / 4990 (5.55%)\n\u001b[2KProgress: 307 / 4990 (6.15%)\n\u001b[2KProgress: 345 / 4990 (6.91%)\n\u001b[2KProgress: 385 / 4990 (7.72%)\n\u001b[2KProgress: 431 / 4990 (8.64%)\n\u001b[2KProgress: 472 / 4990 (9.46%)\n\u001b[2KProgress: 514 / 4990 (10.30%)\n\u001b[2KProgress: 559 / 4990 (11.20%)\n\u001b[2KProgress: 604 / 4990 (12.10%)\n\u001b[2KProgress: 646 / 4990 (12.95%)\n\u001b[2KProgress: 690 / 4990 (13.83%)\n\u001b[2KProgress: 732 / 4990 (14.67%)\n\u001b[2KProgress: 776 / 4990 (15.55%)\n\u001b[2KProgress: 818 / 4990 (16.39%)\n\u001b[2KProgress: 860 / 4990 (17.23%)\n\u001b[2KProgress: 905 / 4990 (18.14%)\n\u001b[2KProgress: 946 / 4990 (18.96%)\n\u001b[2KProgress: 989 / 4990 (19.82%)\n\u001b[2KProgress: 1030 / 4990 (20.64%)\n\u001b[2KProgress: 1078 / 4990 (21.60%)\n\u001b[2KProgress: 1120 / 4990 (22.44%)\n\u001b[2KProgress: 1165 / 4990 (23.35%)\n\u001b[2KProgress: 1195 / 4990 (23.95%)\n\u001b[2KProgress: 1240 / 4990 (24.85%)\n\u001b[2KProgress: 1281 / 4990 (25.67%)\n\u001b[2KProgress: 1324 / 4990 (26.53%)\n\u001b[2KProgress: 1366 / 4990 (27.37%)\n\u001b[2KProgress: 1411 / 4990 (28.28%)\n\u001b[2KProgress: 1453 / 4990 (29.12%)\n\u001b[2KProgress: 1494 / 4990 (29.94%)\n\u001b[2KProgress: 1537 / 4990 (30.80%)\n\u001b[2KProgress: 1580 / 4990 (31.66%)\n\u001b[2KProgress: 1622 / 4990 (32.51%)\n\u001b[2KProgress: 1669 / 4990 (33.45%)\n\u001b[2KProgress: 1712 / 4990 (34.31%)\n\u001b[2KProgress: 1753 / 4990 (35.13%)\n\u001b[2KProgress: 1801 / 4990 (36.09%)\n\u001b[2KProgress: 1841 / 4990 (36.89%)\n\u001b[2KProgress: 1883 / 4990 (37.74%)\n\u001b[2KProgress: 1924 / 4990 (38.56%)\n\u001b[2KProgress: 1969 / 4990 (39.46%)\n\u001b[2KProgress: 2013 / 4990 (40.34%)\n\u001b[2KProgress: 2053 / 4990 (41.14%)\n\u001b[2KProgress: 2085 / 4990 (41.78%)\n\u001b[2KProgress: 2126 / 4990 (42.61%)\n\u001b[2KProgress: 2173 / 4990 (43.55%)\n\u001b[2KProgress: 2220 / 4990 (44.49%)\n\u001b[2KProgress: 2259 / 4990 (45.27%)\n\u001b[2KProgress: 2302 / 4990 (46.13%)\n\u001b[2KProgress: 2341 / 4990 (46.91%)\n\u001b[2KPro",
+          "duration": 59.16849493980408,
+          "phase": 1,
+          "timestamp": "2026-03-08T00:22:13.362137",
+          "parsed_data": {},
+          "error_info": {},
+          "retry_count": 0
+        }
+      ],
+      "findings": [],
+      "summary": "Found 0 findings",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 3,
+      "name": "Port & Service Scanning",
+      "description": "Identify open ports and running services",
+      "tools": [
+        "nmap_quick_scan",
+        "nmap_service_scan"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 4,
+      "name": "Web Fingerprinting",
+      "description": "Identify web technologies and frameworks",
+      "tools": [
+        "whatweb_scan",
+        "wafw00f_detect",
+        "httpx_probe"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 5,
+      "name": "Directory & Path Discovery",
+      "description": "Find hidden paths and files",
+      "tools": [
+        "gobuster_dir",
+        "ffuf_dir",
+        "dirb_scan"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 6,
+      "name": "Vulnerability Scanning",
+      "description": "Scan for known vulnerabilities",
+      "tools": [
+        "nikto_scan",
+        "nuclei_scan"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 7,
+      "name": "Deep Analysis",
+      "description": "Analyze findings and identify attack vectors",
+      "tools": [],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    }
+  ],
+  "findings": [],
+  "auditor_hints": [],
+  "hints_data": [],
+  "scan_history": [
+    {
+      "event_type": "state_change",
+      "description": "setup \u2192 setup",
+      "timestamp": "2026-03-08T00:19:46.772377",
+      "metadata": {}
+    },
+    {
+      "event_type": "state_change",
+      "description": "setup \u2192 planning",
+      "timestamp": "2026-03-08T00:19:46.781245",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 1: DNS & Domain Validation",
+      "timestamp": "2026-03-08T00:19:46.782293",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 2: Subdomain Discovery",
+      "timestamp": "2026-03-08T00:19:46.782309",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 3: Port & Service Scanning",
+      "timestamp": "2026-03-08T00:19:46.782313",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 4: Web Fingerprinting",
+      "timestamp": "2026-03-08T00:19:46.782317",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 5: Directory & Path Discovery",
+      "timestamp": "2026-03-08T00:19:46.782320",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 6: Vulnerability Scanning",
+      "timestamp": "2026-03-08T00:19:46.782323",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 7: Deep Analysis",
+      "timestamp": "2026-03-08T00:19:46.782325",
+      "metadata": {}
+    },
+    {
+      "event_type": "state_change",
+      "description": "planning \u2192 executing",
+      "timestamp": "2026-03-08T00:19:46.788431",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_start",
+      "description": "Phase 1: DNS & Domain Validation",
+      "timestamp": "2026-03-08T00:19:46.789326",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_end",
+      "description": "Phase 1: no tools, marked done",
+      "timestamp": "2026-03-08T00:20:02.618615",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_start",
+      "description": "Phase 2: Subdomain Discovery",
+      "timestamp": "2026-03-08T00:20:02.619566",
+      "metadata": {}
+    },
+    {
+      "event_type": "tool_start",
+      "description": "Starting Gobuster DNS",
+      "timestamp": "2026-03-08T00:20:14.540828",
+      "metadata": {
+        "tool": "gobuster_dns",
+        "target": "salesos.ciklo.me"
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "gobuster_dns: success (exit=0, 59.6s)",
+      "timestamp": "2026-03-08T00:21:14.189260",
+      "metadata": {
+        "tool": "gobuster_dns",
+        "exit_code": 0,
+        "duration": 59.64441275596619
+      }
+    },
+    {
+      "event_type": "tool_start",
+      "description": "Starting Gobuster DNS",
+      "timestamp": "2026-03-08T00:21:14.192192",
+      "metadata": {
+        "tool": "gobuster_dns",
+        "target": "1-65535"
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "gobuster_dns: success (exit=0, 59.2s)",
+      "timestamp": "2026-03-08T00:22:13.367870",
+      "metadata": {
+        "tool": "gobuster_dns",
+        "exit_code": 0,
+        "duration": 59.16849493980408
+      }
+    },
+    {
+      "event_type": "phase_end",
+      "description": "Phase 2: Subdomain Discovery completed",
+      "timestamp": "2026-03-08T00:22:13.371607",
+      "metadata": {}
+    },
+    {
+      "event_type": "state_change",
+      "description": "executing \u2192 paused",
+      "timestamp": "2026-03-08T00:23:18.629446",
+      "metadata": {}
+    },
+    {
+      "event_type": "state_change",
+      "description": "paused \u2192 completed",
+      "timestamp": "2026-03-08T00:23:18.632063",
+      "metadata": {}
+    }
+  ],
+  "artifacts": {
+    "gobuster_dns": [
+      "/home/kali/yeah/aquiles_session_20260308_001946/outputs/phase2_gobuster_dns_1772950814.txt",
+      "/home/kali/yeah/aquiles_session_20260308_001946/outputs/phase2_gobuster_dns_1772950874.txt"
+    ]
+  },
+  "errors": []
+}

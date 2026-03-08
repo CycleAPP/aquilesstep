@@ -1,0 +1,815 @@
+{
+  "session_id": "20260307_233257",
+  "start_time": "2026-03-07T23:32:57.202215",
+  "last_saved": "2026-03-07T23:39:25.179315",
+  "execution_state": "executing",
+  "assessment_type": {
+    "key": "web",
+    "name": "Web Application Assessment",
+    "description": "Full-scope web app evaluation: recon, crawling, auth testing, API analysis.",
+    "default_intensity": "medium"
+  },
+  "scope": {
+    "domains": [
+      "salesos.ciklo.me"
+    ],
+    "ips": [],
+    "urls": [],
+    "ports": [
+      "1-65535"
+    ],
+    "exclusions": []
+  },
+  "intensity": "high",
+  "objective": "view a possible vuln",
+  "authorization_accepted": true,
+  "current_phase": 1,
+  "phases": [
+    {
+      "number": 1,
+      "name": "Passive Reconnaissance",
+      "description": "Gather initial intelligence about the target domain without direct interaction to identify potential attack surfaces and subdomains",
+      "tools": [
+        "osint_",
+        "reconnaissance_"
+      ],
+      "status": "done",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 2,
+      "name": "Active Enumeration",
+      "description": "Actively discover live hosts, open ports, services, and subdomains to map the target infrastructure",
+      "tools": [
+        "enumeration_",
+        "infrastructure_",
+        "nmap_"
+      ],
+      "status": "done",
+      "results": [
+        {
+          "tool_name": "nmap_quick_scan",
+          "command": "nmap -T4 -F -oX /home/kali/yeah/aquiles_session_20260307_233257/outputs/phase2_nmap_quick_scan_1772948159.xml salesos.ciklo.me",
+          "exit_code": 0,
+          "output_file": "/home/kali/yeah/aquiles_session_20260307_233257/outputs/phase2_nmap_quick_scan_1772948159.xml",
+          "stdout": "Starting Nmap 7.95 ( https://nmap.org ) at 2026-03-07 23:35 CST\nNmap scan report for salesos.ciklo.me (165.227.9.146)\nHost is up (0.054s latency).\nNot shown: 94 closed tcp ports (conn-refused)\nPORT     STATE    SERVICE\n22/tcp   open     ssh\n25/tcp   filtered smtp\n80/tcp   open     http\n443/tcp  open     https\n3000/tcp open     ppp\n5060/tcp open     sip\n\nNmap done: 1 IP address (1 host up) scanned in 0.51 seconds\n",
+          "stderr": "",
+          "duration": 0.5482189655303955,
+          "phase": 1,
+          "timestamp": "2026-03-07T23:35:59.686169",
+          "parsed_data": {},
+          "error_info": {},
+          "retry_count": 0
+        },
+        {
+          "tool_name": "nmap_service_scan",
+          "command": "nmap -sV -sC -oX /home/kali/yeah/aquiles_session_20260307_233257/outputs/phase2_nmap_service_scan_1772948159.xml salesos.ciklo.me",
+          "exit_code": 0,
+          "output_file": "/home/kali/yeah/aquiles_session_20260307_233257/outputs/phase2_nmap_service_scan_1772948159.xml",
+          "stdout": "Starting Nmap 7.95 ( https://nmap.org ) at 2026-03-07 23:35 CST\nNmap scan report for salesos.ciklo.me (165.227.9.146)\nHost is up (0.053s latency).\nNot shown: 992 closed tcp ports (conn-refused)\nPORT     STATE    SERVICE  VERSION\n22/tcp   open     ssh      OpenSSH 9.6p1 Ubuntu 3ubuntu13.13 (Ubuntu Linux; protocol 2.0)\n| ssh-hostkey: \n|   256 52:12:3c:9a:8a:6c:dc:76:8f:2b:b9:63:7a:97:b0:76 (ECDSA)\n|_  256 c8:35:a1:1e:e7:e9:3a:30:0f:6e:27:6d:98:c0:47:a3 (ED25519)\n25/tcp   filtered smtp\n80/tcp   open     http     nginx 1.24.0 (Ubuntu)\n|_http-server-header: nginx/1.24.0 (Ubuntu)\n|_http-title: Did not follow redirect to https://salesos.ciklo.me/\n443/tcp  open     ssl/http nginx 1.24.0 (Ubuntu)\n| ssl-cert: Subject: commonName=salesos.ciklo.me\n| Subject Alternative Name: DNS:salesos.ciklo.me\n| Not valid before: 2026-02-14T19:47:22\n|_Not valid after:  2026-05-15T19:47:21\n|_http-server-header: nginx/1.24.0 (Ubuntu)\n|_http-title: Ciklo OS\n|_ssl-date: TLS randomness does not represent time\n3000/tcp open     ppp?\n| fingerprint-strings: \n|   DNSVersionBindReqTCP, Help, NCP, RPCCheck: \n|     HTTP/1.1 400 Bad Request\n|     Connection: close\n|   GetRequest: \n|     HTTP/1.1 200 OK\n|     Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding\n|     x-nextjs-cache: HIT\n|     x-nextjs-prerender: 1\n|     x-nextjs-prerender: 1\n|     x-nextjs-stale-time: 300\n|     X-Powered-By: Next.js\n|     Cache-Control: s-maxage=31536000\n|     ETag: \"188gkxp3a8r2tvv\"\n|     Content-Type: text/html; charset=utf-8\n|     Content-Length: 132061\n|     Date: Sun, 08 Mar 2026 05:36:12 GMT\n|     Connection: close\n|     <!DOCTYPE html><!--tkg6m1ugFDIKxoFLgTgpB--><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"preload\" href=\"/_next/static/media/797e433ab948586e-s.p.dbea232f.woff2\" as=\"font\" crossorigin=\"\" type=\"font/woff2\"/><link rel=\"preload\" href=\"/_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2\" as=\"font\" crossorigin=\"\" type=\"font/woff2\"/><link rel=\"stylesheet\" href=\"/_next/static/chunks/2473c16c0c2f6b5f.css\"\n|   HTTPOptions, RTSPRequest: \n|     HTTP/1.1 405 Method Not Allowed\n|     vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch\n|     Allow: GET\n|     Allow: HEAD\n|     Date: Sun, 08 Mar 2026 05:36:12 GMT\n|     Connection: close\n|_    Method Not Allowed\n3001/tcp open     http     Node.js Express framework\n|_http-title: Site doesn't have a title (text/html; charset=utf-8).\n4006/tcp open     http     Node.js Express framework\n|_http-title: PWNY \\xE2\\x80\\x94 AI Cybersecurity Lab Assistant\n5060/tcp open     http     Node.js (Express middleware)\n|_http-title: Space Chess \\xE2\\x80\\x94 Galactic Strategy Arena\n1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :\nSF-Port3000-TCP:V=7.95%I=7%D=3/7%Time=69AD0ACC%P=x86_64-pc-linux-gnu%r(Get\nSF:Request,3840,\"HTTP/1\\.1\\x20200\\x20OK\\r\\nVary:\\x20rsc,\\x20next-router-st\nSF:ate-tree,\\x20next-router-prefetch,\\x20next-router-segment-prefetch,\\x20\nSF:Accept-Encoding\\r\\nx-nextjs-cache:\\x20HIT\\r\\nx-nextjs-prerender:\\x201\\r\nSF:\\nx-nextjs-prerender:\\x201\\r\\nx-nextjs-stale-time:\\x20300\\r\\nX-Powered-\nSF:By:\\x20Next\\.js\\r\\nCache-Control:\\x20s-maxage=31536000\\r\\nETag:\\x20\\\"18\nSF:8gkxp3a8r2tvv\\\"\\r\\nContent-Type:\\x20text/html;\\x20charset=utf-8\\r\\nCont\nSF:ent-Length:\\x20132061\\r\\nDate:\\x20Sun,\\x2008\\x20Mar\\x202026\\x2005:36:12\nSF:\\x20GMT\\r\\nConnection:\\x20close\\r\\n\\r\\n<!DOCTYPE\\x20html><!--tkg6m1ugFD\nSF:IKxoFLgTgpB--><html\\x20lang=\\\"en\\\"><head><meta\\x20charSet=\\\"utf-8\\\"/><m\nSF:eta\\x20name=\\\"viewport\\\"\\x20content=\\\"width=device-width,\\x20initial-sc\nSF:ale=1\\\"/><link\\x20rel=\\\"preload\\\"\\x20href=\\\"/_next/static/media/797e433\nSF:ab948586e-s\\.p\\.dbea232f\\.woff2\\\"\\x20as=\\\"font\\\"\\x20crossorigin=\\\"\\\"\\x2\nSF:0type=\\\"font/woff2\\\"/><link\\x20rel=\\\"preload\\\"\\x20href=\\\"/_next/static/\nSF:media/caa3a2e1cccd8315-s\\.p\\.853070df\\.woff2\\\"\\x20as=\\\"font\\\"\\x20crosso\nSF:rigin=\\\"\\\"\\x20type=\\\"font/woff2\\\"/><link\\x20rel=\\\"stylesheet\\\"\\x20href=\nSF:\\\"/_next/static/chunks/2473c16c0c2f6b5f\\.css\\\"\")%r(Help,2F,\"HTTP/1\\.1\\x\nSF:20400\\x20Bad\\x20Request\\r\\nConnection:\\x20close\\r\\n\\r\\n\")%r(NCP,2F,\"HTT\nSF:P/1\\.1\\x20400\\x20Bad\\x20Request\\r\\nConnection:\\x20close\\r\\n\\r\\n\")%r(HTT\nSF:POptions,DD,\"HTTP/1\\.1\\x20405\\x20Method\\x20Not\\x20Allowed\\r\\nvary:\\x20r\nSF:sc,\\x20next-router-state-tree,\\x20next-router-prefetch,\\x20next-router-\nSF:segment-prefetch\\r\\nAllow:\\x20GET\\r\\nAllow:\\x20HEAD\\r\\nDate:\\x20Sun,\\x2\nSF:008\\x20Mar\\x202026\\x2005:36:12\\x20GMT\\r\\nConnection:\\x20close\\r\\n\\r\\nMe\nSF:thod\\x20Not\\x20Allowed\")%r(RTSPRequest,DD,\"HTTP/1\\.1\\x20405\\x20Method\\x\nSF:20Not\\x20Allowed\\r\\nvary:\\x20rsc,\\x20next-router-state-tree,\\x20next-ro\nSF:uter-prefetch,\\x20next-router-segment-prefetch\\r\\nAllow:\\x20GET\\r\\nAllo\nSF:w:\\x20HEAD\\r\\nDate:\\x20Sun,\\x2008\\x20Mar\\x202026\\x2005:36:12\\x20GMT\\r\\n\nSF:Connection:\\x20close\\r\\n\\r",
+          "stderr": "",
+          "duration": 34.169851779937744,
+          "phase": 1,
+          "timestamp": "2026-03-07T23:36:33.893905",
+          "parsed_data": {},
+          "error_info": {},
+          "retry_count": 0
+        },
+        {
+          "tool_name": "nmap_version_scan",
+          "command": "nmap -sV --version-intensity 5 -oX /home/kali/yeah/aquiles_session_20260307_233257/outputs/phase2_nmap_version_scan_1772948193.xml salesos.ciklo.me",
+          "exit_code": 0,
+          "output_file": "/home/kali/yeah/aquiles_session_20260307_233257/outputs/phase2_nmap_version_scan_1772948193.xml",
+          "stdout": "Starting Nmap 7.95 ( https://nmap.org ) at 2026-03-07 23:36 CST\nNmap scan report for salesos.ciklo.me (165.227.9.146)\nHost is up (0.055s latency).\nNot shown: 992 closed tcp ports (conn-refused)\nPORT     STATE    SERVICE  VERSION\n22/tcp   open     ssh      OpenSSH 9.6p1 Ubuntu 3ubuntu13.13 (Ubuntu Linux; protocol 2.0)\n25/tcp   filtered smtp\n80/tcp   open     http     nginx 1.24.0 (Ubuntu)\n443/tcp  open     ssl/http nginx 1.24.0 (Ubuntu)\n3000/tcp open     ppp?\n3001/tcp open     http     Node.js Express framework\n4006/tcp open     http     Node.js Express framework\n5060/tcp open     http     Node.js (Express middleware)\n1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :\nSF-Port3000-TCP:V=7.95%I=5%D=3/7%Time=69AD0AEE%P=x86_64-pc-linux-gnu%r(Get\nSF:Request,A8C0,\"HTTP/1\\.1\\x20200\\x20OK\\r\\nVary:\\x20rsc,\\x20next-router-st\nSF:ate-tree,\\x20next-router-prefetch,\\x20next-router-segment-prefetch,\\x20\nSF:Accept-Encoding\\r\\nx-nextjs-cache:\\x20HIT\\r\\nx-nextjs-prerender:\\x201\\r\nSF:\\nx-nextjs-prerender:\\x201\\r\\nx-nextjs-stale-time:\\x20300\\r\\nX-Powered-\nSF:By:\\x20Next\\.js\\r\\nCache-Control:\\x20s-maxage=31536000\\r\\nETag:\\x20\\\"18\nSF:8gkxp3a8r2tvv\\\"\\r\\nContent-Type:\\x20text/html;\\x20charset=utf-8\\r\\nCont\nSF:ent-Length:\\x20132061\\r\\nDate:\\x20Sun,\\x2008\\x20Mar\\x202026\\x2005:36:46\nSF:\\x20GMT\\r\\nConnection:\\x20close\\r\\n\\r\\n<!DOCTYPE\\x20html><!--tkg6m1ugFD\nSF:IKxoFLgTgpB--><html\\x20lang=\\\"en\\\"><head><meta\\x20charSet=\\\"utf-8\\\"/><m\nSF:eta\\x20name=\\\"viewport\\\"\\x20content=\\\"width=device-width,\\x20initial-sc\nSF:ale=1\\\"/><link\\x20rel=\\\"preload\\\"\\x20href=\\\"/_next/static/media/797e433\nSF:ab948586e-s\\.p\\.dbea232f\\.woff2\\\"\\x20as=\\\"font\\\"\\x20crossorigin=\\\"\\\"\\x2\nSF:0type=\\\"font/woff2\\\"/><link\\x20rel=\\\"preload\\\"\\x20href=\\\"/_next/static/\nSF:media/caa3a2e1cccd8315-s\\.p\\.853070df\\.woff2\\\"\\x20as=\\\"font\\\"\\x20crosso\nSF:rigin=\\\"\\\"\\x20type=\\\"font/woff2\\\"/><link\\x20rel=\\\"stylesheet\\\"\\x20href=\nSF:\\\"/_next/static/chunks/2473c16c0c2f6b5f\\.css\\\"\")%r(Help,2F,\"HTTP/1\\.1\\x\nSF:20400\\x20Bad\\x20Request\\r\\nConnection:\\x20close\\r\\n\\r\\n\")%r(NCP,2F,\"HTT\nSF:P/1\\.1\\x20400\\x20Bad\\x20Request\\r\\nConnection:\\x20close\\r\\n\\r\\n\")%r(HTT\nSF:POptions,DD,\"HTTP/1\\.1\\x20405\\x20Method\\x20Not\\x20Allowed\\r\\nvary:\\x20r\nSF:sc,\\x20next-router-state-tree,\\x20next-router-prefetch,\\x20next-router-\nSF:segment-prefetch\\r\\nAllow:\\x20GET\\r\\nAllow:\\x20HEAD\\r\\nDate:\\x20Sun,\\x2\nSF:008\\x20Mar\\x202026\\x2005:36:46\\x20GMT\\r\\nConnection:\\x20close\\r\\n\\r\\nMe\nSF:thod\\x20Not\\x20Allowed\")%r(RTSPRequest,DD,\"HTTP/1\\.1\\x20405\\x20Method\\x\nSF:20Not\\x20Allowed\\r\\nvary:\\x20rsc,\\x20next-router-state-tree,\\x20next-ro\nSF:uter-prefetch,\\x20next-router-segment-prefetch\\r\\nAllow:\\x20GET\\r\\nAllo\nSF:w:\\x20HEAD\\r\\nDate:\\x20Sun,\\x2008\\x20Mar\\x202026\\x2005:36:47\\x20GMT\\r\\n\nSF:Connection:\\x20close\\r\\n\\r\\nMethod\\x20Not\\x20Allowed\")%r(RPCCheck,2F,\"H\nSF:TTP/1\\.1\\x20400\\x20Bad\\x20Request\\r\\nConnection:\\x20close\\r\\n\\r\\n\")%r(D\nSF:NSVersionBindReqTCP,2F,\"HTTP/1\\.1\\x20400\\x20Bad\\x20Request\\r\\nConnectio\nSF:n:\\x20close\\r\\n\\r\\n\");\nService Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel\n\nService detection performed. Please report any incorrect results at https://nmap.org/submit/ .\nNmap done: 1 IP address (1 host up) scanned in 14.09 seconds\n",
+          "stderr": "",
+          "duration": 14.154353141784668,
+          "phase": 1,
+          "timestamp": "2026-03-07T23:36:48.109948",
+          "parsed_data": {},
+          "error_info": {},
+          "retry_count": 0
+        },
+        {
+          "tool_name": "nmap_script_scan",
+          "command": "nmap --script safe -oX /home/kali/yeah/aquiles_session_20260307_233257/outputs/phase2_nmap_script_scan_1772948208.xml salesos.ciklo.me",
+          "exit_code": 0,
+          "output_file": "/home/kali/yeah/aquiles_session_20260307_233257/outputs/phase2_nmap_script_scan_1772948208.xml",
+          "stdout": "Starting Nmap 7.95 ( https://nmap.org ) at 2026-03-07 23:36 CST\nPre-scan script results:\n| broadcast-upnp-info: \n|   239.255.255.250\n|       Server: OpenWRT/OpenWRT/Barrier_Breaker__unknown_ UPnP/1.0 MiniUPnPd/1.6\n|_      Location: http://192.168.1.254:38400/rootDesc.xml\n|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/\n| targets-asn: \n|_  targets-asn.asn is a mandatory parameter\n|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/\nNmap scan report for salesos.ciklo.me (165.227.9.146)\nHost is up (0.051s latency).\nNot shown: 992 closed tcp ports (conn-refused)\nPORT     STATE    SERVICE\n22/tcp   open     ssh\n| ssh2-enum-algos: \n|   kex_algorithms: (12)\n|   server_host_key_algorithms: (4)\n|   encryption_algorithms: (6)\n|   mac_algorithms: (10)\n|_  compression_algorithms: (2)\n| ssh-hostkey: \n|   256 52:12:3c:9a:8a:6c:dc:76:8f:2b:b9:63:7a:97:b0:76 (ECDSA)\n|_  256 c8:35:a1:1e:e7:e9:3a:30:0f:6e:27:6d:98:c0:47:a3 (ED25519)\n|_banner: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.13\n25/tcp   filtered smtp\n80/tcp   open     http\n| http-headers: \n|   Server: nginx/1.24.0 (Ubuntu)\n|   Date: Sun, 08 Mar 2026 05:37:47 GMT\n|   Content-Type: text/html\n|   Content-Length: 178\n|   Connection: close\n|   Location: https://salesos.ciklo.me/\n|   \n|_  (Request type: GET)\n|_http-date: Sun, 08 Mar 2026 05:37:44 GMT; 0s from local time.\n| http-security-headers: \n|   Cache_Control: \n|_    Header: Cache-Control: s-maxage=31536000\n|_http-comments-displayer: Couldn't find any comments.\n|_http-mobileversion-checker: No mobile version detected.\n|_http-title: Did not follow redirect to https://salesos.ciklo.me/\n|_http-xssed: No previously reported XSS vuln.\n|_http-fetch: Please enter the complete path of the directory to save data in.\n| http-useragent-tester: \n|   Status for browser useragent: 200\n|   Redirected To: https://salesos.ciklo.me/\n|   Allowed User Agents: \n|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)\n|     libwww\n|     lwp-trivial\n|     libcurl-agent/1.0\n|     PHP/\n|     Python-urllib/2.5\n|     GT::WWW\n|     Snoopy\n|     MFC_Tear_Sample\n|     HTTP::Lite\n|     PHPCrawl\n|     URI::Fetch\n|     Zend_Http_Client\n|     http client\n|     PECL::HTTP\n|     Wget/1.13.4 (linux-gnu)\n|_    WWW-Mechanize/1.34\n|_http-referer-checker: Couldn't find any cross-domain scripts.\n443/tcp  open     https\n|_http-mobileversion-checker: No mobile version detected.\n|_http-date: Sun, 08 Mar 2026 05:37:36 GMT; 0s from local time.\n|_http-referer-checker: Couldn't find any cross-domain scripts.\n| http-headers: \n|   Server: nginx/1.24.0 (Ubuntu)\n|   Date: Sun, 08 Mar 2026 05:37:33 GMT\n|   Content-Type: text/html; charset=utf-8\n|   Content-Length: 132061\n|   Connection: close\n|   Vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding\n|   x-nextjs-cache: HIT\n|   x-nextjs-prerender: 1\n|   x-nextjs-prerender: 1\n|   x-nextjs-stale-time: 300\n|   X-Powered-By: Next.js\n|   Cache-Control: s-maxage=31536000\n|   ETag: \"188gkxp3a8r2tvv\"\n|   \n|_  (Request type: HEAD)\n| http-security-headers: \n|   Strict_Transport_Security: \n|     HSTS not configured in HTTPS Server\n|   Cache_Control: \n|_    Header: Cache-Control: s-maxage=31536000\n| http-auth-finder: \n| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=salesos.ciklo.me\n|   url                                    method\n|   https://salesos.ciklo.me:443/login     FORM\n|_  https://salesos.ciklo.me:443/register  FORM\n|_http-fetch: Please enter the complete path of the directory to save data in.\n| ssl-cert: Subject: commonName=salesos.ciklo.me\n| Subject Alternative Name: DNS:salesos.ciklo.me\n| Not valid before: 2026-02-14T19:47:22\n|_Not valid after:  2026-05-15T19:47:21\n| http-comments-displayer: \n| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=salesos.ciklo.me\n|     \n|     Path: https://salesos.ciklo.me:443/register\n|     Line number: 1\n|     Comment: \n|         <!--tkg6m1ugFDIKxoFLgTgpB-->\n|     \n|     Path: https://salesos.ciklo.me:443/register\n|     Line number: 1\n|     Comment: \n|         <!--$-->\n|     \n|     Path: https://salesos.ciklo.me:443/register\n|     Line number: 1\n|     Comment: \n|_        <!--/$-->\n|_ssl-date: TLS randomness does not represent time\n|_http-xssed: No previously reported XSS vuln.\n| http-useragent-tester: \n|   Status for browser useragent: 200\n|   Allowed User Agents: \n|     libwww\n|     lwp-trivial\n|     libcurl-agent/1.0\n|     PHP/\n|     Python-urllib/2.5\n|     GT::WWW\n|     Snoopy\n|     MFC_Tear_Sample\n|     HTTP::Lite\n|     PHPCrawl\n|     URI::Fetch\n|     Zend_Http_Client\n|     http client\n|     PECL::HTTP\n|     Wget/1.13.4 (linux-gnu)\n|_    WWW-Mechanize/1.34\n| http-grep: \n|   (1) https://salesos.ciklo.me:443/_next/static/chunks/e4f99eada188fddc.js: \n|     (1) email: \n|       + babel+core@7.29\n|   (1) https://salesos.ciklo.me:443/login: \n|     (1) email: \n|       + admin@empr",
+          "stderr": "",
+          "duration": 150.8332335948944,
+          "phase": 1,
+          "timestamp": "2026-03-07T23:39:18.969774",
+          "parsed_data": {},
+          "error_info": {},
+          "retry_count": 0
+        }
+      ],
+      "findings": [
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 22/tcp: ssh",
+          "target": "165.227.9.146",
+          "tool": "nmap_quick_scan",
+          "evidence": "165.227.9.146:22 - ssh",
+          "phase": 1,
+          "timestamp": "2026-03-07T23:35:59.719074",
+          "finding_id": "Open Port:Port 22/tcp: ssh:165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 80/tcp: http",
+          "target": "165.227.9.146",
+          "tool": "nmap_quick_scan",
+          "evidence": "165.227.9.146:80 - http",
+          "phase": 1,
+          "timestamp": "2026-03-07T23:35:59.719142",
+          "finding_id": "Open Port:Port 80/tcp: http:165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 443/tcp: https",
+          "target": "165.227.9.146",
+          "tool": "nmap_quick_scan",
+          "evidence": "165.227.9.146:443 - https",
+          "phase": 1,
+          "timestamp": "2026-03-07T23:35:59.719169",
+          "finding_id": "Open Port:Port 443/tcp: https:165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 3000/tcp: ppp",
+          "target": "165.227.9.146",
+          "tool": "nmap_quick_scan",
+          "evidence": "165.227.9.146:3000 - ppp",
+          "phase": 1,
+          "timestamp": "2026-03-07T23:35:59.719187",
+          "finding_id": "Open Port:Port 3000/tcp: ppp:165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 5060/tcp: sip",
+          "target": "165.227.9.146",
+          "tool": "nmap_quick_scan",
+          "evidence": "165.227.9.146:5060 - sip",
+          "phase": 1,
+          "timestamp": "2026-03-07T23:35:59.719203",
+          "finding_id": "Open Port:Port 5060/tcp: sip:165.227.9.146"
+        },
+        {
+          "severity": "low",
+          "category": "Version Disclosure",
+          "description": "Found: nginx/1",
+          "target": "salesos.ciklo.me",
+          "tool": "nmap_service_scan",
+          "evidence": "<port protocol=\"tcp\" portid=\"80\"><state state=\"open\" reason=\"syn-ack\" reason_ttl=\"0\"/><service name=\"http\" product=\"nginx\" version=\"1.24.0\" extrainfo=\"Ubuntu\" ostype=\"Linux\" method=\"probed\" conf=\"10\"><cpe>cpe:/a:igor_sysoev:nginx:1.24.0</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service><script id=\"http-server-header\" output=\"nginx/1.24.0 (Ubuntu)\"><elem>nginx/1.24.0 (Ubuntu)</elem>",
+          "phase": 1,
+          "timestamp": "2026-03-07T23:36:33.918633",
+          "finding_id": "Version Disclosure:Found: nginx/1:salesos.ciklo.me"
+        },
+        {
+          "severity": "low",
+          "category": "Version Disclosure",
+          "description": "Found: X-Powered-By:",
+          "target": "salesos.ciklo.me",
+          "tool": "nmap_service_scan",
+          "evidence": "<port protocol=\"tcp\" portid=\"3000\"><state state=\"open\" reason=\"syn-ack\" reason_ttl=\"0\"/><service name=\"ppp\" servicefp=\"SF-Port3000-TCP:V=7.95%I=7%D=3/7%Time=69AD0ACC%P=x86_64-pc-linux-gnu%r(GetRequest,3840,&quot;HTTP/1\\.1\\x20200\\x20OK\\r\\nVary:\\x20rsc,\\x20next-router-state-tree,\\x20next-router-prefetch,\\x20next-router-segment-prefetch,\\x20Accept-Encoding\\r\\nx-nextjs-cache:\\x20HIT\\r\\nx-nextjs-prerender:\\x201\\r\\nx-nextjs-prerender:\\x201\\r\\nx-nextjs-stale-time:\\x20300\\r\\nX-Powered-By:\\x20Next\\.js\\r\\",
+          "phase": 1,
+          "timestamp": "2026-03-07T23:36:33.921745",
+          "finding_id": "Version Disclosure:Found: X-Powered-By::salesos.ciklo.me"
+        },
+        {
+          "severity": "medium",
+          "category": "Cryptographic Issue",
+          "description": "Found: md5",
+          "target": "salesos.ciklo.me",
+          "tool": "nmap_service_scan",
+          "evidence": "<elem key=\"md5\">7bab01ebb1ed2af948ff65b28a8ef984</elem>",
+          "phase": 1,
+          "timestamp": "2026-03-07T23:36:33.936099",
+          "finding_id": "Cryptographic Issue:Found: md5:salesos.ciklo.me"
+        },
+        {
+          "severity": "medium",
+          "category": "Cryptographic Issue",
+          "description": "Found: sha1",
+          "target": "salesos.ciklo.me",
+          "tool": "nmap_service_scan",
+          "evidence": "<elem key=\"sha1\">0fb4caa7192f325e0564cbba89af9eb7a64c45b0</elem>",
+          "phase": 1,
+          "timestamp": "2026-03-07T23:36:33.937226",
+          "finding_id": "Cryptographic Issue:Found: sha1:salesos.ciklo.me"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 22/tcp: ssh (OpenSSH 9.6p1 Ubuntu 3ubuntu13.13)",
+          "target": "165.227.9.146",
+          "tool": "nmap_service_scan",
+          "evidence": "165.227.9.146:22 - ssh (OpenSSH 9.6p1 Ubuntu 3ubuntu13.13)",
+          "phase": 1,
+          "timestamp": "2026-03-07T23:36:33.950094",
+          "finding_id": "Open Port:Port 22/tcp: ssh (OpenSSH 9.6p1 Ubuntu 3ubuntu13.13):165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 80/tcp: http (nginx 1.24.0)",
+          "target": "165.227.9.146",
+          "tool": "nmap_service_scan",
+          "evidence": "165.227.9.146:80 - http (nginx 1.24.0)",
+          "phase": 1,
+          "timestamp": "2026-03-07T23:36:33.950151",
+          "finding_id": "Open Port:Port 80/tcp: http (nginx 1.24.0):165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 443/tcp: http (nginx 1.24.0)",
+          "target": "165.227.9.146",
+          "tool": "nmap_service_scan",
+          "evidence": "165.227.9.146:443 - http (nginx 1.24.0)",
+          "phase": 1,
+          "timestamp": "2026-03-07T23:36:33.950173",
+          "finding_id": "Open Port:Port 443/tcp: http (nginx 1.24.0):165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 3001/tcp: http (Node.js Express framework)",
+          "target": "165.227.9.146",
+          "tool": "nmap_service_scan",
+          "evidence": "165.227.9.146:3001 - http (Node.js Express framework)",
+          "phase": 1,
+          "timestamp": "2026-03-07T23:36:33.950212",
+          "finding_id": "Open Port:Port 3001/tcp: http (Node.js Express framework):165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 4006/tcp: http (Node.js Express framework)",
+          "target": "165.227.9.146",
+          "tool": "nmap_service_scan",
+          "evidence": "165.227.9.146:4006 - http (Node.js Express framework)",
+          "phase": 1,
+          "timestamp": "2026-03-07T23:36:33.950236",
+          "finding_id": "Open Port:Port 4006/tcp: http (Node.js Express framework):165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 5060/tcp: http (Node.js)",
+          "target": "165.227.9.146",
+          "tool": "nmap_service_scan",
+          "evidence": "165.227.9.146:5060 - http (Node.js)",
+          "phase": 1,
+          "timestamp": "2026-03-07T23:36:33.950250",
+          "finding_id": "Open Port:Port 5060/tcp: http (Node.js):165.227.9.146"
+        },
+        {
+          "severity": "medium",
+          "category": "Exposed Admin Interface",
+          "description": "Found: /login",
+          "target": "salesos.ciklo.me",
+          "tool": "nmap_script_scan",
+          "evidence": "</script><script id=\"http-auth-finder\" output=\"&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=salesos.ciklo.me&#xa;  url                                    method&#xa;  https://salesos.ciklo.me:443/login     FORM&#xa;  https://salesos.ciklo.me:443/register  FORM&#xa;\"/><script id=\"http-fetch\" output=\"Please enter the complete path of the directory to save data in.\"><elem key=\"ERROR\">Please enter the complete path of the directory to save data in.</elem>",
+          "phase": 1,
+          "timestamp": "2026-03-07T23:39:18.975709",
+          "finding_id": "Exposed Admin Interface:Found: /login:salesos.ciklo.me"
+        },
+        {
+          "severity": "low",
+          "category": "Version Disclosure",
+          "description": "Found: Server:",
+          "target": "salesos.ciklo.me",
+          "tool": "nmap_script_scan",
+          "evidence": "<prescript><script id=\"broadcast-upnp-info\" output=\"&#xa;  239.255.255.250&#xa;      Server: OpenWRT/OpenWRT/Barrier_Breaker__unknown_ UPnP/1.0 MiniUPnPd/1.6&#xa;      Location: http://192.168.1.254:38400/rootDesc.xml&#xa;\"/><script id=\"http-robtex-shared-ns\" output=\"*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/\"/><script id=\"targets-asn\" output=\"&#xa;  targets-asn.asn is a mandatory parameter&#xa;\"/><script id=\"hostmap-robtex\" output=\"*TEMPORARILY D",
+          "phase": 1,
+          "timestamp": "2026-03-07T23:39:18.996540",
+          "finding_id": "Version Disclosure:Found: Server::salesos.ciklo.me"
+        },
+        {
+          "severity": "medium",
+          "category": "Cryptographic Issue",
+          "description": "Found: Des",
+          "target": "salesos.ciklo.me",
+          "tool": "nmap_script_scan",
+          "evidence": "<prescript><script id=\"broadcast-upnp-info\" output=\"&#xa;  239.255.255.250&#xa;      Server: OpenWRT/OpenWRT/Barrier_Breaker__unknown_ UPnP/1.0 MiniUPnPd/1.6&#xa;      Location: http://192.168.1.254:38400/rootDesc.xml&#xa;\"/><script id=\"http-robtex-shared-ns\" output=\"*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/\"/><script id=\"targets-asn\" output=\"&#xa;  targets-asn.asn is a mandatory parameter&#xa;\"/><script id=\"hostmap-robtex\" output=\"*TEMPORARILY D",
+          "phase": 1,
+          "timestamp": "2026-03-07T23:39:19.012431",
+          "finding_id": "Cryptographic Issue:Found: Des:salesos.ciklo.me"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 3001/tcp: nessus",
+          "target": "165.227.9.146",
+          "tool": "nmap_script_scan",
+          "evidence": "165.227.9.146:3001 - nessus",
+          "phase": 1,
+          "timestamp": "2026-03-07T23:39:19.027590",
+          "finding_id": "Open Port:Port 3001/tcp: nessus:165.227.9.146"
+        },
+        {
+          "severity": "info",
+          "category": "Open Port",
+          "description": "Port 4006/tcp: pxc-spvr",
+          "target": "165.227.9.146",
+          "tool": "nmap_script_scan",
+          "evidence": "165.227.9.146:4006 - pxc-spvr",
+          "phase": 1,
+          "timestamp": "2026-03-07T23:39:19.027600",
+          "finding_id": "Open Port:Port 4006/tcp: pxc-spvr:165.227.9.146"
+        }
+      ],
+      "summary": "1. Network reconnaissance completed successfully but revealed no open ports, services, or vulnerabilities, indicating either a heavily filtered target or a non-responsive host.\n\n2. The most interesting finding is the absence of findings\u2014the target appears completely stealth or filtered, which is unusual for most networks and warrants verification.\n\n3. Next, the auditor should pivot to host discovery (ping sweeps, ARP scans) and test alternative scanning techniques (e.g., UDP scans, different Nmap timing options) to rule out network-level filtering or host defenses.\n\n4. No patterns or connections were observed, as no services or hosts were enumerated in this phase.",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 3,
+      "name": "Web Application Discovery",
+      "description": "Identify web applications, technologies, and entry points on discovered hosts to focus web analysis efforts",
+      "tools": [
+        "web_analysis_",
+        "httpx_",
+        "gobuster_"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 4,
+      "name": "Vulnerability Identification",
+      "description": "Perform comprehensive vulnerability scanning and manual testing on web applications to identify potential security flaws",
+      "tools": [
+        "web_analysis_",
+        "api_testing_"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 5,
+      "name": "Authentication & Authorization Testing",
+      "description": "Test authentication mechanisms, session management, and authorization controls for potential bypasses",
+      "tools": [
+        "web_analysis_",
+        "api_testing_"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 6,
+      "name": "Infrastructure Deep Dive",
+      "description": "Analyze server configurations, SSL/TLS implementations, and infrastructure components for misconfigurations",
+      "tools": [
+        "infrastructure_",
+        "crypto_analysis_"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    },
+    {
+      "number": 7,
+      "name": "API Security Assessment",
+      "description": "Focus specifically on API endpoints discovered during enumeration for authentication, authorization, and input validation issues",
+      "tools": [
+        "api_testing_",
+        "web_analysis_"
+      ],
+      "status": "pending",
+      "results": [],
+      "findings": [],
+      "summary": "",
+      "failed_tools": [],
+      "skipped_tools": []
+    }
+  ],
+  "findings": [
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 22/tcp: ssh",
+      "target": "165.227.9.146",
+      "tool": "nmap_quick_scan",
+      "evidence": "165.227.9.146:22 - ssh",
+      "phase": 1,
+      "timestamp": "2026-03-07T23:35:59.719074",
+      "finding_id": "Open Port:Port 22/tcp: ssh:165.227.9.146"
+    },
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 80/tcp: http",
+      "target": "165.227.9.146",
+      "tool": "nmap_quick_scan",
+      "evidence": "165.227.9.146:80 - http",
+      "phase": 1,
+      "timestamp": "2026-03-07T23:35:59.719142",
+      "finding_id": "Open Port:Port 80/tcp: http:165.227.9.146"
+    },
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 443/tcp: https",
+      "target": "165.227.9.146",
+      "tool": "nmap_quick_scan",
+      "evidence": "165.227.9.146:443 - https",
+      "phase": 1,
+      "timestamp": "2026-03-07T23:35:59.719169",
+      "finding_id": "Open Port:Port 443/tcp: https:165.227.9.146"
+    },
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 3000/tcp: ppp",
+      "target": "165.227.9.146",
+      "tool": "nmap_quick_scan",
+      "evidence": "165.227.9.146:3000 - ppp",
+      "phase": 1,
+      "timestamp": "2026-03-07T23:35:59.719187",
+      "finding_id": "Open Port:Port 3000/tcp: ppp:165.227.9.146"
+    },
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 5060/tcp: sip",
+      "target": "165.227.9.146",
+      "tool": "nmap_quick_scan",
+      "evidence": "165.227.9.146:5060 - sip",
+      "phase": 1,
+      "timestamp": "2026-03-07T23:35:59.719203",
+      "finding_id": "Open Port:Port 5060/tcp: sip:165.227.9.146"
+    },
+    {
+      "severity": "low",
+      "category": "Version Disclosure",
+      "description": "Found: nginx/1",
+      "target": "salesos.ciklo.me",
+      "tool": "nmap_service_scan",
+      "evidence": "<port protocol=\"tcp\" portid=\"80\"><state state=\"open\" reason=\"syn-ack\" reason_ttl=\"0\"/><service name=\"http\" product=\"nginx\" version=\"1.24.0\" extrainfo=\"Ubuntu\" ostype=\"Linux\" method=\"probed\" conf=\"10\"><cpe>cpe:/a:igor_sysoev:nginx:1.24.0</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service><script id=\"http-server-header\" output=\"nginx/1.24.0 (Ubuntu)\"><elem>nginx/1.24.0 (Ubuntu)</elem>",
+      "phase": 1,
+      "timestamp": "2026-03-07T23:36:33.918633",
+      "finding_id": "Version Disclosure:Found: nginx/1:salesos.ciklo.me"
+    },
+    {
+      "severity": "low",
+      "category": "Version Disclosure",
+      "description": "Found: X-Powered-By:",
+      "target": "salesos.ciklo.me",
+      "tool": "nmap_service_scan",
+      "evidence": "<port protocol=\"tcp\" portid=\"3000\"><state state=\"open\" reason=\"syn-ack\" reason_ttl=\"0\"/><service name=\"ppp\" servicefp=\"SF-Port3000-TCP:V=7.95%I=7%D=3/7%Time=69AD0ACC%P=x86_64-pc-linux-gnu%r(GetRequest,3840,&quot;HTTP/1\\.1\\x20200\\x20OK\\r\\nVary:\\x20rsc,\\x20next-router-state-tree,\\x20next-router-prefetch,\\x20next-router-segment-prefetch,\\x20Accept-Encoding\\r\\nx-nextjs-cache:\\x20HIT\\r\\nx-nextjs-prerender:\\x201\\r\\nx-nextjs-prerender:\\x201\\r\\nx-nextjs-stale-time:\\x20300\\r\\nX-Powered-By:\\x20Next\\.js\\r\\",
+      "phase": 1,
+      "timestamp": "2026-03-07T23:36:33.921745",
+      "finding_id": "Version Disclosure:Found: X-Powered-By::salesos.ciklo.me"
+    },
+    {
+      "severity": "medium",
+      "category": "Cryptographic Issue",
+      "description": "Found: md5",
+      "target": "salesos.ciklo.me",
+      "tool": "nmap_service_scan",
+      "evidence": "<elem key=\"md5\">7bab01ebb1ed2af948ff65b28a8ef984</elem>",
+      "phase": 1,
+      "timestamp": "2026-03-07T23:36:33.936099",
+      "finding_id": "Cryptographic Issue:Found: md5:salesos.ciklo.me"
+    },
+    {
+      "severity": "medium",
+      "category": "Cryptographic Issue",
+      "description": "Found: sha1",
+      "target": "salesos.ciklo.me",
+      "tool": "nmap_service_scan",
+      "evidence": "<elem key=\"sha1\">0fb4caa7192f325e0564cbba89af9eb7a64c45b0</elem>",
+      "phase": 1,
+      "timestamp": "2026-03-07T23:36:33.937226",
+      "finding_id": "Cryptographic Issue:Found: sha1:salesos.ciklo.me"
+    },
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 22/tcp: ssh (OpenSSH 9.6p1 Ubuntu 3ubuntu13.13)",
+      "target": "165.227.9.146",
+      "tool": "nmap_service_scan",
+      "evidence": "165.227.9.146:22 - ssh (OpenSSH 9.6p1 Ubuntu 3ubuntu13.13)",
+      "phase": 1,
+      "timestamp": "2026-03-07T23:36:33.950094",
+      "finding_id": "Open Port:Port 22/tcp: ssh (OpenSSH 9.6p1 Ubuntu 3ubuntu13.13):165.227.9.146"
+    },
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 80/tcp: http (nginx 1.24.0)",
+      "target": "165.227.9.146",
+      "tool": "nmap_service_scan",
+      "evidence": "165.227.9.146:80 - http (nginx 1.24.0)",
+      "phase": 1,
+      "timestamp": "2026-03-07T23:36:33.950151",
+      "finding_id": "Open Port:Port 80/tcp: http (nginx 1.24.0):165.227.9.146"
+    },
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 443/tcp: http (nginx 1.24.0)",
+      "target": "165.227.9.146",
+      "tool": "nmap_service_scan",
+      "evidence": "165.227.9.146:443 - http (nginx 1.24.0)",
+      "phase": 1,
+      "timestamp": "2026-03-07T23:36:33.950173",
+      "finding_id": "Open Port:Port 443/tcp: http (nginx 1.24.0):165.227.9.146"
+    },
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 3001/tcp: http (Node.js Express framework)",
+      "target": "165.227.9.146",
+      "tool": "nmap_service_scan",
+      "evidence": "165.227.9.146:3001 - http (Node.js Express framework)",
+      "phase": 1,
+      "timestamp": "2026-03-07T23:36:33.950212",
+      "finding_id": "Open Port:Port 3001/tcp: http (Node.js Express framework):165.227.9.146"
+    },
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 4006/tcp: http (Node.js Express framework)",
+      "target": "165.227.9.146",
+      "tool": "nmap_service_scan",
+      "evidence": "165.227.9.146:4006 - http (Node.js Express framework)",
+      "phase": 1,
+      "timestamp": "2026-03-07T23:36:33.950236",
+      "finding_id": "Open Port:Port 4006/tcp: http (Node.js Express framework):165.227.9.146"
+    },
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 5060/tcp: http (Node.js)",
+      "target": "165.227.9.146",
+      "tool": "nmap_service_scan",
+      "evidence": "165.227.9.146:5060 - http (Node.js)",
+      "phase": 1,
+      "timestamp": "2026-03-07T23:36:33.950250",
+      "finding_id": "Open Port:Port 5060/tcp: http (Node.js):165.227.9.146"
+    },
+    {
+      "severity": "medium",
+      "category": "Exposed Admin Interface",
+      "description": "Found: /login",
+      "target": "salesos.ciklo.me",
+      "tool": "nmap_script_scan",
+      "evidence": "</script><script id=\"http-auth-finder\" output=\"&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=salesos.ciklo.me&#xa;  url                                    method&#xa;  https://salesos.ciklo.me:443/login     FORM&#xa;  https://salesos.ciklo.me:443/register  FORM&#xa;\"/><script id=\"http-fetch\" output=\"Please enter the complete path of the directory to save data in.\"><elem key=\"ERROR\">Please enter the complete path of the directory to save data in.</elem>",
+      "phase": 1,
+      "timestamp": "2026-03-07T23:39:18.975709",
+      "finding_id": "Exposed Admin Interface:Found: /login:salesos.ciklo.me"
+    },
+    {
+      "severity": "low",
+      "category": "Version Disclosure",
+      "description": "Found: Server:",
+      "target": "salesos.ciklo.me",
+      "tool": "nmap_script_scan",
+      "evidence": "<prescript><script id=\"broadcast-upnp-info\" output=\"&#xa;  239.255.255.250&#xa;      Server: OpenWRT/OpenWRT/Barrier_Breaker__unknown_ UPnP/1.0 MiniUPnPd/1.6&#xa;      Location: http://192.168.1.254:38400/rootDesc.xml&#xa;\"/><script id=\"http-robtex-shared-ns\" output=\"*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/\"/><script id=\"targets-asn\" output=\"&#xa;  targets-asn.asn is a mandatory parameter&#xa;\"/><script id=\"hostmap-robtex\" output=\"*TEMPORARILY D",
+      "phase": 1,
+      "timestamp": "2026-03-07T23:39:18.996540",
+      "finding_id": "Version Disclosure:Found: Server::salesos.ciklo.me"
+    },
+    {
+      "severity": "medium",
+      "category": "Cryptographic Issue",
+      "description": "Found: Des",
+      "target": "salesos.ciklo.me",
+      "tool": "nmap_script_scan",
+      "evidence": "<prescript><script id=\"broadcast-upnp-info\" output=\"&#xa;  239.255.255.250&#xa;      Server: OpenWRT/OpenWRT/Barrier_Breaker__unknown_ UPnP/1.0 MiniUPnPd/1.6&#xa;      Location: http://192.168.1.254:38400/rootDesc.xml&#xa;\"/><script id=\"http-robtex-shared-ns\" output=\"*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/\"/><script id=\"targets-asn\" output=\"&#xa;  targets-asn.asn is a mandatory parameter&#xa;\"/><script id=\"hostmap-robtex\" output=\"*TEMPORARILY D",
+      "phase": 1,
+      "timestamp": "2026-03-07T23:39:19.012431",
+      "finding_id": "Cryptographic Issue:Found: Des:salesos.ciklo.me"
+    },
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 3001/tcp: nessus",
+      "target": "165.227.9.146",
+      "tool": "nmap_script_scan",
+      "evidence": "165.227.9.146:3001 - nessus",
+      "phase": 1,
+      "timestamp": "2026-03-07T23:39:19.027590",
+      "finding_id": "Open Port:Port 3001/tcp: nessus:165.227.9.146"
+    },
+    {
+      "severity": "info",
+      "category": "Open Port",
+      "description": "Port 4006/tcp: pxc-spvr",
+      "target": "165.227.9.146",
+      "tool": "nmap_script_scan",
+      "evidence": "165.227.9.146:4006 - pxc-spvr",
+      "phase": 1,
+      "timestamp": "2026-03-07T23:39:19.027600",
+      "finding_id": "Open Port:Port 4006/tcp: pxc-spvr:165.227.9.146"
+    }
+  ],
+  "auditor_hints": [],
+  "hints_data": [],
+  "scan_history": [
+    {
+      "event_type": "state_change",
+      "description": "setup \u2192 setup",
+      "timestamp": "2026-03-07T23:32:57.202925",
+      "metadata": {}
+    },
+    {
+      "event_type": "state_change",
+      "description": "setup \u2192 planning",
+      "timestamp": "2026-03-07T23:33:07.807374",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 1: Passive Reconnaissance",
+      "timestamp": "2026-03-07T23:33:24.112276",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 2: Active Enumeration",
+      "timestamp": "2026-03-07T23:33:24.112332",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 3: Web Application Discovery",
+      "timestamp": "2026-03-07T23:33:24.112355",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 4: Vulnerability Identification",
+      "timestamp": "2026-03-07T23:33:24.112370",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 5: Authentication & Authorization Testing",
+      "timestamp": "2026-03-07T23:33:24.112384",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 6: Infrastructure Deep Dive",
+      "timestamp": "2026-03-07T23:33:24.112397",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_added",
+      "description": "Phase 7: API Security Assessment",
+      "timestamp": "2026-03-07T23:33:24.112409",
+      "metadata": {}
+    },
+    {
+      "event_type": "state_change",
+      "description": "planning \u2192 executing",
+      "timestamp": "2026-03-07T23:35:50.444665",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_start",
+      "description": "Phase 1: Passive Reconnaissance",
+      "timestamp": "2026-03-07T23:35:50.450814",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_end",
+      "description": "Phase 1: no tools, marked done",
+      "timestamp": "2026-03-07T23:35:56.999943",
+      "metadata": {}
+    },
+    {
+      "event_type": "phase_start",
+      "description": "Phase 2: Active Enumeration",
+      "timestamp": "2026-03-07T23:35:57.002083",
+      "metadata": {}
+    },
+    {
+      "event_type": "tool_start",
+      "description": "Starting Nmap Quick Scan",
+      "timestamp": "2026-03-07T23:35:59.135532",
+      "metadata": {
+        "tool": "nmap_quick_scan",
+        "target": "salesos.ciklo.me"
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "nmap_quick_scan: success (exit=0, 0.5s)",
+      "timestamp": "2026-03-07T23:35:59.687935",
+      "metadata": {
+        "tool": "nmap_quick_scan",
+        "exit_code": 0,
+        "duration": 0.5482189655303955
+      }
+    },
+    {
+      "event_type": "tool_start",
+      "description": "Starting Nmap Service Detection",
+      "timestamp": "2026-03-07T23:35:59.721831",
+      "metadata": {
+        "tool": "nmap_service_scan",
+        "target": "salesos.ciklo.me"
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "nmap_service_scan: success (exit=0, 34.2s)",
+      "timestamp": "2026-03-07T23:36:33.895936",
+      "metadata": {
+        "tool": "nmap_service_scan",
+        "exit_code": 0,
+        "duration": 34.169851779937744
+      }
+    },
+    {
+      "event_type": "tool_start",
+      "description": "Starting Nmap Version Intense",
+      "timestamp": "2026-03-07T23:36:33.953274",
+      "metadata": {
+        "tool": "nmap_version_scan",
+        "target": "salesos.ciklo.me"
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "nmap_version_scan: success (exit=0, 14.2s)",
+      "timestamp": "2026-03-07T23:36:48.111506",
+      "metadata": {
+        "tool": "nmap_version_scan",
+        "exit_code": 0,
+        "duration": 14.154353141784668
+      }
+    },
+    {
+      "event_type": "tool_start",
+      "description": "Starting Nmap Script Scan (safe)",
+      "timestamp": "2026-03-07T23:36:48.134904",
+      "metadata": {
+        "tool": "nmap_script_scan",
+        "target": "salesos.ciklo.me"
+      }
+    },
+    {
+      "event_type": "tool_end",
+      "description": "nmap_script_scan: success (exit=0, 150.8s)",
+      "timestamp": "2026-03-07T23:39:18.971042",
+      "metadata": {
+        "tool": "nmap_script_scan",
+        "exit_code": 0,
+        "duration": 150.8332335948944
+      }
+    },
+    {
+      "event_type": "phase_end",
+      "description": "Phase 2: Active Enumeration completed",
+      "timestamp": "2026-03-07T23:39:19.029482",
+      "metadata": {}
+    }
+  ],
+  "artifacts": {
+    "nmap_quick_scan": [
+      "/home/kali/yeah/aquiles_session_20260307_233257/outputs/phase2_nmap_quick_scan_1772948159.xml"
+    ],
+    "nmap_service_scan": [
+      "/home/kali/yeah/aquiles_session_20260307_233257/outputs/phase2_nmap_service_scan_1772948159.xml"
+    ],
+    "nmap_version_scan": [
+      "/home/kali/yeah/aquiles_session_20260307_233257/outputs/phase2_nmap_version_scan_1772948193.xml"
+    ],
+    "nmap_script_scan": [
+      "/home/kali/yeah/aquiles_session_20260307_233257/outputs/phase2_nmap_script_scan_1772948208.xml"
+    ]
+  },
+  "errors": []
+}

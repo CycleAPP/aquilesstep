@@ -1,0 +1,39 @@
+
+-----------------
+DIRB v2.22    
+By The Dark Raver
+-----------------
+
+OUTPUT_FILE: /home/kali/yeah/aquiles_session_20260308_002408/outputs/phase5_dirb_scan_1772951310.txt
+START_TIME: Sun Mar  8 00:28:30 2026
+URL_BASE: https://salesos.ciklo.me/
+WORDLIST_FILES: /usr/share/wordlists/dirb/common.txt
+OPTION: Silent Mode
+
+-----------------
+
+GENERATED WORDS: 4612
+
+---- Scanning URL: https://salesos.ciklo.me/ ----
+==> DIRECTORY: https://salesos.ciklo.me/api/
++ https://salesos.ciklo.me/cgi-bin/ (CODE:308|SIZE:8)
++ https://salesos.ciklo.me/dashboard (CODE:200|SIZE:11997)
++ https://salesos.ciklo.me/favicon.ico (CODE:200|SIZE:25931)
++ https://salesos.ciklo.me/forgot-password (CODE:200|SIZE:13445)
++ https://salesos.ciklo.me/import (CODE:200|SIZE:12236)
++ https://salesos.ciklo.me/leads (CODE:200|SIZE:12724)
++ https://salesos.ciklo.me/login (CODE:200|SIZE:14325)
++ https://salesos.ciklo.me/products (CODE:200|SIZE:12485)
++ https://salesos.ciklo.me/properties (CODE:200|SIZE:12489)
++ https://salesos.ciklo.me/quotes (CODE:200|SIZE:12481)
++ https://salesos.ciklo.me/register (CODE:200|SIZE:16635)
++ https://salesos.ciklo.me/settings (CODE:200|SIZE:12294)
++ https://salesos.ciklo.me/tasks (CODE:200|SIZE:12234)
+
+---- Entering directory: https://salesos.ciklo.me/api/ ----
+(!) WARNING: All responses for this directory seem to be CODE = 401.
+    (Use mode '-w' if you want to scan it anyway)
+
+-----------------
+END_TIME: Sun Mar  8 00:32:42 2026
+DOWNLOADED: 4713 - FOUND: 13

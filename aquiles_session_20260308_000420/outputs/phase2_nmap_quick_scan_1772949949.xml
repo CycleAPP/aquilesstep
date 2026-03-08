@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.95 scan initiated Sun Mar  8 00:05:50 2026 as: nmap -T4 -F -oX /home/kali/yeah/aquiles_session_20260308_000420/outputs/phase2_nmap_quick_scan_1772949949.xml salesos.ciklo.me -->
+<nmaprun scanner="nmap" args="nmap -T4 -F -oX /home/kali/yeah/aquiles_session_20260308_000420/outputs/phase2_nmap_quick_scan_1772949949.xml salesos.ciklo.me" start="1772949950" startstr="Sun Mar  8 00:05:50 2026" version="7.95" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="100" services="7,9,13,21-23,25-26,37,53,79-81,88,106,110-111,113,119,135,139,143-144,179,199,389,427,443-445,465,513-515,543-544,548,554,587,631,646,873,990,993,995,1025-1029,1110,1433,1720,1723,1755,1900,2000-2001,2049,2121,2717,3000,3128,3306,3389,3986,4899,5000,5009,5051,5060,5101,5190,5357,5432,5631,5666,5800,5900,6000-6001,6646,7070,8000,8008-8009,8080-8081,8443,8888,9100,9999-10000,32768,49152-49157"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="165.227.9.146" addrtype="ipv4"/>
+<hostnames>
+<hostname name="salesos.ciklo.me" type="user"/>
+</hostnames>
+</hosthint>
+<host starttime="1772949950" endtime="1772949950"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="165.227.9.146" addrtype="ipv4"/>
+<hostnames>
+<hostname name="salesos.ciklo.me" type="user"/>
+</hostnames>
+<ports><extraports state="closed" count="94">
+<extrareasons reason="conn-refused" count="94" proto="tcp" ports="7,9,13,21,23,26,37,53,79,81,88,106,110-111,113,119,135,139,143-144,179,199,389,427,444-445,465,513-515,543-544,548,554,587,631,646,873,990,993,995,1025-1029,1110,1433,1720,1723,1755,1900,2000-2001,2049,2121,2717,3128,3306,3389,3986,4899,5000,5009,5051,5101,5190,5357,5432,5631,5666,5800,5900,6000-6001,6646,7070,8000,8008-8009,8080-8081,8443,8888,9100,9999-10000,32768,49152-49157"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="25"><state state="filtered" reason="host-unreach" reason_ttl="0"/><service name="smtp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="https" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3000"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ppp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5060"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="sip" method="table" conf="3"/></port>
+</ports>
+<times srtt="53185" rttvar="655" to="100000"/>
+</host>
+<runstats><finished time="1772949950" timestr="Sun Mar  8 00:05:50 2026" summary="Nmap done at Sun Mar  8 00:05:50 2026; 1 IP address (1 host up) scanned in 0.34 seconds" elapsed="0.34" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
